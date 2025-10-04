@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">First Aid</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_contacts">Contacts</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">First Aid Guide</string>
+    <string name="home_subtitle">Quick access to emergency procedures</string>
+    <string name="categories_title">Categories</string>
+    <string name="recent_guides">Recently Viewed</string>
+    <string name="favorites">Favorites</string>
+
+    <!-- Search Screen -->
+    <string name="search_hint">Search first aid procedures...</string>
+    <string name="search_no_results">No results found</string>
+    <string name="recent_searches">Recent Searches</string>
+    <string name="clear_history">Clear History</string>
+
+    <!-- Guide Detail -->
+    <string name="steps_title">Steps</string>
+    <string name="warnings_title">Warnings</string>
+    <string name="when_to_call_emergency">When to Call Emergency</string>
+    <string name="call_emergency">Call Emergency Services</string>
+    <string name="mark_favorite">Add to Favorites</string>
+    <string name="remove_favorite">Remove from Favorites</string>
+
+    <!-- Emergency Contacts -->
+    <string name="contacts_title">Emergency Contacts</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="edit_contact">Edit Contact</string>
+    <string name="delete_contact">Delete Contact</string>
+    <string name="call_contact">Call</string>
+    <string name="default_contacts">Emergency Services</string>
+    <string name="personal_contacts">Personal Contacts</string>
+
+    <!-- Categories -->
+    <string name="category_bleeding">Bleeding</string>
+    <string name="category_burns">Burns</string>
+    <string name="category_choking">Choking</string>
+    <string name="category_cpr">CPR</string>
+    <string name="category_fractures">Fractures</string>
+    <string name="category_poisoning">Poisoning</string>
+    <string name="category_shock">Shock</string>
+    <string name="category_breathing">Breathing Problems</string>
+
+    <!-- Severity Levels -->
+    <string name="severity_low">Low</string>
+    <string name="severity_medium">Medium</string>
+    <string name="severity_high">High</string>
+    <string name="severity_critical">Critical</string>
+
+    <!-- Permissions -->
+    <string name="permission_call_required">Phone call permission required</string>
+    <string name="permission_call_rationale">This permission is needed to call emergency services</string>
+
+    <!-- General -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="confirm">Confirm</string>
+    <string name="loading">Loading...</string>
+    <string name="error_occurred">An error occurred</string>
+</resources>

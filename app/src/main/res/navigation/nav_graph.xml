@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.firstaidapp.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_guide_detail"
+            app:destination="@id/guideDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.example.firstaidapp.ui.search.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_search_to_guide_detail"
+            app:destination="@id/guideDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_contacts"
+        android:name="com.example.firstaidapp.ui.contacts.ContactsFragment"
+        android:label="Emergency Contacts"
+        tools:layout="@layout/fragment_contacts" />
+
+    <fragment
+        android:id="@+id/guideDetailFragment"
+        android:name="com.example.firstaidapp.ui.guide.GuideDetailFragment"
+        android:label="Guide Details"
+        tools:layout="@layout/fragment_guide_detail">
+        <argument
+            android:name="guide_id"
+            app:argType="string" />
+    </fragment>
+
+</navigation>

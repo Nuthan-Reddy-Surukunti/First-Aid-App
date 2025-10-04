@@ -1,0 +1,100 @@
+# First Aid App - Product Requirements Document (PRD)
+
+## Project Overview
+**Project Name:** First Aid Emergency Guide App
+**Purpose:** College Project - Emergency Medical Response Application
+**Target Users:** General public needing quick access to first aid procedures
+**Platform:** Android (Minimum SDK 24, Target SDK 34)
+
+## Core Objectives
+1. Provide instant access to life-saving first aid procedures
+2. Enable offline access to critical emergency information
+3. Facilitate quick emergency contact dialing
+4. Ensure intuitive, accessible UI for high-stress situations
+
+## Key Features
+
+### Phase 1: Foundation (COMPLETED ✅)
+- ✅ Project setup and configuration
+- ✅ Database architecture with Room
+- ✅ Navigation structure
+- ✅ Basic UI layouts
+
+### Phase 2: Core Functionality (COMPLETED ✅)
+- ✅ Browse guides by category
+- ✅ Search functionality
+- ✅ View detailed step-by-step guides
+- ✅ Emergency contact management
+- ✅ Call emergency services
+
+### Phase 3: Content & Polish (IN PROGRESS)
+- ⏳ Expand guide library (currently 4 guides)
+- ⏳ Add more emergency contacts
+- ⏳ Improve error handling
+- ⏳ Add user preferences
+
+### Phase 4: Enhancement (PENDING)
+- ❌ Accessibility features
+- ❌ Performance optimization
+- ❌ Data backup/restore
+- ❌ Analytics and usage tracking
+
+### Phase 5: Quality Assurance (PENDING)
+- ❌ Unit testing
+- ❌ UI testing
+- ❌ User acceptance testing
+
+## Success Criteria for College Project
+1. ✅ App builds and runs without errors
+2. ✅ All core features functional
+3. ✅ Professional UI/UX design
+4. ⏳ Comprehensive guide content (minimum 10 guides)
+5. ⏳ Error-free operation
+6. ❌ Test coverage >50%
+7. ⏳ Documentation complete
+
+## Technical Stack
+- **Language:** Kotlin
+- **Architecture:** MVVM with Repository Pattern
+- **Database:** Room (SQLite)
+- **UI:** Material Design 3, ViewBinding
+- **Navigation:** Navigation Component
+- **Async:** Kotlin Coroutines + LiveData
+- **Dependency Injection:** Manual (can upgrade to Hilt)
+
+## Content Requirements
+### Minimum Viable Product (MVP):
+- 10+ First Aid Guides covering:
+  - CPR (Adult, Child, Infant) ✅
+  - Choking ✅
+  - Bleeding/Wounds ✅
+  - Burns ✅
+  - Fractures ⏳
+  - Poisoning ⏳
+  - Shock ⏳
+  - Heart Attack ⏳
+  - Stroke ⏳
+  - Allergic Reactions ⏳
+
+### Emergency Contacts:
+- ✅ 911 Emergency Services
+- ✅ Poison Control
+- ⏳ Local Hospital
+- ⏳ Fire Department
+- ⏳ Police (Non-emergency)
+
+## Quality Standards
+- All features must work offline
+- Response time < 1 second for search
+- No crashes or ANRs
+- Professional UI following Material Design
+- Accessible for screen readers
+- Clear, medically accurate content
+
+## Future Enhancements (Post-College)
+- Multi-language support
+- Video demonstrations
+- CPR timer/metronome
+- Location-based emergency services
+- Share guides via SMS
+- Dark mode

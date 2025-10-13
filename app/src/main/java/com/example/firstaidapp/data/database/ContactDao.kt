@@ -15,10 +15,13 @@ interface ContactDao {
     @Query("SELECT * FROM emergency_contacts WHERE isDefault = 1 ORDER BY type")
     fun getDefaultContacts(): LiveData<List<EmergencyContact>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Query("SELECT COUNT(*) FROM emergency_contacts")
+    suspend fun getContactsCount(): Int
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertContact(contact: EmergencyContact)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(contacts: List<EmergencyContact>)
 
     @Update

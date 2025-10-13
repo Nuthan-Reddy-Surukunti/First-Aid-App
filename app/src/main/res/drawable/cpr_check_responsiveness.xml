@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="150dp"
+    android:viewportWidth="200"
+    android:viewportHeight="150">
+
+    <!-- Person lying down -->
+    <path
+        android:fillColor="@color/primary"
+        android:pathData="M50,60 C60,60 70,70 70,80 C70,90 60,100 50,100 C40,100 30,90 30,80 C30,70 40,60 50,60 Z"/>
+
+    <!-- Body lying down -->
+    <path
+        android:fillColor="@color/primary_light"
+        android:pathData="M70,75 L170,75 L170,95 L70,95 Z"/>
+
+    <!-- Hand checking -->
+    <path
+        android:fillColor="@color/accent"
+        android:pathData="M80,40 L90,50 L80,60 L70,50 Z"/>
+
+    <!-- Text indicator -->
+    <path
+        android:fillColor="@color/text_primary"
+        android:pathData="M100,25 L120,25 L120,30 L100,30 Z"/>
+</vector>

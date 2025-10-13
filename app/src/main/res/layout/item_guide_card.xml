@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Guide Title -->
+        <TextView
+            android:id="@+id/tvGuideTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CPR - Adult"
+            android:textColor="@color/primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Category -->
+        <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@color/category_background"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:text="CPR"
+            android:textColor="@color/category_text"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/tvGuideDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="Cardiopulmonary resuscitation for adults"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
+
+        <!-- Bottom Row with Severity -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvSeverity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/severity_critical"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:text="CRITICAL"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_view"
+                android:tint="@color/primary" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

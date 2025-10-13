@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Primary Colors - Modern Medical Theme -->
-    <color name="primary">#D32F2F</color>
+    <color name="primary">#E53E3E</color>
     <color name="primary_light">#FFCDD2</color>
-    <color name="primary_dark">#B71C1C</color>
-    <color name="accent">#FF5252</color>
+    <color name="primary_dark">#C53030</color>
+    <color name="accent">#3182CE</color>
 
     <!-- Secondary Colors -->
     <color name="secondary">#FF6B6B</color>
@@ -12,20 +12,23 @@
     <color name="secondary_dark">#CC5555</color>
 
     <!-- Emergency Colors -->
-    <color name="emergency_red">#E74C3C</color>
+    <color name="emergency_red">#DC2626</color>
     <color name="emergency_light">#FADBD8</color>
     <color name="emergency_dark">#C0392B</color>
+    <color name="emergency_orange">#EA580C</color>
+    <color name="emergency_green">#16A34A</color>
 
     <!-- Background Colors -->
     <color name="background_primary">#FFFFFF</color>
-    <color name="background_secondary">#F5F5F5</color>
+    <color name="background_secondary">#F7FAFC</color>
     <color name="background_tertiary">#F1F5F9</color>
 
     <!-- Text Colors -->
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
-    <color name="text_tertiary">#94A3B8</color>
+    <color name="text_primary">#1A202C</color>
+    <color name="text_secondary">#4A5568</color>
+    <color name="text_tertiary">#718096</color>
     <color name="text_hint">#BDBDBD</color>
+    <color name="text_on_primary">#FFFFFF</color>
 
     <!-- Severity Colors -->
     <color name="severity_low">#4CAF50</color>
@@ -34,36 +37,46 @@
     <color name="severity_critical">#D32F2F</color>
 
     <!-- Status Colors -->
-    <color name="success">#4CAF50</color>
+    <color name="success">#38A169</color>
     <color name="success_light">#D1FAE5</color>
-    <color name="warning">#F59E0B</color>
+    <color name="warning">#D69E2E</color>
     <color name="warning_light">#FEF3C7</color>
     <color name="warning_text">#92400E</color>
-    <color name="info">#3B82F6</color>
+    <color name="error">#E53E3E</color>
+    <color name="info">#3182CE</color>
     <color name="info_light">#DBEAFE</color>
-
-    <!-- Gradient Colors -->
-    <color name="gradient_start">#667eea</color>
-    <color name="gradient_end">#764ba2</color>
 
     <!-- Card and Surface Colors -->
     <color name="surface">#FFFFFF</color>
-    <color name="surface_variant">#F1F5F9</color>
-    <color name="outline">#E2E8F0</color>
-    <color name="outline_variant">#CBD5E1</color>
+    <color name="surface_variant">#EDF2F7</color>
+    <color name="outline">#E0E0E0</color>
 
-    <!-- Interactive Colors -->
-    <color name="ripple_color">#1A94A8D5</color>
-    <color name="selected_item">#E6F3FF</color>
+    <!-- Category Colors -->
+    <color name="category_background">#E3F2FD</color>
+    <color name="category_text">#1565C0</color>
+
+    <!-- Standard Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent">#80000000</color>
+
+    <!-- Gray Scale -->
+    <color name="gray_100">#F7FAFC</color>
+    <color name="gray_200">#EDF2F7</color>
+    <color name="gray_300">#E2E8F0</color>
+    <color name="gray_400">#CBD5E0</color>
+    <color name="gray_500">#A0AEC0</color>
+    <color name="gray_600">#718096</color>
+    <color name="gray_700">#4A5568</color>
+    <color name="gray_800">#2D3748</color>
+    <color name="gray_900">#1A202C</color>
+
+    <!-- Additional UI Colors -->
+    <color name="divider">#E0E0E0</color>
+    <color name="overlay">#80000000</color>
 
     <!-- Accessibility Colors -->
     <color name="high_contrast_bg">#000000</color>
     <color name="high_contrast_text">#FFFFFF</color>
-
-    <!-- Additional Colors -->
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="divider">#E0E0E0</color>
-    <color name="card_background">#FAFAFA</color>
-    <color name="error">#F44336</color>
 </resources>

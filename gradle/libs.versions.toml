@@ -1,18 +1,19 @@
 [versions]
-agp = "8.13.0"
+agp = "8.2.2"
 kotlin = "1.9.22"
 coreKtx = "1.13.1"
 appcompat = "1.7.0"
 material = "1.12.0"
-activity = "1.11.0"
+activity = "1.8.2"
 constraintlayout = "2.1.4"
 lifecycleVersion = "2.8.4"
 navigationVersion = "2.7.7"
 roomVersion = "2.6.1"
-coroutinesVersion = "1.8.0"
+coroutinesVersion = "1.7.3"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+ksp = "1.9.22-1.0.17"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -44,4 +45,4 @@ kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

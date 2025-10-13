@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="150dp"
+    android:viewportWidth="200"
+    android:viewportHeight="150">
+
+    <!-- Person outline -->
+    <path
+        android:fillColor="@color/primary"
+        android:pathData="M100,20 C110,20 120,30 120,40 C120,50 110,60 100,60 C90,60 80,50 80,40 C80,30 90,20 100,20 Z"/>
+
+    <!-- Body -->
+    <path
+        android:fillColor="@color/primary_light"
+        android:pathData="M80,60 L120,60 L115,120 L85,120 Z"/>
+
+    <!-- Assessment indicator - using path instead of circle -->
+    <path
+        android:fillColor="@color/warning"
+        android:pathData="M100,75 C108.284,75 115,81.716 115,90 C115,98.284 108.284,105 100,105 C91.716,105 85,98.284 85,90 C85,81.716 91.716,75 100,75 Z"/>
+</vector>

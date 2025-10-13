@@ -6,6 +6,7 @@
     <string name="nav_home">Home</string>
     <string name="nav_search">Search</string>
     <string name="nav_contacts">Contacts</string>
+    <string name="nav_settings">Settings</string>
 
     <!-- Home Screen -->
     <string name="home_title">First Aid Guide</string>
@@ -56,6 +57,11 @@
     <!-- Permissions -->
     <string name="permission_call_required">Phone call permission required</string>
     <string name="permission_call_rationale">This permission is needed to call emergency services</string>
+    <string name="permission_required">Permission required</string>
+    <string name="contacts_permission_rationale">We need access to your contacts to let you import and quickly call trusted people in emergencies.</string>
+    <string name="contacts_permission_permanently_denied">Contacts permission was denied. Please enable it in Settings to import phone contacts.</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="allow">Allow</string>
 
     <!-- General -->
     <string name="ok">OK</string>

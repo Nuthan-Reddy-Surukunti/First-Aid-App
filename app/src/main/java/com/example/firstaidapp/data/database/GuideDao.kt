@@ -18,11 +18,17 @@ interface GuideDao {
     @Query("SELECT * FROM first_aid_guides WHERE title LIKE '%' || :query || '%' OR description LIKE '%' || :query || '%' OR category LIKE '%' || :query || '%'")
     fun searchGuides(query: String): LiveData<List<FirstAidGuide>>
 
+    @Query("SELECT * FROM first_aid_guides WHERE title LIKE '%' || :query || '%' OR description LIKE '%' || :query || '%' OR category LIKE '%' || :query || '%'")
+    suspend fun searchGuidesList(query: String): List<FirstAidGuide>
+
     @Query("SELECT * FROM first_aid_guides WHERE isFavorite = 1 ORDER BY lastAccessedTimestamp DESC")
     fun getFavoriteGuides(): LiveData<List<FirstAidGuide>>
 
     @Query("SELECT DISTINCT category FROM first_aid_guides ORDER BY category")
     fun getAllCategories(): LiveData<List<String>>
+
+    @Query("SELECT COUNT(*) FROM first_aid_guides")
+    suspend fun getGuidesCount(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertGuide(guide: FirstAidGuide)

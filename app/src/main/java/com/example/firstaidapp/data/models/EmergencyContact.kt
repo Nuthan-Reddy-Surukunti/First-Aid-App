@@ -1,24 +1,36 @@
 package com.example.firstaidapp.data.models
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "emergency_contacts")
+@Entity(
+    tableName = "emergency_contacts",
+    indices = [Index(value = ["phoneNumber", "type"], unique = true)]
+)
 data class EmergencyContact(
-    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
     val name: String,
     val phoneNumber: String,
-    val type: ContactType,
-    val isDefault: Boolean = false, // For preset emergency numbers
-    val countryCode: String = "+1"
+    val relationship: String? = null,
+    val type: ContactType = ContactType.PERSONAL,
+    val isDefault: Boolean = false,
+    val isFavorite: Boolean = false,
+    val notes: String? = null,
+    val createdAt: Long = System.currentTimeMillis(),
+    val updatedAt: Long = System.currentTimeMillis()
 )
 
 enum class ContactType {
-    EMERGENCY_SERVICE,  // 911, etc.
-    HOSPITAL,
+    EMERGENCY_SERVICE,
     POISON_CONTROL,
-    PERSONAL,
+    HOSPITAL,
     POLICE,
     FIRE_DEPARTMENT,
-    AMBULANCE
+    PERSONAL,
+    FAMILY,
+    DOCTOR,
+    VETERINARIAN,
+    OTHER
 }

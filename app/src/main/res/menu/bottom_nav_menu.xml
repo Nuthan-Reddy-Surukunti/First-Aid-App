@@ -6,12 +6,12 @@
         android:title="@string/nav_home" />
 
     <item
-        android:id="@+id/navigation_search"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="@string/nav_search" />
-
-    <item
         android:id="@+id/navigation_contacts"
         android:icon="@android:drawable/ic_menu_call"
         android:title="@string/nav_contacts" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/nav_settings" />
 </menu>

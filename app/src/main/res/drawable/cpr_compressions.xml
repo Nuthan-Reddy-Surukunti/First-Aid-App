@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="150dp"
+    android:viewportWidth="200"
+    android:viewportHeight="150">
+
+    <!-- Person lying down -->
+    <path
+        android:fillColor="@color/primary_light"
+        android:pathData="M60,70 L140,70 L140,90 L60,90 Z"/>
+
+    <!-- Chest area - using path instead of circle -->
+    <path
+        android:fillColor="@color/accent"
+        android:pathData="M100,60 C111.046,60 120,68.954 120,80 C120,91.046 111.046,100 100,100 C88.954,100 80,91.046 80,80 C80,68.954 88.954,60 100,60 Z"/>
+
+    <!-- Compression hands -->
+    <path
+        android:fillColor="@color/primary"
+        android:pathData="M85,50 L115,50 L115,70 L85,70 Z"/>
+
+    <!-- Compression arrows -->
+    <path
+        android:fillColor="@color/emergency_red"
+        android:pathData="M100,30 L95,40 L105,40 Z"/>
+</vector>

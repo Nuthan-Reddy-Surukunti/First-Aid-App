@@ -5,14 +5,23 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.widget.AutoCompleteTextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.firstaidapp.R
+import com.example.firstaidapp.data.models.ContactType
+import com.example.firstaidapp.data.models.EmergencyContact
 import com.example.firstaidapp.databinding.FragmentContactsBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -51,6 +60,7 @@ class ContactsFragment : Fragment() {
         setupRecyclerView()
         setupObservers()
         setupClickListeners()
+        setupSearchFunctionality()
     }
 
     private fun setupViewModel() {
@@ -76,39 +86,400 @@ class ContactsFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
+        binding.btnSettings.setOnClickListener {
+            // Navigate to Settings screen
+            findNavController().navigate(ContactsFragmentDirections.actionContactsToSettings())
+        }
+
         binding.fabAddContact.setOnClickListener {
-            // TODO: Show dialog to add new contact
-            Snackbar.make(binding.root, "Add contact feature coming soon", Snackbar.LENGTH_SHORT).show()
+            showAddContactDialog()
+        }
+    }
+
+    private fun setupSearchFunctionality() {
+        // Add null check to prevent crashes
+        if (_binding == null) return
+
+        binding.etSearchContacts.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Add null check
+                if (_binding == null) return
+
+                val query = s.toString()
+
+                // Animate search interaction
+                if (query.isNotEmpty()) {
+                    // Cancel any existing animations to prevent conflicts
+                    binding.rvContacts.animate().cancel()
+
+                    // Fade animation for search results
+                    binding.rvContacts.animate()
+                        .alpha(0.7f)
+                        .scaleX(0.98f)
+                        .scaleY(0.98f)
+                        .setDuration(150)
+                        .withEndAction {
+                            // Additional null check in animation callback
+                            if (_binding != null) {
+                                try {
+                                    viewModel.searchContacts(query)
+                                    binding.rvContacts.animate()
+                                        .alpha(1f)
+                                        .scaleX(1f)
+                                        .scaleY(1f)
+                                        .setDuration(200)
+                                        .start()
+                                } catch (e: Exception) {
+                                    // Handle potential ViewModel crashes
+                                    e.printStackTrace()
+                                }
+                            }
+                        }
+                        .start()
+                } else {
+                    try {
+                        viewModel.clearSearch()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        // Enhanced focus animations for search bar with null checks
+        binding.etSearchContacts.setOnFocusChangeListener { view, hasFocus ->
+            if (_binding == null) return@setOnFocusChangeListener
+
+            try {
+                view.animate().cancel() // Cancel existing animations
+
+                if (hasFocus) {
+                    view.animate()
+                        .scaleX(1.05f)
+                        .scaleY(1.05f)
+                        .setDuration(200)
+                        .start()
+
+                    // Add subtle glow effect
+                    view.elevation = 8f
+                } else {
+                    view.animate()
+                        .scaleX(1.0f)
+                        .scaleY(1.0f)
+                        .setDuration(200)
+                        .start()
+
+                    view.elevation = 2f
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun showAddContactDialog() {
+        // Add null check to prevent crashes
+        if (_binding == null || !isAdded) return
+
+        try {
+            val dialogView = LayoutInflater.from(requireContext())
+                .inflate(R.layout.dialog_add_contact, null)
+
+            val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                .setView(dialogView)
+                .create()
+
+            // Get dialog views
+            val etContactName = dialogView.findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.etContactName)
+            val etPhoneNumber = dialogView.findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.etPhoneNumber)
+            val etRelationship = dialogView.findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.etRelationship)
+            val spinnerContactType = dialogView.findViewById<AutoCompleteTextView>(R.id.spinnerContactType)
+            val etNotes = dialogView.findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.etNotes)
+            val btnImportFromPhone = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnImportFromPhone)
+            val btnCancel = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnCancel)
+            val btnSave = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnSave)
+
+            // Null checks for all views
+            if (etContactName == null || etPhoneNumber == null || spinnerContactType == null ||
+                btnImportFromPhone == null || btnCancel == null || btnSave == null) {
+                return
+            }
+
+            // Setup contact type dropdown
+            setupContactTypeDropdown(spinnerContactType)
+
+            // Setup click listeners with null checks
+            btnImportFromPhone.setOnClickListener {
+                dialog.dismiss()
+                if (isAdded && _binding != null) {
+                    openPhoneContactsSelection()
+                }
+            }
+
+            btnCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            btnSave.setOnClickListener {
+                if (!isAdded || _binding == null) {
+                    dialog.dismiss()
+                    return@setOnClickListener
+                }
+
+                val name = etContactName.text?.toString()?.trim() ?: ""
+                val phone = etPhoneNumber.text?.toString()?.trim() ?: ""
+                val relationship = etRelationship.text?.toString()?.trim() ?: ""
+                val typeString = spinnerContactType.text?.toString() ?: "Personal"
+                val notes = etNotes.text?.toString()?.trim() ?: ""
+
+                if (validateContactInput(name, phone)) {
+                    val contactType = when (typeString) {
+                        "Emergency Service" -> ContactType.EMERGENCY_SERVICE
+                        "Poison Control" -> ContactType.POISON_CONTROL
+                        "Hospital" -> ContactType.HOSPITAL
+                        "Police" -> ContactType.POLICE
+                        "Fire Department" -> ContactType.FIRE_DEPARTMENT
+                        "Family" -> ContactType.FAMILY
+                        "Doctor" -> ContactType.DOCTOR
+                        "Veterinarian" -> ContactType.VETERINARIAN
+                        "Other" -> ContactType.OTHER
+                        else -> ContactType.PERSONAL
+                    }
+
+                    val contact = EmergencyContact(
+                        name = name,
+                        phoneNumber = phone,
+                        relationship = relationship,
+                        type = contactType,
+                        notes = notes
+                    )
+
+                    try {
+                        viewModel.addContact(contact)
+
+                        // Show success animation and message with null check
+                        if (_binding != null) {
+                            showSuccessAnimation()
+                            Snackbar.make(binding.root, "Contact added successfully!", Snackbar.LENGTH_SHORT).show()
+                        }
+
+                        dialog.dismiss()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        if (_binding != null) {
+                            Snackbar.make(binding.root, "Error adding contact: ${e.message}", Snackbar.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+
+            dialog.show()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            if (_binding != null) {
+                Snackbar.make(binding.root, "Error opening add contact dialog", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun setupContactTypeDropdown(spinner: AutoCompleteTextView) {
+        val contactTypes = arrayOf(
+            "Personal",
+            "Family",
+            "Emergency Service",
+            "Hospital",
+            "Police",
+            "Fire Department",
+            "Poison Control",
+            "Doctor",
+            "Veterinarian",
+            "Other"
+        )
+
+        val adapter = android.widget.ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            contactTypes
+        )
+
+        spinner.setAdapter(adapter)
+        spinner.setText("Personal", false)
+    }
+
+    private fun openPhoneContactsSelection() {
+        // Add safety checks to prevent crashes
+        if (_binding == null || !isAdded) return
+
+        try {
+            val intent = android.content.Intent(requireContext(), PhoneContactsActivity::class.java)
+            phoneContactsLauncher.launch(intent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            if (_binding != null) {
+                Snackbar.make(binding.root, "Error opening phone contacts", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private val phoneContactsLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        // Add null checks in result callback
+        if (_binding == null || !isAdded) return@registerForActivityResult
+
+        try {
+            if (result.resultCode == android.app.Activity.RESULT_OK) {
+                // Contacts were added successfully
+                showSuccessAnimation()
+                Snackbar.make(binding.root, "Contacts imported successfully!", Snackbar.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun showSuccessAnimation() {
+        // Add null check and cancel existing animations
+        if (_binding == null) return
+
+        try {
+            binding.fabAddContact.animate().cancel()
+            binding.fabAddContact.animate()
+                .scaleX(1.2f)
+                .scaleY(1.2f)
+                .setDuration(150)
+                .withEndAction {
+                    // Additional null check in animation callback
+                    if (_binding != null) {
+                        binding.fabAddContact.animate()
+                            .scaleX(1f)
+                            .scaleY(1f)
+                            .setDuration(150)
+                            .start()
+                    }
+                }
+                .start()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
     private fun makePhoneCall(phoneNumber: String) {
-        when {
-            ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.CALL_PHONE
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                // Permission granted - make direct call
-                val intent = Intent(Intent.ACTION_CALL).apply {
-                    data = Uri.parse("tel:$phoneNumber")
-                }
-                startActivity(intent)
-            }
-            else -> {
-                // No permission - use dialer (safe approach)
-                val intent = Intent(Intent.ACTION_DIAL).apply {
-                    data = Uri.parse("tel:$phoneNumber")
-                }
-                startActivity(intent)
+        // Add comprehensive null checks and error handling
+        if (_binding == null || !isAdded) return
 
-                // Optionally ask for permission for future direct calls
-                requestPermissionLauncher.launch(Manifest.permission.CALL_PHONE)
+        try {
+            // Enhanced call animation with haptic feedback
+            binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+
+            // Create pulsing animation for the entire contacts view
+            val pulseAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_press)
+            binding.rvContacts.startAnimation(pulseAnimation)
+
+            // Check for call permission
+            when {
+                ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.CALL_PHONE
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    // Direct call
+                    val callIntent = Intent(Intent.ACTION_CALL).apply {
+                        data = Uri.parse("tel:$phoneNumber")
+                    }
+                    if (callIntent.resolveActivity(requireContext().packageManager) != null) {
+                        startActivity(callIntent)
+                    } else {
+                        // Fallback to dialer if direct call not available
+                        makeDialerCall(phoneNumber)
+                    }
+                }
+                else -> {
+                    makeDialerCall(phoneNumber)
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            // Fallback to dialer on any error
+            makeDialerCall(phoneNumber)
+        }
+    }
+
+    private fun makeDialerCall(phoneNumber: String) {
+        try {
+            // Use dialer as safe fallback
+            val dialIntent = Intent(Intent.ACTION_DIAL).apply {
+                data = Uri.parse("tel:$phoneNumber")
+            }
+            if (dialIntent.resolveActivity(requireContext().packageManager) != null) {
+                startActivity(dialIntent)
+            } else if (_binding != null) {
+                Snackbar.make(binding.root, "No dialer app available", Snackbar.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            if (_binding != null) {
+                Snackbar.make(binding.root, "Error making call", Snackbar.LENGTH_SHORT).show()
             }
         }
     }
 
+    private fun validateContactInput(name: String, phone: String): Boolean {
+        // Add null check to prevent crashes
+        if (_binding == null) return false
+
+        if (name.isEmpty()) {
+            Snackbar.make(binding.root, "Please enter a contact name", Snackbar.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (phone.isEmpty()) {
+            Snackbar.make(binding.root, "Please enter a phone number", Snackbar.LENGTH_SHORT).show()
+            return false
+        }
+
+        // Basic phone number validation
+        val phoneRegex = "^[+]?[0-9\\s\\-\\(\\)]{7,15}$".toRegex()
+        if (!phone.matches(phoneRegex)) {
+            Snackbar.make(binding.root, "Please enter a valid phone number", Snackbar.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+
+        // Cancel all animations to prevent crashes
+        try {
+            _binding?.let { binding ->
+                binding.rvContacts.animate().cancel()
+                binding.fabAddContact.animate().cancel()
+                binding.etSearchContacts.animate().cancel()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
         _binding = null
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        // Cancel animations when fragment is paused to prevent crashes
+        try {
+            _binding?.let { binding ->
+                binding.rvContacts.animate().cancel()
+                binding.fabAddContact.animate().cancel()
+                binding.etSearchContacts.animate().cancel()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

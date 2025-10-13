@@ -1,64 +1,359 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="2dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardStep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="12dp">
-
-        <TextView
-            android:id="@+id/tvStepNumber"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@color/primary"
-            android:gravity="center"
-            android:text="1"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+        android:layout_margin="8dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvStepTitle"
+            <!-- Step Header with Number and Type Indicator -->
+            <LinearLayout
+                android:id="@+id/layoutStepHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Step Title"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:background="@color/primary_light"
+                android:orientation="horizontal"
+                android:padding="12dp">
 
-            <TextView
-                android:id="@+id/tvStepDescription"
+                <!-- Step Number Circle -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:cardBackgroundColor="@color/primary"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="2dp">
+
+                    <TextView
+                        android:id="@+id/tvStepNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="1" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Step Type Icon -->
+                <ImageView
+                    android:id="@+id/ivStepTypeIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:src="@drawable/ic_action"
+                    android:visibility="visible" />
+
+                <!-- Title and Duration -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvStepTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="Check for responsiveness" />
+
+                    <TextView
+                        android:id="@+id/tvDuration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/bg_duration_chip"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="4dp"
+                        android:textColor="@color/primary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        tools:text="30 seconds"
+                        tools:visibility="visible" />
+
+                </LinearLayout>
+
+                <!-- Critical Warning Indicator -->
+                <ImageView
+                    android:id="@+id/ivCriticalWarning"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_warning_critical"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+            <!-- Main Content Area -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Step description"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/tvDuration"
-                android:layout_width="wrap_content"
+                <!-- Step Description -->
+                <TextView
+                    android:id="@+id/tvStepDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4dp"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    tools:text="Gently tap the person's shoulders and shout 'Are you okay?' to check if they respond." />
+
+                <!-- Main Illustration Image -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardStepImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    tools:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/ivStepImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        tools:src="@drawable/cpr_check_responsiveness" />
+
+                    <!-- Image Overlay with Play Button for Videos -->
+                    <FrameLayout
+                        android:id="@+id/overlayVideoPlay"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/overlay_dark"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/fabPlayVideo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_play_arrow"
+                            app:backgroundTint="@color/primary"
+                            app:tint="@color/white" />
+
+                    </FrameLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Detailed Instructions (Expandable) -->
+                <LinearLayout
+                    android:id="@+id/layoutDetailedInstructions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Detailed Instructions:"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvDetailedInstructions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:lineSpacingExtra="2dp"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"
+                        tools:text="Place your hands on the person's shoulders and gently shake them. Speak loudly and clearly. Look for any signs of movement, breathing, or response to your voice." />
+
+                </LinearLayout>
+
+                <!-- Required Tools Section -->
+                <LinearLayout
+                    android:id="@+id/layoutRequiredTools"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_tools"
+                            app:tint="@color/accent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Required Tools:"
+                            android:textColor="@color/accent"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:id="@+id/flexboxTools"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:alignItems="center"
+                        app:flexWrap="wrap" />
+
+                </LinearLayout>
+
+                <!-- Tips Section -->
+                <LinearLayout
+                    android:id="@+id/layoutTips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_tips_section"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_lightbulb"
+                            app:tint="@color/success" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Tips:"
+                            android:textColor="@color/success"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTipsList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+
+                <!-- Warnings Section -->
+                <LinearLayout
+                    android:id="@+id/layoutWarnings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_warning_section"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_warning"
+                            app:tint="@color/warning" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Important:"
+                            android:textColor="@color/warning"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutWarningsList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Action Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/text_hint"
-                android:textSize="12sp"
-                android:textStyle="italic" />
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:paddingTop="0dp">
+
+                <!-- Mark Complete Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMarkComplete"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_check_circle"
+                    android:text="Mark Complete"
+                    app:drawableTint="@color/success" />
+
+                <!-- More Details Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMoreDetails"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_expand_more"
+                    android:text="More Details" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-
-</com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

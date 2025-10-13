@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -37,6 +37,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 }
 
@@ -60,7 +61,7 @@ dependencies {
     // Room Database
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
@@ -76,6 +77,12 @@ dependencies {
 
     // ViewPager2
     implementation("androidx.viewpager2:viewpager2:1.0.0")
+
+    // FlexboxLayout
+    implementation("com.google.android.flexbox:flexbox:3.0.0")
+
+    // WorkManager for background initialization
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
 
     // Testing
     testImplementation(libs.junit)

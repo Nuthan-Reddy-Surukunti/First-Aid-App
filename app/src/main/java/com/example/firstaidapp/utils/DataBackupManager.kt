@@ -41,8 +41,8 @@ class DataBackupManager private constructor(private val context: Context) {
     
     private val gson = Gson()
     private val prefs: SharedPreferences = context.getSharedPreferences(BACKUP_PREFS, Context.MODE_PRIVATE)
-    private val backupScope = CoroutineScope(Dispatchers.IO + ErrorHandler.coroutineExceptionHandler)
-    
+    private val backupScope = CoroutineScope(Dispatchers.IO + ErrorHandler.createCoroutineExceptionHandler(context))
+
     private val _backupStatus = MutableLiveData<BackupStatus>()
     val backupStatus: LiveData<BackupStatus> = _backupStatus
     
@@ -95,7 +95,7 @@ class DataBackupManager private constructor(private val context: Context) {
                 _backupStatus.postValue(BackupStatus.Success(backupFile.absolutePath))
                 
             } catch (e: Exception) {
-                ErrorHandler.handleException(e)
+                ErrorHandler.handleError(context, e)
                 _backupStatus.postValue(BackupStatus.Error("Backup failed: ${e.message}"))
             }
         }
@@ -130,7 +130,7 @@ class DataBackupManager private constructor(private val context: Context) {
                 _backupStatus.postValue(BackupStatus.Success("Data restored successfully"))
                 
             } catch (e: Exception) {
-                ErrorHandler.handleException(e)
+                ErrorHandler.handleError(context, e)
                 _backupStatus.postValue(BackupStatus.Error("Restore failed: ${e.message}"))
             }
         }
@@ -172,7 +172,7 @@ class DataBackupManager private constructor(private val context: Context) {
         val allPrefs = context.getSharedPreferences("app_preferences", Context.MODE_PRIVATE).all
         return allPrefs.mapValues { entry ->
             when (val value = entry.value) {
-                is Boolean, is Int, is Long, is Float, is String -> value ?: ""
+                is Boolean, is Int, is Long, is Float, is String -> value
                 else -> value?.toString() ?: ""
             }
         }

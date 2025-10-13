@@ -16,21 +16,23 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
     private lateinit var repository: GuideRepository
 
     private val _searchQuery = MutableLiveData<String>()
+    lateinit var searchResults: LiveData<List<FirstAidGuide>>
 
     init {
-        val database = AppDatabase.getDatabase(application)
-        repository = GuideRepository(
-            database.guideDao(),
-            database.contactDao(),
-            database.searchDao()
-        )
-    }
-
-    val searchResults: LiveData<List<FirstAidGuide>> = _searchQuery.switchMap { query ->
-        if (query.isNullOrBlank()) {
-            MutableLiveData(emptyList())
-        } else {
-            repository.searchGuides(query)
+        viewModelScope.launch {
+            val database = AppDatabase.getDatabase(application)
+            repository = GuideRepository(
+                database.guideDao(),
+                database.contactDao(),
+                database.searchDao()
+            )
+            searchResults = _searchQuery.switchMap { query ->
+                if (query.isNullOrBlank()) {
+                    MutableLiveData(emptyList())
+                } else {
+                    repository.searchGuides(query)
+                }
+            }
         }
     }
 

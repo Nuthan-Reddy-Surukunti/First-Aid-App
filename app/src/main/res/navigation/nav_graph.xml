@@ -12,7 +12,18 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_guide_detail"
-            app:destination="@id/guideDetailFragment" />
+            app:destination="@id/guideDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_home_to_settings"
+            app:destination="@id/navigation_settings"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_scale_out"
+            app:popEnterAnim="@anim/fade_scale_in"
+            app:popExitAnim="@anim/fade_scale_out" />
     </fragment>
 
     <fragment
@@ -22,14 +33,51 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_search_to_guide_detail"
-            app:destination="@id/guideDetailFragment" />
+            app:destination="@id/guideDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_search_to_settings"
+            app:destination="@id/navigation_settings"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_scale_out" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_contacts"
         android:name="com.example.firstaidapp.ui.contacts.ContactsFragment"
         android:label="Emergency Contacts"
-        tools:layout="@layout/fragment_contacts" />
+        tools:layout="@layout/fragment_contacts">
+        <action
+            android:id="@+id/action_contacts_to_settings"
+            app:destination="@id/navigation_settings"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_scale_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.firstaidapp.ui.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settings_to_home"
+            app:destination="@id/navigation_home"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_scale_out" />
+        <action
+            android:id="@+id/action_settings_to_search"
+            app:destination="@id/navigation_search"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_scale_out" />
+        <action
+            android:id="@+id/action_settings_to_contacts"
+            app:destination="@id/navigation_contacts"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_scale_out" />
+    </fragment>
 
     <fragment
         android:id="@+id/guideDetailFragment"
@@ -39,6 +87,11 @@
         <argument
             android:name="guide_id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_guide_detail_to_settings"
+            app:destination="@id/navigation_settings"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_scale_out" />
     </fragment>
 
 </navigation>

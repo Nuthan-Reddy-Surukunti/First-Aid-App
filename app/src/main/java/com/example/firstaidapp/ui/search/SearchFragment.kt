@@ -37,6 +37,7 @@ class SearchFragment : Fragment() {
         setupRecyclerView()
         setupSearchBar()
         setupObservers()
+        setupClickListeners()
     }
 
     private fun setupViewModel() {
@@ -82,6 +83,13 @@ class SearchFragment : Fragment() {
                 binding.tvNoResults.visibility = View.GONE
                 searchAdapter.submitList(results)
             }
+        }
+    }
+
+    private fun setupClickListeners() {
+        binding.btnSettings.setOnClickListener {
+            // Navigate to Settings screen
+            findNavController().navigate(SearchFragmentDirections.actionSearchToSettings())
         }
     }
 

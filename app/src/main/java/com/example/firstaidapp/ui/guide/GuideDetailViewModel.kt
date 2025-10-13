@@ -16,18 +16,20 @@ class GuideDetailViewModel(application: Application) : AndroidViewModel(applicat
     private lateinit var repository: GuideRepository
 
     private val _guideId = MutableLiveData<String>()
+    lateinit var guide: LiveData<FirstAidGuide?>
 
     init {
-        val database = AppDatabase.getDatabase(application)
-        repository = GuideRepository(
-            database.guideDao(),
-            database.contactDao(),
-            database.searchDao()
-        )
-    }
-
-    val guide: LiveData<FirstAidGuide?> = _guideId.switchMap { id ->
-        repository.getGuideById(id)
+        viewModelScope.launch {
+            val database = AppDatabase.getDatabase(application)
+            repository = GuideRepository(
+                database.guideDao(),
+                database.contactDao(),
+                database.searchDao()
+            )
+            guide = _guideId.switchMap { id ->
+                repository.getGuideById(id)
+            }
+        }
     }
 
     fun loadGuide(guideId: String) {

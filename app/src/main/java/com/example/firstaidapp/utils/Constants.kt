@@ -14,6 +14,10 @@ object Constants {
     const val CATEGORY_POISONING = "Poisoning"
     const val CATEGORY_SHOCK = "Shock"
     const val CATEGORY_BREATHING = "Breathing Problems"
+    const val CATEGORY_BONES = "Bones"
+    const val CATEGORY_HEART = "Heart"
+    const val CATEGORY_STROKE = "Stroke"
+    const val CATEGORY_ALLERGY = "Allergy"
 
     // Severity Levels
     const val SEVERITY_LOW = "LOW"

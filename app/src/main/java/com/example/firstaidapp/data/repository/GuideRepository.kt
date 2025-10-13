@@ -30,6 +30,10 @@ class GuideRepository(
         return guideDao.searchGuides(query)
     }
 
+    suspend fun searchGuidesList(query: String): List<FirstAidGuide> {
+        return guideDao.searchGuidesList(query)
+    }
+
     suspend fun insertGuides(guides: List<FirstAidGuide>) {
         guideDao.insertAll(guides)
     }

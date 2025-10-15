@@ -6,33 +6,30 @@
     android:orientation="vertical"
     android:padding="24dp">
 
-    <!-- Header -->
+    <!-- Dialog Title -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="Add Emergency Contact"
-        android:textColor="@color/text_primary"
+        android:textColor="@color/primary"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="20dp" />
+        android:textStyle="bold" />
 
     <!-- Contact Name -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Contact Name"
         app:boxStrokeColor="@color/primary"
-        app:hintTextColor="@color/primary"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+        app:hintTextColor="@color/primary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etContactName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:maxLines="1" />
+            android:hint="Contact Name"
+            android:inputType="textPersonName" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,17 +38,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Phone Number"
         app:boxStrokeColor="@color/primary"
-        app:hintTextColor="@color/primary"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+        app:hintTextColor="@color/primary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:maxLines="1" />
+            android:hint="Phone Number"
+            android:inputType="phone" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,36 +55,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Relationship (optional)"
         app:boxStrokeColor="@color/primary"
-        app:hintTextColor="@color/primary"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+        app:hintTextColor="@color/primary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etRelationship"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLines="1" />
+            android:hint="Relationship (Optional)"
+            android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Contact Type Spinner -->
+    <!-- Contact Type -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Contact Type"
         app:boxStrokeColor="@color/primary"
         app:hintTextColor="@color/primary"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
 
         <AutoCompleteTextView
             android:id="@+id/spinnerContactType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"
-            android:text="Personal" />
+            android:hint="Contact Type"
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,21 +89,28 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:hint="Notes (optional)"
+        android:layout_marginBottom="16dp"
         app:boxStrokeColor="@color/primary"
-        app:hintTextColor="@color/primary"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+        app:hintTextColor="@color/primary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etNotes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Notes (Optional)"
             android:inputType="textMultiLine"
-            android:maxLines="3"
-            android:minLines="2" />
+            android:lines="3" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Import from Phone Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnImportFromPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Import from Phone Contacts"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
     <!-- Action Buttons -->
     <LinearLayout
@@ -121,28 +120,19 @@
         android:gravity="end">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnImportFromPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="Import from Phone"
-            app:icon="@drawable/ic_contacts"
-            style="@style/Widget.Material3.Button.TextButton" />
-
-        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:text="Cancel"
-            style="@style/Widget.Material3.Button.TextButton" />
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save Contact"
-            app:icon="@drawable/ic_save" />
+            android:text="Save"
+            android:backgroundTint="@color/primary" />
 
     </LinearLayout>
 

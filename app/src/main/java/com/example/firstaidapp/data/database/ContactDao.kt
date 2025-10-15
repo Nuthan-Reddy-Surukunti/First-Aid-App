@@ -32,4 +32,7 @@ interface ContactDao {
 
     @Query("DELETE FROM emergency_contacts WHERE isDefault = 0")
     suspend fun deleteUserContacts()
+
+    @Query("DELETE FROM emergency_contacts")
+    suspend fun deleteAllContacts()
 }

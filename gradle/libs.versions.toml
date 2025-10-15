@@ -1,19 +1,26 @@
 [versions]
-agp = "8.2.2"
-kotlin = "1.9.22"
+agp = "8.7.3"
+kotlin = "2.0.21"
 coreKtx = "1.13.1"
-appcompat = "1.7.0"
-material = "1.12.0"
-activity = "1.8.2"
-constraintlayout = "2.1.4"
+appcompat = "1.7.1"
+material = "1.13.0"
+activity = "1.9.2"
+constraintlayout = "2.2.1"
 lifecycleVersion = "2.8.4"
 navigationVersion = "2.7.7"
 roomVersion = "2.6.1"
-coroutinesVersion = "1.7.3"
+coroutinesVersion = "1.9.0"
 junit = "4.13.2"
-junitVersion = "1.2.1"
-espressoCore = "3.6.1"
-ksp = "1.9.22-1.0.17"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+ksp = "2.0.21-1.0.25"
+gson = "2.10.1"
+recyclerview = "1.3.2"
+cardview = "1.0.0"
+viewpager2 = "1.0.0"
+flexbox = "3.0.0"
+work = "2.8.1"
+lottie = "6.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,9 +45,21 @@ androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+androidx-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "roomVersion" }
 
 # Coroutines
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutinesVersion" }
+
+# Other
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+androidx-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
+androidx-viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
+flexbox = { group = "com.google.android.flexbox", name = "flexbox", version.ref = "flexbox" }
+androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work" }
+lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

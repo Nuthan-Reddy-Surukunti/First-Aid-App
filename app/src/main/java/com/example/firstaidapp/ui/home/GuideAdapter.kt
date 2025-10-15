@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.firstaidapp.data.models.FirstAidGuide
 import com.example.firstaidapp.databinding.ItemGuideCardBinding
-import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import com.example.firstaidapp.R
 
@@ -54,20 +53,9 @@ class GuideAdapter(
                 )
             }
 
-            // Add smooth entrance animation with staggered delay
-            val animation = AnimationUtils.loadAnimation(binding.root.context, R.anim.card_slide_up)
-            animation.startOffset = (adapterPosition * 100).toLong() // Stagger animation
-            binding.root.startAnimation(animation)
-
-            // Add interactive button press effect
-            binding.root.setOnClickListener { view ->
-                val pressAnimation = AnimationUtils.loadAnimation(view.context, R.anim.button_press)
-                view.startAnimation(pressAnimation)
-
-                // Delay the navigation to let animation complete
-                view.postDelayed({
-                    onGuideClick(guide)
-                }, 100)
+            // Removed all animations - immediate click response
+            binding.root.setOnClickListener {
+                onGuideClick(guide)
             }
         }
     }

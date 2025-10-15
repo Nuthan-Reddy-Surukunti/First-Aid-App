@@ -1,0 +1,643 @@
+{
+  "title": "First Aid Procedures",
+  "procedures": [
+    {
+      "name": "CPR",
+      "step_by_step": {
+        "adults": [
+          "Ensure the scene is safe before approaching.",
+          "Check the person’s responsiveness.",
+          "If unresponsive and not breathing normally, call emergency services immediately.",
+          "Kneel beside the person on a firm surface and position their head for an open airway.",
+          "Give 30 chest compressions (at least 2 inches deep at 100–120/min), then give 2 rescue breaths (tilt head, pinch nose, make a seal).",
+          "Continue cycles of 30 compressions and 2 breaths until the person shows signs of life or help arrives."
+        ],
+        "children_infants": [
+          "For a child or infant who is unresponsive and not breathing, follow the same procedure.",
+          "Call emergency services immediately, then begin CPR with 30 chest compressions and 2 breaths.",
+          "For a child (about age 1–8), use one hand for compressions; for an infant (<1 year), use two fingers in the center of the chest.",
+          "Deliver compressions at about 100–120 per minute, compressing to one-third the chest depth.",
+          "Continue CPR cycles (about 5 cycles/2 minutes) before pausing only to call EMS if alone."
+        ]
+      },
+      "key_precautions": [
+        "Ensure the scene is safe and wear gloves or a barrier device for rescue breaths.",
+        "Do not delay CPR to get help – if alone, give 2 minutes of CPR (5 cycles) before calling emergency services.",
+        "Minimize interruptions during compressions.",
+        "If breaths do not cause chest rise, retilt head and retry (an airway obstruction may be present)."
+      ],
+      "when_to_call_emergency": [
+        "Call emergency services before starting CPR if possible (someone else should call while you give care).",
+        "Always call if the person is unresponsive or not breathing normally."
+      ],
+      "sources": [
+        "redcross.org"
+      ]
+    },
+    {
+      "name": "Choking",
+      "step_by_step": {
+        "adults_and_children": [
+          "Encourage the person to cough if they can speak or cough.",
+          "If they cannot breathe or cough effectively, deliver up to 5 back blows between the shoulder blades (bend them forward and firm blows).",
+          "If still choking, perform up to 5 abdominal thrusts (Heimlich maneuver): stand behind, wrap arms around waist, make a fist above the navel, and thrust inward and upward.",
+          "Alternate back blows and thrusts until the object is expelled.",
+          "If the person becomes unconscious, carefully lower them to the ground and begin CPR (each time before breaths, look for and remove the object if seen)."
+        ],
+        "infants_under_1_year": [
+          "Place the baby face-down on your forearm (supporting head).",
+          "Give 5 gentle back blows between the shoulder blades with the heel of your hand.",
+          "If still choking, turn the infant face-up and give 5 chest thrusts (2 fingers in center of chest, 1.5 inches deep).",
+          "Repeat back blows and chest thrusts as needed.",
+          "If the infant becomes unresponsive, begin infant CPR (30 compressions/2 breaths) immediately."
+        ]
+      },
+      "key_precautions": [
+        "Do not perform abdominal thrusts on very small children or babies – use back blows and chest thrusts instead.",
+        "Do not do blind finger sweeps in a conscious person.",
+        "If the object is visible in the mouth, remove it with a hook (do not push it deeper).",
+        "Ensure airway clearance before rescue breaths."
+      ],
+      "when_to_call_emergency": [
+        "Call emergency services if choking is not relieved quickly, the person becomes unconscious, or if they show any distress (blue lips, extreme panic).",
+        "If alone and the person is choking severely, call EMS immediately and then give self-Heimlich by pressing abdomen against a chair."
+      ],
+      "sources": [
+        "redcross.org.uk"
+      ]
+    },
+    {
+      "name": "Heart Attack",
+      "step_by_step_first_aid": [
+        "Call emergency services immediately.",
+        "Help the person to sit in a comfortable, slightly reclined position and reassure them.",
+        "If they chew aspirin and have no allergy, give one adult dose (300 mg) to chew (this can help).",
+        "If prescribed nitroglycerin and available, assist them to take it under the tongue.",
+        "Loosen tight clothing and monitor breathing.",
+        "Be ready to perform CPR if they become unresponsive."
+      ],
+      "key_precautions": [
+        "Do not allow them to exert themselves.",
+        "Do not give them food or drink (in case surgery is needed).",
+        "Check for allergies before giving aspirin or medication.",
+        "If unconscious, do NOT attempt to give anything by mouth."
+      ],
+      "when_to_call_emergency": [
+        "Always call emergency services for chest pain lasting more than a few minutes, especially if it radiates to arm/jaw, or is accompanied by shortness of breath, nausea, or lightheadedness.",
+        "If the person loses consciousness or stops breathing, start CPR and call EMS."
+      ],
+      "sources": [
+        "mayoclinic.org",
+        "redcross.org.uk"
+      ]
+    },
+    {
+      "name": "Stroke",
+      "step_by_step_first_aid": [
+        "Recognize stroke signs with FAST: Face droop, Arm weakness, Speech difficulty.",
+        "If any sign is positive, call emergency services immediately.",
+        "Keep the person calm and still; lay them down with head and shoulders slightly elevated, and cover with a blanket to keep warm.",
+        "Do not give them any food, drink, or medication.",
+        "If conscious, note the time symptoms began (very important for treatments)."
+      ],
+      "key_precautions": [
+        "Do not drive them to the hospital yourself – wait for professional help.",
+        "Do not let them sleep or become inactive.",
+        "Loosen tight clothing to help breathing."
+      ],
+      "when_to_call_emergency": [
+        "Immediately at first suspicion of stroke.",
+        "Call EMS at once if the person shows face droop, arm weakness, or slurred speech. Time is critical in stroke."
+      ],
+      "sources": [
+        "mayoclinic.org",
+        "redcross.org.uk"
+      ]
+    },
+    {
+      "name": "Severe Bleeding",
+      "step_by_step_first_aid": [
+        "Don gloves if available.",
+        "Expose the wound (cut or tear of skin) and apply firm, direct pressure with a clean cloth or sterile gauze.",
+        "Keep pressing until bleeding stops.",
+        "If possible, elevate the injured area above heart level to slow bleeding.",
+        "If blood soaks through, do not remove the first cloth – add more cloth on top and continue pressure.",
+        "If bleeding is from a limb and will not stop, a tourniquet above the wound can be applied (only if trained and as a last resort).",
+        "Keep the person lying down, cover them to prevent shock, and wait for help."
+      ],
+      "key_precautions": [
+        "Do not remove any embedded object – apply pressure around it.",
+        "Do not press on an open chest wound or an eye.",
+        "Avoid moving the person if broken bones may be present.",
+        "Do not use a tourniquet unless absolutely necessary (life-threatening limb bleed).",
+        "Keep the person calm."
+      ],
+      "when_to_call_emergency": [
+        "Immediately if bleeding is large, spurting (arterial), or will not stop with pressure.",
+        "Also call EMS for head, neck, chest, or abdominal bleeding, or any sign of shock (pale, cold, rapid breathing)."
+      ],
+      "sources": [
+        "redcross.org",
+        "mayoclinic.org"
+      ]
+    },
+    {
+      "name": "Burns (1st, 2nd, 3rd degree)",
+      "step_by_step_first_aid": [
+        "Stop the burning process by removing the person from heat or flame.",
+        "Remove any jewelry or tight clothing near the burn, unless it’s stuck to the burn.",
+        "Cool the burn with cool (not cold) running water for at least 20 minutes.",
+        "For 1st–2nd degree (superficial to partial-thickness) burns, after cooling cover loosely with sterile cling film or clean non-fluffy dressing.",
+        "For large or deep burns (especially 3rd degree), do NOT immerse too much – cover with clean cloth and call emergency services."
+      ],
+      "key_precautions": [
+        "Do not apply ice, creams, butter or ointments.",
+        "Do not break blisters.",
+        "Do not remove clothing that is stuck to the burn.",
+        "Keep the person warm (prevent shock) but avoid overheating them.",
+        "Avoid using adhesive dressings on burn."
+      ],
+      "when_to_call_emergency": [
+        "For any 3rd-degree burn, burns larger than a person’s hand size, or burns on face/hands/feet/genitals.",
+        "Also call if the person shows shock or the burn is chemical/electrical.",
+        "Infants, the elderly, or if you’re unsure, call for help."
+      ],
+      "sources": [
+        "redcross.org.uk",
+        "nhs.uk"
+      ]
+    },
+    {
+      "name": "Fractures (Broken Bones)",
+      "step_by_step_first_aid": [
+        "Treat any bleeding first, then immobilize the injured limb.",
+        "Keep the person still.",
+        "Support the broken bone in the position found (do not try to realign it).",
+        "You can apply a splint: brace or padded board or rolled newspaper to keep bone from moving (tie above and below fracture).",
+        "Apply ice pack (wrapped in cloth) to reduce swelling.",
+        "Help the person lie down; raise the injured limb and support it, if no other injuries conflict."
+      ],
+      "key_precautions": [
+        "Do not press on protruding bone or push it back in.",
+        "Do not move the person unless necessary (e.g. to avoid danger).",
+        "Avoid unnecessary movement of the limb.",
+        "If you must move them (for safety), try to keep the spine straight and support the injury."
+      ],
+      "when_to_call_emergency": [
+        "Call EMS if any of the following: bone protruding through skin, severe deformity, unstable vital signs, open wound with fracture, heavy bleeding, numbness/tingling below injury, severe pain, or suspected spinal break.",
+        "For minor (closed, non-bleeding) fractures, seek medical care soon."
+      ],
+      "sources": [
+        "mayoclinic.org"
+      ]
+    },
+    {
+      "name": "Sprains and Strains",
+      "step_by_step_first_aid": [
+        "Have the person stop using the injured joint and rest.",
+        "Apply an ice pack wrapped in cloth to the area for up to 10 minutes.",
+        "Compress the injury with an elastic bandage (but not too tight) and elevate the limb to reduce swelling.",
+        "Let the person sit or lie down to rest the limb."
+      ],
+      "key_precautions": [
+        "Do not apply heat or massage the injured area in the first 48 hours.",
+        "Do not keep ice on longer than 10 minutes.",
+        "If bandaging, avoid cutting off circulation – loosen if tingling/numb.",
+        "Give pain relief (ibuprofen/acetaminophen) if trained and no allergy."
+      ],
+      "when_to_call_emergency": [
+        "Usually sprains can be managed at home.",
+        "However, if you suspect a broken bone (bone fracture signs) or the person cannot move the limb at all, or if there is severe deformity or the pain/swelling worsens, seek professional help.",
+        "If in doubt, treat as possible fracture and get medical care."
+      ],
+      "sources": [
+        "redcross.org.uk"
+      ]
+    },
+    {
+      "name": "Shock",
+      "description": "From blood loss, anaphylaxis, etc.",
+      "step_by_step_first_aid": [
+        "If the person shows signs of shock (pale, cold sweat, rapid pulse, altered consciousness), call emergency services immediately.",
+        "Lay the person flat on their back.",
+        "If no head/neck injury is suspected, elevate the legs about 12 inches to improve blood flow to the heart and brain.",
+        "Control any bleeding and treat the cause (e.g., injury, allergic reaction).",
+        "Cover them with a blanket to keep warm."
+      ],
+      "key_precautions": [
+        "Do not let them get chilled or too hot.",
+        "Loosen tight clothing.",
+        "Do not give food or drink (they may vomit).",
+        "Monitor breathing and consciousness; if breathing stops, begin CPR.",
+        "Stay with the person and reassure them."
+      ],
+      "when_to_call_emergency": [
+        "Immediately if shock is suspected.",
+        "Any cause of shock (severe bleeding, severe allergic reaction, etc.) warrants EMS.",
+        "Do not delay calling for any signs of shock."
+      ],
+      "sources": [
+        "mayoclinic.org",
+        "redcross.org"
+      ]
+    },
+    {
+      "name": "Hypothermia",
+      "description": "Dangerously Low Body Temperature",
+      "step_by_step_first_aid": [
+        "Move the person out of the cold into a warm place.",
+        "Remove any wet clothing and replace with dry, warm layers or blankets.",
+        "Cover the head.",
+        "Provide warm drinks (non-alcoholic) if they are fully conscious.",
+        "Warm the center of the body first: use warm (not hot) compresses on neck, chest, and groin."
+      ],
+      "key_precautions": [
+        "Do not rewarm too rapidly (no hot baths or heating pads).",
+        "Do not rub or massage extremities (can drive cold blood to core).",
+        "Avoid alcohol or caffeine.",
+        "Be gentle – hypothermic people can go into cardiac arrest if moved roughly."
+      ],
+      "when_to_call_emergency": [
+        "Call emergency services if core temperature is very low, or if the person is drowsy, confused, or not shivering (signs of moderate/severe hypothermia).",
+        "If any doubt about severity, seek medical care promptly."
+      ],
+      "sources": [
+        "mayoclinic.org"
+      ]
+    },
+    {
+      "name": "Heat Exhaustion and Heatstroke",
+      "step_by_step": {
+        "heat_exhaustion": [
+          "Move the person to a cool, shaded place and have them lie down.",
+          "Remove excess clothing.",
+          "Cool them by fanning and applying cool, wet cloths or spraying with cool water.",
+          "Give sips of cool water or electrolyte drink (no alcohol/caffeine) if fully conscious.",
+          "Elevate the feet slightly and loosen clothing."
+        ],
+        "heatstroke": [
+          "Call emergency services immediately if heatstroke is suspected (hot, flushed skin; confusion; very high temperature).",
+          "Move the person out of heat quickly.",
+          "Start aggressive cooling: pour cool water over them, immerse in cool water if possible, or place ice packs at neck/armpits/groin.",
+          "Remove clothing.",
+          "Do not give alcohol or caffeinated drinks."
+        ]
+      },
+      "key_precautions": {
+        "heat_exhaustion": [
+          "Do not force food or water if they are vomiting or unconscious.",
+          "Monitor for worsening (e.g. confusion or persistent vomiting)."
+        ],
+        "heatstroke": [
+          "Heatstroke can be deadly. Do not ignore symptoms.",
+          "Avoid overheating a person (stop cooling if shivering starts)."
+        ]
+      },
+      "when_to_call_emergency": [
+        "Heatstroke: Immediately – call EMS as soon as possible.",
+        "Heat exhaustion: Call if the person faints, has a seizure, or doesn’t improve with rest and cooling."
+      ],
+      "sources": [
+        "mayoclinic.org"
+      ]
+    },
+    {
+      "name": "Seizures",
+      "step_by_step_first_aid": [
+        "Stay calm and ensure the person is safe.",
+        "Lay them on their side (recovery position) to keep airway clear.",
+        "Cushion their head with something soft.",
+        "Remove nearby hazards (sharp objects, furniture).",
+        "Time the seizure."
+      ],
+      "key_precautions": [
+        "Do not restrain the person or put anything in their mouth.",
+        "Do not give them anything to eat or drink until fully alert.",
+        "Loosen tight clothing.",
+        "If they vomit, turn head to side."
+      ],
+      "when_to_call_emergency": [
+        "Call emergency services if the seizure lasts more than 5 minutes, or if multiple seizures occur back-to-back.",
+        "Also call if it’s their first seizure, if they do not regain consciousness, if breathing is abnormal, or if they are injured during the seizure."
+      ],
+      "sources": [
+        "cdc.gov"
+      ]
+    },
+    {
+      "name": "Poisoning",
+      "description": "Ingestion or Inhalation",
+      "step_by_step_first_aid": {
+        "ingestion": [
+          "Quickly remove any remaining substance from their mouth.",
+          "If the person is conscious and alert, have them rinse out their mouth and sit up.",
+          "Call your local poison control center or emergency services immediately for instructions (in the U.S. call 1-800-222-1222).",
+          "Follow the specialist’s guidance – do not induce vomiting unless directed."
+        ],
+        "inhalation": [
+          "Get the person into fresh air at once.",
+          "Check breathing; if absent or labored, call emergency services and begin CPR if needed.",
+          "Treat for shock (cover with blanket) if unresponsive."
+        ]
+      },
+      "key_precautions": [
+        "Do not induce vomiting or give any antidote unless instructed by a professional.",
+        "Do not give food/drink unless told.",
+        "Avoid contaminating yourself: use gloves/mask if chemical.",
+        "Remove the person from the source of poison (e.g. gas leak)."
+      ],
+      "when_to_call_emergency": [
+        "Call emergency services immediately if the person is unconscious, having trouble breathing, convulsing, or if the poisoning involves a dangerous substance (like household chemicals, medications overdose, carbon monoxide).",
+        "Even if not severe, call poison control for guidance."
+      ],
+      "sources": [
+        "mayoclinic.org"
+      ]
+    },
+    {
+      "name": "Bites and Stings",
+      "description": "Venomous/Insect",
+      "step_by_step_first_aid": [
+        "For insect stings (bees, wasps): remove stinger by scraping it out (don’t pinch), wash the area, and apply a cold pack to reduce swelling.",
+        "For bites or stings by poisonous insects/spiders (scorpion, etc.), clean the wound, cover it with a loose bandage, and apply cold compress.",
+        "For snakebites or other venomous bites, keep the person still and calm, with the bite below heart level if possible.",
+        "Wash skin around bite (not venom itself) and cover with dry dressing.",
+        "Seek help urgently."
+      ],
+      "key_precautions": [
+        "Do not suck out venom, cut the wound, or apply a tourniquet.",
+        "Do not apply ice or heat to venomous bites (ice may be used for bee stings swelling only).",
+        "Keep the bitten limb immobilized and try to minimize movement."
+      ],
+      "when_to_call_emergency": [
+        "Call emergency services for any snakebite or if there are systemic signs (difficulty breathing, swelling beyond bite, nausea).",
+        "Call if an allergic reaction occurs (see “Allergic Reactions” below).",
+        "If the animal is unknown or has rabies risk (see “Animal Bites” next), seek immediate help."
+      ],
+      "sources": [
+        "redcross.org"
+      ]
+    },
+    {
+      "name": "Allergic Reactions (Anaphylaxis)",
+      "step_by_step_first_aid": [
+        "If a known allergic person is showing signs of anaphylaxis (hives, swelling of face/tongue, difficulty breathing), inject epinephrine immediately (e.g. use their EpiPen auto-injector in the outer thigh as instructed).",
+        "Have them lie down with legs elevated (unless breathing is difficult, then keep upright).",
+        "Administer a second dose of epinephrine after 5–10 minutes if symptoms worsen and no improvement."
+      ],
+      "key_precautions": [
+        "Do not wait – severe allergic reactions require immediate epinephrine and EMS.",
+        "Be ready to manage airway (if throat swelling, anaphylaxis can block airway).",
+        "Have CPR ready in case of collapse.",
+        "After injecting, hold the injector firmly against thigh for 3 seconds and massage area."
+      ],
+      "when_to_call_emergency": [
+        "Always call emergency services immediately for anaphylaxis (even after using epinephrine).",
+        "If the person cannot inject themselves or there is any doubt, call EMS.",
+        "Anaphylaxis can progress rapidly, so professional help is critical."
+      ],
+      "sources": [
+        "redcross.org"
+      ]
+    },
+    {
+      "name": "Asthma Attack",
+      "step_by_step_first_aid": [
+        "Help the person sit upright and stay calm.",
+        "If they have a quick-relief inhaler (bronchodilator), assist them in using it: shake the inhaler, attach a spacer if available, have them exhale fully, then inhale slowly while pressing the inhaler (2 puffs, 1 minute apart).",
+        "Encourage slow breaths and rest.",
+        "If no improvement after the first dose, give up to a total of 3 doses as directed."
+      ],
+      "key_precautions": [
+        "Do not panic the person.",
+        "Ensure they do not overuse the inhaler beyond directions.",
+        "Keep track of how many doses given."
+      ],
+      "when_to_call_emergency": [
+        "Call emergency services if they do not improve after 1–2 inhaler doses, or if they become very breathless, are too short of breath to speak, or show bluish lips.",
+        "Also call if this is their first severe attack."
+      ],
+      "sources": [
+        "redcross.org"
+      ]
+    },
+    {
+      "name": "Diabetic Emergencies",
+      "description": "Hypoglycemia/Hyperglycemia",
+      "step_by_step": {
+        "hypoglycemia_low_blood_sugar": [
+          "If the person is conscious and able to swallow, give about 15–20 grams of quick-acting carbohydrate (for example, 4 ounces of juice or regular soda, glucose tablets/gel, or candy).",
+          "Recheck after 10–15 minutes and repeat if needed.",
+          "If they have glucagon and someone trained, assist in giving it if they stop responding."
+        ],
+        "hyperglycemia_high_blood_sugar": [
+          "If they are alert, encourage them to drink water.",
+          "They may need insulin, but only administer if they are trained to do so."
+        ]
+      },
+      "key_precautions": [
+        "Do not give sugar if the person is unconscious or unable to swallow (they could choke). Instead, place them in recovery position and call EMS.",
+        "Do not give any food or drink if unconscious.",
+        "If you are unsure whether blood sugar is high or low, it is safer to treat for low by giving sugar."
+      ],
+      "when_to_call_emergency": [
+        "Call emergency services if the person is unconscious, having a seizure, or cannot swallow.",
+        "If you gave sugar and there is no improvement after 10–15 minutes, or if you suspect dangerously high blood sugar (DKA) with vomiting or dehydration, seek medical help.",
+        "Call if no recovery or if you cannot wake them."
+      ],
+      "sources": [
+        "redcross.org",
+        "redcross.org.uk"
+      ]
+    },
+    {
+      "name": "Drowning",
+      "step_by_step_first_aid": [
+        "Do not put yourself at risk; only rescue if safe.",
+        "Once the person is out of the water, immediately check responsiveness and breathing.",
+        "If not breathing, call emergency services at once (if alone, give 1–2 minutes of CPR first).",
+        "Begin CPR with rescue breaths: give 5 initial breaths (head tilt, pinch nose), then proceed with chest compressions (30 compressions).",
+        "Alternate 30 compressions/2 breaths and continue until the person breathes or EMS arrives."
+      ],
+      "key_precautions": [
+        "Keep airway open (be ready to clear water from mouth).",
+        "After each CPR cycle, check for signs of life.",
+        "Once breathing returns, place them in the recovery position and treat for shock/hypothermia (cover with blanket)."
+      ],
+      "when_to_call_emergency": [
+        "Always call emergency services for any drowning incident, even if the person seems to recover.",
+        "If the person is rescued but conscious and breathing, still seek medical evaluation (secondary drowning and hypothermia can occur)."
+      ],
+      "sources": [
+        "redcross.org.uk"
+      ]
+    },
+    {
+      "name": "Nosebleeds",
+      "step_by_step_first_aid": [
+        "Have the person sit down and lean forwards (to prevent swallowing blood).",
+        "Keep the head above heart level.",
+        "Ask them to pinch the soft part of the nose (just below the bony bridge) firmly with thumb and index finger for 10–15 minutes without letting go.",
+        "Breathe through the mouth.",
+        "After 10–15 minutes, check if bleeding has stopped; if not, pinch another 5–10 minutes."
+      ],
+      "key_precautions": [
+        "Do not tilt the head back or lie down (to avoid blood going down throat).",
+        "Do not pack tissue deep into the nose.",
+        "If the person has taken blood thinners, bruise easily, or has high blood pressure, be especially gentle."
+      ],
+      "when_to_call_emergency": [
+        "Seek help if bleeding is very heavy (filling more than half a soda can), lasts longer than 20–30 minutes despite pressure, or if accompanied by facial injury or signs of head trauma.",
+        "Also call if the person feels faint, or if bleeding recurs repeatedly."
+      ],
+      "sources": [
+        "kuh.ku.edu.tr"
+      ]
+    },
+    {
+      "name": "Eye Injuries",
+      "step_by_step_first_aid": [
+        "For a small foreign object in the eye, instruct the person to blink; flush the eye with clean water or saline (cup an eye with a glass of water or use an eyewash).",
+        "Gently lift eyelids (lower and upper) to try to dislodge debris.",
+        "Remove contact lenses if possible before rinsing.",
+        "For a chemical splash, immediately flush the eye continuously with lukewarm water for at least 20 minutes (while retracting eyelids) and then seek emergency care.",
+        "For a blow or penetration, apply a loose eye shield (a paper cup) and do not press on the eye."
+      ],
+      "key_precautions": [
+        "Do not rub the eye.",
+        "Do not attempt to remove embedded objects (seek help).",
+        "Do not apply any medication (except the flush).",
+        "Do not stop irrigation early if chemical injury – continue full 20 minutes."
+      ],
+      "when_to_call_emergency": [
+        "Immediately seek medical help if an object is embedded or cannot be flushed out, if vision is impaired, or if the injury is due to a chemical (after flushing).",
+        "Any eye cut or deep scratch also needs prompt care."
+      ],
+      "sources": [
+        "mayoclinic.org",
+        "kuh.ku.edu.tr"
+      ]
+    },
+    {
+      "name": "Head Injuries",
+      "step_by_step_first_aid": [
+        "If the person has a head injury, keep them still and lying down with shoulders slightly raised.",
+        "Control any bleeding with gentle pressure (except avoid pressure over a suspected skull fracture).",
+        "Check breathing and responsiveness; if they stop breathing, begin CPR."
+      ],
+      "key_precautions": [
+        "Do not move the person’s head or neck (tie or tape a rolled towel beside neck if spine injury is possible).",
+        "Do not remove a helmet if wearing one (unless needed to provide CPR).",
+        "Do not put a pillow under the head.",
+        "Monitor closely for changes: repeated vomiting, worsening headache, confusion or drowsiness."
+      ],
+      "when_to_call_emergency": [
+        "Call emergency services if the person is unconscious, has any of the following: severe headache, repeated vomiting, seizures, weakness or numbness, unequal pupils, slurred speech, or fluid/blood from nose or ears.",
+        "Also call if they simply do not wake up or any concussion symptoms worsen."
+      ],
+      "sources": [
+        "mayoclinic.org",
+        "redcross.org"
+      ]
+    },
+    {
+      "name": "Spinal Injuries",
+      "step_by_step_first_aid": [
+        "If a spinal injury is suspected (neck/back pain after trauma, tingling, paralysis), do not move the person.",
+        "Immobilize the head and neck in the position found (support head with towels or hands).",
+        "Call emergency services immediately."
+      ],
+      "key_precautions": [
+        "Never twist or bend the spine.",
+        "Keep them still and wait for professional help.",
+        "If an injured person must be moved (dangerous location), do a log-roll with help, keeping spine straight.",
+        "If the person is unconscious but breathing, maintain airway with jaw-thrust without tilting the head."
+      ],
+      "when_to_call_emergency": [
+        "Any suspected spinal injury is a medical emergency – call immediately.",
+        "Signs include severe neck/back pain, deformity, numbness or paralysis in limbs, altered consciousness, or after any major trauma."
+      ],
+      "sources": [
+        "redcross.org"
+      ]
+    },
+    {
+      "name": "Animal Bites (Mammals)",
+      "step_by_step_first_aid": [
+        "Clean the bite wound thoroughly with soap and water to flush out bacteria.",
+        "Apply gentle pressure if bleeding, and then cover with a clean, dry bandage.",
+        "If it’s a minor bite (no deep puncture), apply an antibiotic ointment before bandaging."
+      ],
+      "key_precautions": [
+        "Avoid closing the wound if it may be infected (fresh bites may be left open and covered).",
+        "Do not ignore pet bites; they can easily become infected."
+      ],
+      "when_to_call_emergency": [
+        "Seek medical care promptly for any deep, puncture, or crushing bite, or if bleeding cannot be controlled.",
+        "Also call if swelling, redness, pain increases (infection).",
+        "If bitten by a wild or unknown animal (risk of rabies), or if the person’s tetanus shot is not up-to-date, get medical help immediately."
+      ],
+      "sources": [
+        "mayoclinic.org"
+      ]
+    },
+    {
+      "name": "Electrical Injuries",
+      "step_by_step_first_aid": [
+        "Do not touch the person if they are still in contact with electricity.",
+        "Turn off the power source at once.",
+        "If not possible, move the source away with a non-conductive object (wood, plastic).",
+        "Once safe, check responsiveness.",
+        "If the person is unresponsive, not breathing or has no pulse, call emergency services and begin CPR immediately.",
+        "Cover any electrical burns with a dry, sterile dressing (do not use wet or loose materials)."
+      ],
+      "key_precautions": [
+        "Stay away from wires or the source.",
+        "Keep onlookers clear.",
+        "Do not attempt to cool electrical burns (they may be deep).",
+        "Watch for cardiac arrest – electricity can stop the heart silently."
+      ],
+      "when_to_call_emergency": [
+        "Always call emergency services for any significant electrical shock or burn.",
+        "Signs to call: any loss of consciousness, breathing difficulty, abnormal heart rhythm, or large burns.",
+        "Even if the person seems fine (especially with high-voltage or lightning injury), medical evaluation is needed."
+      ],
+      "sources": [
+        "mayoclinic.org"
+      ]
+    },
+    {
+      "name": "Foreign Objects in Eyes, Nose, or Throat",
+      "step_by_step": {
+        "eye": [
+          "If a small particle is in the eye, flush with clean water or saline while the person leans over a sink.",
+          "Have them blink or pull the eyelids to try to dislodge it.",
+          "If not removed or if irritation persists, seek medical care."
+        ],
+        "nose": [
+          "If something is lodged in the nose, have the person blow their nose gently with mouth open.",
+          "If an object is visible near the nostril, you may carefully remove it with tweezers (only if it’s soft and easily grasped).",
+          "For a nosebleed with object, follow nosebleed care (see above)."
+        ],
+        "throat": [
+          "For an object in the throat causing choking, follow the choking procedures above.",
+          "If the person is not choking but feels something stuck (like fish bone), do not try to grab it blindly; sip water or cough it out."
+        ]
+      },
+      "key_precautions": [
+        "Do not blindly probe the eye or nostril with fingers or tools; this can push objects deeper.",
+        "Do not induce vomiting for throat objects.",
+        "Keep calm and avoid panicking the person."
+      ],
+      "when_to_call_emergency": [
+        "Seek medical help if you cannot remove the object, or if the person has trouble breathing, severe pain, or persistent bleeding.",
+        "For eye objects that cannot be flushed out or any eye pain/vision change, call for help.",
+        "If a nasal foreign body cannot be expelled and the person is in distress, or if a throat object causes breathing difficulty, call emergency services."
+      ],
+      "sources": [
+        "mayoclinic.org"
+      ]
+    }
+  ],
+  "source_information": "Authoritative first-aid resources including the American and British Red Cross, Mayo Clinic, NHS and others (each section cites specific guidelines)"
+}

@@ -1,11 +1,10 @@
 package com.example.firstaidapp.data.models
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.example.firstaidapp.data.database.Converters
 
-@Entity(tableName = "guide_steps")
+@TypeConverters(Converters::class)
 data class GuideStep(
-    @PrimaryKey
     val id: String = "",
     val guideId: String = "",
     val stepNumber: Int,

@@ -16,7 +16,7 @@ object FirstAidGuidesData {
                 description = "Cardiopulmonary resuscitation for unresponsive adults not breathing normally. CPR combines chest compressions with rescue breathing to maintain circulation and oxygenation.",
                 steps = FirstAidGuidesRepository.getCPRGuide(),
                 iconResName = "ic_heart",
-                whenToCallEmergency = "Call 911 immediately if person is unresponsive and not breathing normally. Don't delay CPR to call - have someone else call while you provide care.",
+                whenToCallEmergency = "Call 112 immediately if person is unresponsive and not breathing normally. Don't delay CPR to call - have someone else call while you provide care.",
                 warnings = listOf(
                     "Don't perform CPR on conscious persons",
                     "Expect ribs to crack during compressions - this is normal",
@@ -24,7 +24,8 @@ object FirstAidGuidesData {
                     "Don't check for pulse unless trained"
                 ),
                 estimatedTimeMinutes = 30,
-                difficulty = "Intermediate"
+                difficulty = "Intermediate",
+                youtubeLink = "https://www.youtube.com/watch?v=Plse2FOkV4Q"
             ),
 
             // Choking Guide
@@ -36,7 +37,7 @@ object FirstAidGuidesData {
                 description = "Emergency treatment for severe airway obstruction in conscious adults. Uses back blows and abdominal thrusts (Heimlich maneuver) to dislodge foreign objects.",
                 steps = FirstAidGuidesRepository.getChokingAdultGuide(),
                 iconResName = "ic_airway",
-                whenToCallEmergency = "Call 911 if choking is not relieved quickly, person becomes unconscious, or shows severe distress (blue lips, extreme panic). If alone and choking severely, call EMS immediately.",
+                whenToCallEmergency = "Call 112 if choking is not relieved quickly, person becomes unconscious, or shows severe distress (blue lips, extreme panic). If alone and choking severely, call EMS immediately.",
                 warnings = listOf(
                     "Don't perform abdominal thrusts on pregnant women or small children",
                     "Don't do blind finger sweeps",
@@ -44,7 +45,8 @@ object FirstAidGuidesData {
                     "Don't use fingers to grab visible objects - may push deeper"
                 ),
                 estimatedTimeMinutes = 5,
-                difficulty = "Beginner"
+                difficulty = "Beginner",
+                youtubeLink = "https://www.youtube.com/watch?v=ewmbiHraztk"
             ),
 
             // Heart Attack Guide
@@ -56,7 +58,7 @@ object FirstAidGuidesData {
                 description = "Emergency care for suspected myocardial infarction. Focuses on rapid emergency response, comfort positioning, and medication assistance while monitoring for cardiac arrest.",
                 steps = FirstAidGuidesRepository.getHeartAttackGuide(),
                 iconResName = "ic_heart_attack",
-                whenToCallEmergency = "Always call 911 for chest pain lasting more than a few minutes, especially if radiating to arm/jaw, or accompanied by shortness of breath, nausea, or lightheadedness. If person loses consciousness, start CPR.",
+                whenToCallEmergency = "Always call 112 for chest pain lasting more than a few minutes, especially if radiating to arm/jaw, or accompanied by shortness of breath, nausea, or lightheadedness. If person loses consciousness, start CPR.",
                 warnings = listOf(
                     "Don't drive to hospital yourself - wait for EMS",
                     "Don't give food or drink in case surgery is needed",
@@ -64,7 +66,8 @@ object FirstAidGuidesData {
                     "Don't give anything by mouth if unconscious"
                 ),
                 estimatedTimeMinutes = 15,
-                difficulty = "Beginner"
+                difficulty = "Beginner",
+                youtubeLink = "https://www.youtube.com/watch?v=9pTnepZd5as"
             ),
 
             // Stroke Guide
@@ -76,7 +79,7 @@ object FirstAidGuidesData {
                 description = "Recognition and emergency care for stroke using FAST assessment. Time is critical for stroke treatment effectiveness - rapid identification and emergency response save brain tissue.",
                 steps = FirstAidGuidesRepository.getStrokeGuide(),
                 iconResName = "ic_brain",
-                whenToCallEmergency = "Call 911 immediately at first suspicion of stroke. If person shows face droop, arm weakness, or slurred speech, call EMS at once. Time is critical in stroke treatment.",
+                whenToCallEmergency = "Call 112 immediately at first suspicion of stroke. If person shows face droop, arm weakness, or slurred speech, call EMS at once. Time is critical in stroke treatment.",
                 warnings = listOf(
                     "Don't drive them to hospital yourself - wait for EMS",
                     "Don't give food, drink, or medication",
@@ -84,7 +87,8 @@ object FirstAidGuidesData {
                     "Note exact time symptoms began"
                 ),
                 estimatedTimeMinutes = 10,
-                difficulty = "Beginner"
+                difficulty = "Beginner",
+                youtubeLink = "https://www.youtube.com/watch?v=8gdGKvpZago"
             ),
 
             // Severe Bleeding Guide
@@ -96,7 +100,7 @@ object FirstAidGuidesData {
                 description = "Emergency control of severe bleeding from traumatic injuries. Uses direct pressure, elevation, and shock prevention to control hemorrhage and maintain circulation.",
                 steps = FirstAidGuidesRepository.getSevereBleedingGuide(),
                 iconResName = "ic_bleeding",
-                whenToCallEmergency = "Call 911 immediately if bleeding is large, spurting (arterial), or won't stop with pressure. Also call for head, neck, chest, or abdominal bleeding, or any signs of shock.",
+                whenToCallEmergency = "Call 112 immediately if bleeding is large, spurting (arterial), or won't stop with pressure. Also call for head, neck, chest, or abdominal bleeding, or any signs of shock.",
                 warnings = listOf(
                     "Don't remove embedded objects - apply pressure around them",
                     "Don't press on open chest wounds or eye injuries",
@@ -104,7 +108,8 @@ object FirstAidGuidesData {
                     "Watch for signs of shock"
                 ),
                 estimatedTimeMinutes = 20,
-                difficulty = "Intermediate"
+                difficulty = "Intermediate",
+                youtubeLink = "https://www.youtube.com/watch?v=i-NfLrppr9g"
             ),
 
             // Burns Guide
@@ -116,7 +121,7 @@ object FirstAidGuidesData {
                 description = "Treatment for thermal, chemical, and electrical burns. Focuses on stopping the burning process, cooling the burn, and assessing severity for appropriate medical care.",
                 steps = FirstAidGuidesRepository.getBurnsGuide(),
                 iconResName = "ic_fire",
-                whenToCallEmergency = "Call 911 for 3rd-degree burns, burns larger than person's hand, burns on face/hands/feet/genitals, chemical/electrical burns, or if person shows shock.",
+                whenToCallEmergency = "Call 112 for 3rd-degree burns, burns larger than person's hand, burns on face/hands/feet/genitals, chemical/electrical burns, or if person shows shock.",
                 warnings = listOf(
                     "Don't apply ice, butter, or home remedies",
                     "Don't break blisters",
@@ -124,7 +129,8 @@ object FirstAidGuidesData {
                     "Don't underestimate electrical burns - internal damage possible"
                 ),
                 estimatedTimeMinutes = 25,
-                difficulty = "Intermediate"
+                difficulty = "Intermediate",
+                youtubeLink = "https://www.procpr.org/training/adult-cpr-first-aid/video/burns"
             ),
 
             // Fractures Guide
@@ -144,7 +150,8 @@ object FirstAidGuidesData {
                     "Treat bleeding first, then immobilize"
                 ),
                 estimatedTimeMinutes = 15,
-                difficulty = "Intermediate"
+                difficulty = "Intermediate",
+                youtubeLink = "https://www.youtube.com/watch?v=2v8vlXgGXwE"
             ),
 
             // Sprains and Strains Guide
@@ -163,7 +170,8 @@ object FirstAidGuidesData {
                     "If in doubt, treat as possible fracture"
                 ),
                 estimatedTimeMinutes = 10,
-                difficulty = "Beginner"
+                difficulty = "Beginner",
+                youtubeLink = "https://www.youtube.com/watch?v=5OKFljZ2GQE"
             ),
 
             // Shock Guide
@@ -175,7 +183,7 @@ object FirstAidGuidesData {
                 description = "Treatment for circulatory shock from blood loss, anaphylaxis, or other causes. Focuses on maintaining circulation and treating underlying causes.",
                 steps = FirstAidGuidesRepository.getShockGuide(),
                 iconResName = "ic_shock",
-                whenToCallEmergency = "Call 911 immediately if shock is suspected. Any cause of shock (severe bleeding, severe allergic reaction, etc.) warrants emergency response.",
+                whenToCallEmergency = "Call 112 immediately if shock is suspected. Any cause of shock (severe bleeding, severe allergic reaction, etc.) warrants emergency response.",
                 warnings = listOf(
                     "Don't give food or drink - they may vomit",
                     "Don't elevate legs if spinal injury suspected",
@@ -183,7 +191,8 @@ object FirstAidGuidesData {
                     "Shock is life-threatening"
                 ),
                 estimatedTimeMinutes = 20,
-                difficulty = "Intermediate"
+                difficulty = "Intermediate",
+                youtubeLink = "https://www.youtube.com/watch?v=61urGQrmeNM"
             ),
 
             // Hypothermia Guide
@@ -195,7 +204,7 @@ object FirstAidGuidesData {
                 description = "Treatment for dangerously low body temperature. Focuses on gentle rewarming and preventing further heat loss while avoiding rapid temperature changes.",
                 steps = FirstAidGuidesRepository.getHypothermiaGuide(),
                 iconResName = "ic_cold",
-                whenToCallEmergency = "Call 911 if core temperature very low, person is drowsy/confused/not shivering, or any doubt about severity. Severe hypothermia requires immediate medical care.",
+                whenToCallEmergency = "Call 112 if core temperature very low, person is drowsy/confused/not shivering, or any doubt about severity. Severe hypothermia requires immediate medical care.",
                 warnings = listOf(
                     "Don't rewarm too rapidly - no hot baths",
                     "Don't rub or massage extremities",
@@ -203,7 +212,8 @@ object FirstAidGuidesData {
                     "Be gentle - hypothermic people are fragile"
                 ),
                 estimatedTimeMinutes = 30,
-                difficulty = "Intermediate"
+                difficulty = "Intermediate",
+                youtubeLink = "https://www.youtube.com/watch?v=GmqXqwSV3bo"
             ),
 
             // Heat Emergencies Guide
@@ -215,7 +225,7 @@ object FirstAidGuidesData {
                 description = "Treatment for heat-related illnesses from heat exhaustion to life-threatening heatstroke. Focuses on rapid cooling and fluid replacement.",
                 steps = FirstAidGuidesRepository.getHeatEmergenciesGuide(),
                 iconResName = "ic_heat",
-                whenToCallEmergency = "Heatstroke: Call 911 immediately. Heat exhaustion: Call if person faints, has seizure, or doesn't improve with rest and cooling.",
+                whenToCallEmergency = "Heatstroke: Call 112 immediately. Heat exhaustion: Call if person faints, has seizure, or doesn't improve with rest and cooling.",
                 warnings = listOf(
                     "Heatstroke can be deadly - don't ignore symptoms",
                     "Don't give fluids if unconscious or vomiting",
@@ -223,7 +233,8 @@ object FirstAidGuidesData {
                     "Stop cooling if person starts shivering"
                 ),
                 estimatedTimeMinutes = 20,
-                difficulty = "Beginner"
+                difficulty = "Beginner",
+                youtubeLink = "https://www.youtube.com/watch?v=Al0IwfT9l-E"
             ),
 
             // Seizures Guide
@@ -235,7 +246,7 @@ object FirstAidGuidesData {
                 description = "Emergency care for seizures focusing on safety, positioning, and monitoring. Most seizures stop on their own but require careful observation and support.",
                 steps = FirstAidGuidesRepository.getSeizuresGuide(),
                 iconResName = "ic_brain_wave",
-                whenToCallEmergency = "Call 911 if seizure lasts >5 minutes, multiple seizures occur, first seizure, doesn't regain consciousness, breathing problems, or injury during seizure.",
+                whenToCallEmergency = "Call 112 if seizure lasts >5 minutes, multiple seizures occur, first seizure, doesn't regain consciousness, breathing problems, or injury during seizure.",
                 warnings = listOf(
                     "Never put anything in their mouth",
                     "Don't restrain the person",
@@ -243,7 +254,8 @@ object FirstAidGuidesData {
                     "Most seizures stop on their own"
                 ),
                 estimatedTimeMinutes = 15,
-                difficulty = "Beginner"
+                difficulty = "Beginner",
+                youtubeLink = "https://www.youtube.com/watch?v=8gdGKvpZago"
             ),
 
             // Poisoning Guide
@@ -255,7 +267,7 @@ object FirstAidGuidesData {
                 description = "Emergency treatment for ingested or inhaled poisons. Focuses on removing from source, calling poison control, and supportive care.",
                 steps = FirstAidGuidesRepository.getPoisoningGuide(),
                 iconResName = "ic_poison",
-                whenToCallEmergency = "Call 911 if unconscious, trouble breathing, convulsing, or dangerous substance involved. Always call Poison Control (1-800-222-1222) for guidance.",
+                whenToCallEmergency = "Call 112 if unconscious, trouble breathing, convulsing, or dangerous substance involved. Always call Poison Control (1800-11-6117) for guidance.",
                 warnings = listOf(
                     "Don't induce vomiting unless instructed",
                     "Don't give antidotes unless told by professional",
@@ -263,7 +275,8 @@ object FirstAidGuidesData {
                     "Have poison container ready for information"
                 ),
                 estimatedTimeMinutes = 20,
-                difficulty = "Intermediate"
+                difficulty = "Intermediate",
+                youtubeLink = "https://www.youtube.com/watch?v=5OKFljZ2GQE"
             ),
 
             // Bites and Stings Guide
@@ -275,7 +288,7 @@ object FirstAidGuidesData {
                 description = "Treatment for insect stings, snake bites, and other venomous bites. Focuses on venom removal, wound care, and monitoring for systemic reactions.",
                 steps = FirstAidGuidesRepository.getBitesStingsGuide(),
                 iconResName = "ic_bug",
-                whenToCallEmergency = "Call 911 for any snake bite, systemic symptoms (difficulty breathing, swelling beyond bite, nausea), or signs of allergic reaction.",
+                whenToCallEmergency = "Call 112 for any snake bite, systemic symptoms (difficulty breathing, swelling beyond bite, nausea), or signs of allergic reaction.",
                 warnings = listOf(
                     "Don't suck out venom or cut wound",
                     "Don't apply ice to venomous bites",
@@ -283,7 +296,8 @@ object FirstAidGuidesData {
                     "Keep bitten limb immobilized"
                 ),
                 estimatedTimeMinutes = 15,
-                difficulty = "Beginner"
+                difficulty = "Beginner",
+                youtubeLink = "https://www.youtube.com/watch?v=5OKFljZ2GQE"
             ),
 
             // Allergic Reactions Guide
@@ -295,15 +309,16 @@ object FirstAidGuidesData {
                 description = "Emergency treatment for severe allergic reactions and anaphylaxis. Focuses on rapid epinephrine administration and emergency response.",
                 steps = FirstAidGuidesRepository.getAllergicReactionsGuide(),
                 iconResName = "ic_allergy",
-                whenToCallEmergency = "Always call 911 immediately for anaphylaxis, even after using EpiPen. Anaphylaxis can progress rapidly and be fatal without treatment.",
+                whenToCallEmergency = "Always call 112 immediately for anaphylaxis, even after using EpiPen. Anaphylaxis can progress rapidly and be fatal without treatment.",
                 warnings = listOf(
                     "Don't wait - inject epinephrine immediately",
-                    "Always call 911 even after using EpiPen",
+                    "Always call 112 even after using EpiPen",
                     "Be ready for second injection after 5-10 minutes",
                     "Be ready to perform CPR if they collapse"
                 ),
                 estimatedTimeMinutes = 10,
-                difficulty = "Intermediate"
+                difficulty = "Intermediate",
+                youtubeLink = "https://www.youtube.com/watch?v=8gdGKvpZago"
             ),
 
             // Asthma Attack Guide
@@ -315,14 +330,15 @@ object FirstAidGuidesData {
                 description = "Emergency care for asthma attacks focusing on bronchodilator use, positioning, and monitoring. Severe attacks can be life-threatening.",
                 steps = FirstAidGuidesRepository.getAsthmaAttackGuide(),
                 iconResName = "ic_lungs",
-                whenToCallEmergency = "Call 911 if no improvement after 1-2 inhaler doses, person very breathless, too short of breath to speak, bluish lips, or first severe attack.",
+                whenToCallEmergency = "Call 112 if no improvement after 1-2 inhaler doses, person very breathless, too short of breath to speak, bluish lips, or first severe attack.",
                 warnings = listOf(
                     "Don't lay them down - keep upright",
                     "Don't exceed recommended inhaler doses",
                     "Don't panic the person - stay calm"
                 ),
                 estimatedTimeMinutes = 15,
-                difficulty = "Beginner"
+                difficulty = "Beginner",
+                youtubeLink = "https://www.youtube.com/watch?v=5OKFljZ2GQE"
             ),
 
             // Diabetic Emergencies Guide
@@ -334,14 +350,15 @@ object FirstAidGuidesData {
                 description = "Treatment for diabetic emergencies including hypoglycemia (low blood sugar) and hyperglycemia. When in doubt, treat for low blood sugar.",
                 steps = FirstAidGuidesRepository.getDiabeticEmergenciesGuide(),
                 iconResName = "ic_glucose",
-                whenToCallEmergency = "Call 911 if unconscious, having seizure, cannot swallow, no improvement after sugar treatment, or suspected severe hyperglycemia with vomiting/dehydration.",
+                whenToCallEmergency = "Call 112 if unconscious, having seizure, cannot swallow, no improvement after sugar treatment, or suspected severe hyperglycemia with vomiting/dehydration.",
                 warnings = listOf(
                     "Never give anything by mouth to unconscious person",
                     "When in doubt, treat for low blood sugar",
                     "Don't give diet drinks - need real sugar"
                 ),
                 estimatedTimeMinutes = 15,
-                difficulty = "Beginner"
+                difficulty = "Beginner",
+                youtubeLink = "https://www.youtube.com/watch?v=8gdGKvpZago"
             ),
 
             // Drowning Guide
@@ -353,7 +370,7 @@ object FirstAidGuidesData {
                 description = "Emergency response for drowning incidents. Focuses on safe rescue, immediate CPR, and post-rescue care. Even recovered victims need medical evaluation.",
                 steps = FirstAidGuidesRepository.getDrowningGuide(),
                 iconResName = "ic_water",
-                whenToCallEmergency = "Always call 911 for any drowning incident, even if person seems to recover. Secondary drowning and hypothermia can occur later.",
+                whenToCallEmergency = "Always call 112 for any drowning incident, even if person seems to recover. Secondary drowning and hypothermia can occur later.",
                 warnings = listOf(
                     "Don't put yourself at risk during rescue",
                     "Reach or throw, don't go unless trained",
@@ -361,7 +378,8 @@ object FirstAidGuidesData {
                     "Be ready to clear water from airway"
                 ),
                 estimatedTimeMinutes = 20,
-                difficulty = "Advanced"
+                difficulty = "Advanced",
+                youtubeLink = "https://www.youtube.com/watch?v=GmqXqwSV3bo"
             ),
 
             // Nosebleeds Guide
@@ -380,7 +398,8 @@ object FirstAidGuidesData {
                     "Don't peek during pressure - maintain full time"
                 ),
                 estimatedTimeMinutes = 20,
-                difficulty = "Beginner"
+                difficulty = "Beginner",
+                youtubeLink = "https://www.youtube.com/watch?v=5OKFljZ2GQE"
             )
         )
     }

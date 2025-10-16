@@ -15,7 +15,8 @@ import androidx.core.content.ContextCompat
 
 class CategorizedGuideAdapter(
     private val onGuideClick: (FirstAidGuide) -> Unit,
-    private val onCategoryClick: (String) -> Unit
+    private val onCategoryClick: (String) -> Unit,
+    private val onViewDemoClick: (String) -> Unit
 ) : ListAdapter<CategoryItem, RecyclerView.ViewHolder>(CategoryItemDiffCallback()) {
 
     companion object {
@@ -108,6 +109,20 @@ class CategorizedGuideAdapter(
             // Set click listener for navigation
             binding.root.setOnClickListener {
                 onGuideClick(guide)
+            }
+
+            // Set click listener for View Demo button
+            binding.tvViewDemo.setOnClickListener {
+                if (guide.youtubeLink.isNotEmpty()) {
+                    onViewDemoClick(guide.youtubeLink)
+                }
+            }
+
+            // Show/hide demo button based on YouTube link availability
+            binding.tvViewDemo.visibility = if (guide.youtubeLink.isNotEmpty()) {
+                android.view.View.VISIBLE
+            } else {
+                android.view.View.GONE
             }
         }
     }

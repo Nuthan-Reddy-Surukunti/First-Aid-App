@@ -1,11 +1,20 @@
 package com.example.firstaidapp.ui.home
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -20,6 +29,18 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
     private lateinit var categorizedAdapter: CategorizedGuideAdapter
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                makeEmergencyCall()
+            } else {
+                Toast.makeText(requireContext(), "Permission denied. Opening dialer instead.", Toast.LENGTH_SHORT).show()
+                makeEmergencyDialerCall()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,6 +81,10 @@ class HomeFragment : Fragment() {
             onCategoryClick = { categoryTitle ->
                 // Toggle category expansion
                 viewModel.toggleCategory(categoryTitle)
+            },
+            onViewDemoClick = { youtubeLink ->
+                // Open YouTube video
+                openYouTubeVideo(youtubeLink)
             }
         )
 
@@ -103,7 +128,68 @@ class HomeFragment : Fragment() {
     private fun setupClickListeners() {
         // Emergency call button
         binding.btnEmergencyCall.setOnClickListener {
-            viewModel.callEmergencyServices(requireContext())
+            Log.d("HomeFragment", "Emergency call button clicked")
+            makeEmergencyCall()
+        }
+    }
+
+    private fun makeEmergencyCall() {
+        // Add comprehensive null checks and error handling
+        if (_binding == null || !isAdded) return
+
+        try {
+            // Enhanced call animation with haptic feedback
+            binding.root.performHapticFeedback(android.view.HapticFeedbackConstants.CONFIRM)
+
+            // Check for call permission
+            when {
+                ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.CALL_PHONE
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    Log.d("HomeFragment", "CALL_PHONE permission granted, making direct call")
+                    // Show user feedback
+                    Toast.makeText(requireContext(), "Calling Emergency Services (112)...", Toast.LENGTH_SHORT).show()
+
+                    // Direct call
+                    val callIntent = Intent(Intent.ACTION_CALL).apply {
+                        data = "tel:112".toUri()
+                    }
+                    if (callIntent.resolveActivity(requireContext().packageManager) != null) {
+                        Log.d("HomeFragment", "Starting emergency call activity")
+                        startActivity(callIntent)
+                      } else {
+                        Log.e("HomeFragment", "No app to handle call intent, falling back to dialer")
+                        makeEmergencyDialerCall()
+                    }
+                }
+                shouldShowRequestPermissionRationale(Manifest.permission.CALL_PHONE) -> {
+                    Log.d("HomeFragment", "Showing permission rationale")
+                    Toast.makeText(requireContext(), "Call permission is needed to make emergency calls.", Toast.LENGTH_LONG).show()
+                    requestPermissionLauncher.launch(Manifest.permission.CALL_PHONE)
+                }
+                else -> {
+                    Log.d("HomeFragment", "Requesting CALL_PHONE permission")
+                    requestPermissionLauncher.launch(Manifest.permission.CALL_PHONE)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("HomeFragment", "Failed to initiate emergency call", e)
+            Toast.makeText(requireContext(), "Direct call failed. Opening dialer.", Toast.LENGTH_SHORT).show()
+            makeEmergencyDialerCall()
+        }
+    }
+
+    private fun makeEmergencyDialerCall() {
+        try {
+            val dialIntent = Intent(Intent.ACTION_DIAL).apply {
+                data = "tel:112".toUri()
+            }
+            startActivity(dialIntent)
+            Log.d("HomeFragment", "Emergency dialer opened successfully")
+        } catch (e: Exception) {
+            Log.e("HomeFragment", "Failed to open emergency dialer", e)
+            Toast.makeText(requireContext(), "Unable to initiate call", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -122,6 +208,26 @@ class HomeFragment : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {}
         })
+    }
+
+    private fun openYouTubeVideo(youtubeLink: String) {
+        try {
+            // Try to open with YouTube app first
+            val youtubeIntent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeLink)).apply {
+                setPackage("com.google.android.youtube")
+            }
+
+            if (youtubeIntent.resolveActivity(requireContext().packageManager) != null) {
+                startActivity(youtubeIntent)
+            } else {
+                // Fallback to web browser if YouTube app is not installed
+                val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeLink))
+                startActivity(webIntent)
+            }
+        } catch (e: Exception) {
+            Log.e("HomeFragment", "Failed to open YouTube video", e)
+            Toast.makeText(requireContext(), "Unable to open video", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroyView() {

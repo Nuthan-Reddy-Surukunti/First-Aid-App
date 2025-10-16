@@ -2,8 +2,8 @@ package com.example.firstaidapp.utils
 
 object Constants {
     // Emergency Numbers
-    const val EMERGENCY_NUMBER_US = "911"
-    const val POISON_CONTROL_US = "1-800-222-1222"
+    const val EMERGENCY_NUMBER_IN = "112"
+    const val POISON_CONTROL_IN = "1800-11-6117"
 
     // Categories
     const val CATEGORY_CPR = "CPR"

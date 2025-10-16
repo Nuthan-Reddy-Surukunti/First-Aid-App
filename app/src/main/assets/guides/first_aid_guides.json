@@ -15,6 +15,7 @@
           "id": "cpr_step_1",
           "stepNumber": 1,
           "instruction": "Check responsiveness by tapping shoulders and shouting 'Are you OK?'",
+          "detailedInstructions": "Ensure the scene is safe before approaching. Check the person’s responsiveness by tapping their shoulders and shouting. If there is no response, they are unresponsive.",
           "imageResource": null,
           "voiceScript": "Check if the person is responsive",
           "warnings": "Do not move if spinal injury is suspected",
@@ -24,6 +25,7 @@
           "id": "cpr_step_2",
           "stepNumber": 2,
           "instruction": "Call 911 immediately or have someone else do it",
+          "detailedInstructions": "If the person is unresponsive and not breathing normally, call emergency services immediately. If someone else is present, ask them to make the call.",
           "imageResource": null,
           "voiceScript": "Call emergency services now",
           "warnings": "Time is critical",
@@ -33,6 +35,7 @@
           "id": "cpr_step_3",
           "stepNumber": 3,
           "instruction": "Position hands on center of chest, between nipples",
+          "detailedInstructions": "Kneel beside the person on a firm surface. Place the heel of one hand on the center of the person's chest, then place your other hand on top and interlock your fingers. Keep your arms straight.",
           "imageResource": "cpr_hand_position",
           "voiceScript": "Place heel of one hand on breastbone, other hand on top",
           "warnings": "Ensure proper hand placement",
@@ -42,6 +45,7 @@
           "id": "cpr_step_4",
           "stepNumber": 4,
           "instruction": "Push hard and fast at least 2 inches deep at 100-120 compressions per minute",
+          "detailedInstructions": "Deliver 30 chest compressions at a rate of 100-120 per minute. Press down at least 2 inches (5 cm) for an adult. Allow the chest to fully recoil between compressions.",
           "imageResource": "cpr_compression",
           "voiceScript": "Compress chest hard and fast",
           "warnings": "Allow complete recoil between compressions",
@@ -51,6 +55,7 @@
           "id": "cpr_step_5",
           "stepNumber": 5,
           "instruction": "Give 30 compressions, then 2 rescue breaths",
+          "detailedInstructions": "After 30 compressions, give 2 rescue breaths. Tilt the head back, lift the chin, pinch the nose shut, and create a complete seal over the person's mouth with yours. Give two breaths, each lasting about one second, and watch for the chest to rise. Continue cycles of 30 compressions and 2 breaths.",
           "imageResource": "cpr_rescue_breath",
           "voiceScript": "Continue cycles of 30 compressions and 2 breaths",
           "warnings": "Minimize interruptions",
@@ -73,6 +78,7 @@
           "id": "choking_step_1",
           "stepNumber": 1,
           "instruction": "Ask 'Are you choking?' Look for universal choking sign",
+          "detailedInstructions": "Encourage the person to cough if they can speak or cough. If they cannot breathe, speak, or cough effectively, they are likely choking.",
           "imageResource": "choking_sign",
           "voiceScript": "Determine if person is choking",
           "warnings": "If they can speak or cough, encourage coughing",
@@ -81,7 +87,8 @@
         {
           "id": "choking_step_2",
           "stepNumber": 2,
-          "instruction": "Stand behind person, wrap arms around waist",
+          "instruction": "Give 5 back blows",
+          "detailedInstructions": "If the person cannot breathe or cough, deliver up to 5 back blows. Bend them forward and give firm blows between the shoulder blades with the heel of your hand.",
           "imageResource": "choking_position",
           "voiceScript": "Position yourself behind the victim",
           "warnings": "For pregnant women, place hands higher on chest",
@@ -90,7 +97,8 @@
         {
           "id": "choking_step_3",
           "stepNumber": 3,
-          "instruction": "Make fist with one hand, place above navel below ribcage",
+          "instruction": "Give 5 abdominal thrusts",
+          "detailedInstructions": "If back blows do not work, perform up to 5 abdominal thrusts (Heimlich maneuver). Stand behind the person, wrap your arms around their waist, make a fist, and place it just above their navel.",
           "imageResource": "choking_fist_position",
           "voiceScript": "Position fist correctly for abdominal thrusts",
           "warnings": "Avoid pressing on ribs or breastbone",
@@ -99,7 +107,8 @@
         {
           "id": "choking_step_4",
           "stepNumber": 4,
-          "instruction": "Give quick upward thrusts into abdomen",
+          "instruction": "Continue cycles of back blows and abdominal thrusts",
+          "detailedInstructions": "Alternate between 5 back blows and 5 abdominal thrusts until the object is expelled or the person becomes unconscious.",
           "imageResource": "choking_thrust",
           "voiceScript": "Perform abdominal thrusts forcefully",
           "warnings": "Each thrust should be separate and distinct",
@@ -108,7 +117,8 @@
         {
           "id": "choking_step_5",
           "stepNumber": 5,
-          "instruction": "Continue until object is expelled or person becomes unconscious",
+          "instruction": "Begin CPR if person becomes unconscious",
+          "detailedInstructions": "If the person becomes unconscious, carefully lower them to the ground and begin CPR. Before giving breaths, look for and remove the object if seen.",
           "imageResource": null,
           "voiceScript": "Keep performing thrusts until successful",
           "warnings": "If unconscious, begin CPR",
@@ -131,6 +141,7 @@
           "id": "burns_step_1",
           "stepNumber": 1,
           "instruction": "Remove person from heat source safely",
+          "detailedInstructions": "Stop the burning process by removing the person from the source of heat or flame. Ensure your own safety first.",
           "imageResource": "burns_safety",
           "voiceScript": "Ensure safety first",
           "warnings": "Do not put yourself at risk",
@@ -140,6 +151,7 @@
           "id": "burns_step_2",
           "stepNumber": 2,
           "instruction": "Cool burn with cool running water for 10-20 minutes",
+          "detailedInstructions": "Cool the burn with cool (not cold) running water for at least 20 minutes. This helps to reduce pain, swelling, and the risk of scarring.",
           "imageResource": "burns_cool_water",
           "voiceScript": "Cool the burn immediately",
           "warnings": "Do not use ice or very cold water",
@@ -149,6 +161,7 @@
           "id": "burns_step_3",
           "stepNumber": 3,
           "instruction": "Remove jewelry and loose clothing before swelling begins",
+          "detailedInstructions": "Remove any jewelry or tight clothing from near the burn area, unless it is stuck to the burn. Do this before the area begins to swell.",
           "imageResource": null,
           "voiceScript": "Remove items that may constrict",
           "warnings": "Do not remove stuck clothing",
@@ -158,6 +171,7 @@
           "id": "burns_step_4",
           "stepNumber": 4,
           "instruction": "Cover burn loosely with sterile gauze",
+          "detailedInstructions": "After cooling, cover the burn loosely with sterile cling film or a clean, non-fluffy dressing. This helps prevent infection.",
           "imageResource": "burns_bandage",
           "voiceScript": "Protect the burn area",
           "warnings": "Do not use cotton or adhesive bandages directly on burn",
@@ -167,6 +181,7 @@
           "id": "burns_step_5",
           "stepNumber": 5,
           "instruction": "Seek medical attention for severe burns",
+          "detailedInstructions": "For large or deep burns (especially 3rd degree), or burns on the face, hands, feet, or genitals, call emergency services. Do not immerse large burns in water to avoid hypothermia.",
           "imageResource": null,
           "voiceScript": "Get professional medical help",
           "warnings": "Burns larger than palm size need medical care",
@@ -189,6 +204,7 @@
           "id": "cuts_step_1",
           "stepNumber": 1,
           "instruction": "Apply direct pressure with clean cloth",
+          "detailedInstructions": "Don gloves if available. Expose the wound and apply firm, direct pressure with a clean cloth or sterile gauze. Keep pressing until the bleeding stops.",
           "imageResource": "cuts_pressure",
           "voiceScript": "Control bleeding immediately",
           "warnings": "Use gloves if available",
@@ -198,6 +214,7 @@
           "id": "cuts_step_2",
           "stepNumber": 2,
           "instruction": "Elevate wounded area above heart if possible",
+          "detailedInstructions": "If possible, elevate the injured area above the level of the heart to help slow the bleeding. Do not do this if you suspect a broken bone.",
           "imageResource": "cuts_elevate",
           "voiceScript": "Raise the injured area",
           "warnings": "Only if no fracture is suspected",
@@ -207,6 +224,7 @@
           "id": "cuts_step_3",
           "stepNumber": 3,
           "instruction": "Clean wound gently with water once bleeding stops",
+          "detailedInstructions": "Once bleeding is controlled, clean the wound gently with soap and water. Do not remove any large or deeply embedded objects; apply pressure around them.",
           "imageResource": "cuts_clean",
           "voiceScript": "Clean the wound carefully",
           "warnings": "Do not remove large embedded objects",
@@ -216,6 +234,7 @@
           "id": "cuts_step_4",
           "stepNumber": 4,
           "instruction": "Apply antibiotic ointment if no allergies",
+          "detailedInstructions": "If the person has no allergies, you can apply a thin layer of antibiotic ointment to help prevent infection.",
           "imageResource": null,
           "voiceScript": "Apply topical antibiotic",
           "warnings": "Check for medication allergies first",
@@ -225,6 +244,7 @@
           "id": "cuts_step_5",
           "stepNumber": 5,
           "instruction": "Cover with sterile bandage and monitor for infection",
+          "detailedInstructions": "Cover the wound with a sterile bandage. Change the dressing daily or if it becomes wet or dirty. Watch for signs of infection such as redness, swelling, or pus.",
           "imageResource": "cuts_bandage",
           "voiceScript": "Bandage and monitor the wound",
           "warnings": "Change bandage daily or if wet/dirty",
@@ -247,6 +267,7 @@
           "id": "fracture_step_1",
           "stepNumber": 1,
           "instruction": "Do not move the person unless in immediate danger",
+          "detailedInstructions": "Keep the person still and calm. Do not move them unless they are in immediate danger. Moving a person with a fracture can cause more damage.",
           "imageResource": null,
           "voiceScript": "Keep the person still",
           "warnings": "Moving may worsen injury",
@@ -256,6 +277,7 @@
           "id": "fracture_step_2",
           "stepNumber": 2,
           "instruction": "Call emergency services immediately",
+          "detailedInstructions": "Call for emergency medical help, especially if it is a major fracture. Treat any bleeding first by applying pressure.",
           "imageResource": null,
           "voiceScript": "Get professional medical help",
           "warnings": "Fractures require medical treatment",
@@ -265,6 +287,7 @@
           "id": "fracture_step_3",
           "stepNumber": 3,
           "instruction": "Immobilize the injured area with splint",
+          "detailedInstructions": "Support the broken bone in the position you found it. You can create a makeshift splint using a rolled-up newspaper or board to keep the bone from moving. Tie it above and below the fracture.",
           "imageResource": "fracture_splint",
           "voiceScript": "Prevent movement of broken bone",
           "warnings": "Splint above and below fracture site",
@@ -274,6 +297,7 @@
           "id": "fracture_step_4",
           "stepNumber": 4,
           "instruction": "Apply ice pack wrapped in cloth",
+          "detailedInstructions": "Apply an ice pack wrapped in a cloth to the injured area to reduce swelling and pain. Do not apply ice directly to the skin.",
           "imageResource": "fracture_ice",
           "voiceScript": "Reduce swelling and pain",
           "warnings": "Do not apply ice directly to skin",
@@ -283,6 +307,7 @@
           "id": "fracture_step_5",
           "stepNumber": 5,
           "instruction": "Monitor for shock and treat accordingly",
+          "detailedInstructions": "Help the person lie down, and if possible, raise and support the injured limb. Cover them with a blanket to prevent shock. Watch for signs of shock like pale skin, rapid pulse, or weakness.",
           "imageResource": null,
           "voiceScript": "Watch for signs of shock",
           "warnings": "Pale skin, rapid pulse, weakness",
@@ -305,6 +330,7 @@
           "id": "snake_step_1",
           "stepNumber": 1,
           "instruction": "Call emergency services immediately",
+          "detailedInstructions": "For any snakebite, call emergency services immediately. This is crucial as antivenom may be required.",
           "imageResource": null,
           "voiceScript": "Get medical help fast",
           "warnings": "Antivenom may be needed",
@@ -314,6 +340,7 @@
           "id": "snake_step_2",
           "stepNumber": 2,
           "instruction": "Keep person calm and still",
+          "detailedInstructions": "Keep the person as calm and still as possible. Movement can cause the venom to spread more quickly through the body.",
           "imageResource": null,
           "voiceScript": "Minimize movement",
           "warnings": "Movement spreads venom faster",
@@ -323,6 +350,7 @@
           "id": "snake_step_3",
           "stepNumber": 3,
           "instruction": "Remove jewelry before swelling begins",
+          "detailedInstructions": "Remove any rings, watches, or tight clothing from the area of the bite before it starts to swell.",
           "imageResource": null,
           "voiceScript": "Remove constricting items",
           "warnings": "Swelling may occur rapidly",
@@ -332,6 +360,7 @@
           "id": "snake_step_4",
           "stepNumber": 4,
           "instruction": "Position bite below heart level if possible",
+          "detailedInstructions": "If possible, position the bitten limb so that it is below the level of the heart. This can help slow the spread of venom.",
           "imageResource": "snake_position",
           "voiceScript": "Keep bite area lower",
           "warnings": "Gravity helps slow venom spread",
@@ -341,9 +370,667 @@
           "id": "snake_step_5",
           "stepNumber": 5,
           "instruction": "Clean bite with soap and water, cover with clean bandage",
+          "detailedInstructions": "Gently wash the skin around the bite with soap and water. Do not flush the venom itself. Cover the bite with a clean, dry dressing. Do not apply a tourniquet or cut the wound.",
           "imageResource": "snake_clean",
           "voiceScript": "Clean and cover the wound",
           "warnings": "Do not cut wound or try to suck venom",
+          "isEmergencyStep": false
+        }
+      ]
+    },
+    {
+      "id": "heart_attack",
+      "title": "Heart Attack",
+      "category": "Critical",
+      "description": "Emergency response for a heart attack",
+      "iconResource": "ic_heart_attack",
+      "searchKeywords": "heart,attack,chest,pain,cardiac",
+      "estimatedTime": "Until help arrives",
+      "difficulty": "Intermediate",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "heart_attack_step_1",
+          "stepNumber": 1,
+          "instruction": "Call emergency services immediately.",
+          "detailedInstructions": "Recognize the signs of a heart attack (chest pain, shortness of breath, etc.) and call for emergency medical help immediately.",
+          "isEmergencyStep": true
+        },
+        {
+          "id": "heart_attack_step_2",
+          "stepNumber": 2,
+          "instruction": "Help the person sit comfortably.",
+          "detailedInstructions": "Help the person to sit in a comfortable, slightly reclined position and reassure them to keep them calm.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "heart_attack_step_3",
+          "stepNumber": 3,
+          "instruction": "Give aspirin if available.",
+          "detailedInstructions": "If the person is not allergic to aspirin, have them chew one adult-dose (300 mg) aspirin. This can help improve blood flow.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "heart_attack_step_4",
+          "stepNumber": 4,
+          "instruction": "Assist with nitroglycerin if prescribed.",
+          "detailedInstructions": "If the person has been prescribed nitroglycerin, help them take it as directed (usually under the tongue).",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "heart_attack_step_5",
+          "stepNumber": 5,
+          "instruction": "Monitor and be ready for CPR.",
+          "detailedInstructions": "Loosen any tight clothing and monitor the person's breathing. Be prepared to perform CPR if they become unresponsive.",
+          "isEmergencyStep": false
+        }
+      ]
+    },
+    {
+      "id": "stroke",
+      "title": "Stroke",
+      "category": "Critical",
+      "description": "Recognizing and responding to a stroke",
+      "iconResource": "ic_stroke",
+      "searchKeywords": "stroke,fast,face,arm,speech,time",
+      "estimatedTime": "Immediate",
+      "difficulty": "Intermediate",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "stroke_step_1",
+          "stepNumber": 1,
+          "instruction": "Use the FAST test to identify a stroke.",
+          "detailedInstructions": "Recognize stroke signs with FAST: Face drooping, Arm weakness, Speech difficulty. Time to call emergency services.",
+          "isEmergencyStep": true
+        },
+        {
+          "id": "stroke_step_2",
+          "stepNumber": 2,
+          "instruction": "Call emergency services immediately.",
+          "detailedInstructions": "If you see any sign of a stroke, call for emergency medical help immediately. Time is critical.",
+          "isEmergencyStep": true
+        },
+        {
+          "id": "stroke_step_3",
+          "stepNumber": 3,
+          "instruction": "Keep the person calm and comfortable.",
+          "detailedInstructions": "Keep the person calm and still. Lay them down with their head and shoulders slightly elevated. Cover them with a blanket to keep them warm.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "stroke_step_4",
+          "stepNumber": 4,
+          "instruction": "Do not give food or drink.",
+          "detailedInstructions": "Do not give the person any food, drink, or medication by mouth.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "stroke_step_5",
+          "stepNumber": 5,
+          "instruction": "Note the time symptoms began.",
+          "detailedInstructions": "If you know when the symptoms started, provide this information to the emergency responders. This is very important for treatment decisions.",
+          "isEmergencyStep": false
+        }
+      ]
+    },
+    {
+      "id": "sprains_strains",
+      "title": "Sprains and Strains",
+      "category": "Common",
+      "description": "First aid for sprains and strains",
+      "iconResource": "ic_sprain",
+      "searchKeywords": "sprain,strain,rice,rest,ice,compression,elevation",
+      "estimatedTime": "15-20 minutes",
+      "difficulty": "Basic",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "sprains_step_1",
+          "stepNumber": 1,
+          "instruction": "Rest the injured area.",
+          "detailedInstructions": "Have the person stop using the injured joint and rest. Avoid putting weight on the injured area.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "sprains_step_2",
+          "stepNumber": 2,
+          "instruction": "Apply ice to the injury.",
+          "detailedInstructions": "Apply an ice pack wrapped in a cloth to the area for up to 10-20 minutes at a time, several times a day.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "sprains_step_3",
+          "stepNumber": 3,
+          "instruction": "Compress the injury.",
+          "detailedInstructions": "Compress the injury with an elastic bandage, but not so tightly that it cuts off circulation.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "sprains_step_4",
+          "stepNumber": 4,
+          "instruction": "Elevate the injured limb.",
+          "detailedInstructions": "Elevate the injured limb above the level of the heart to help reduce swelling.",
+          "isEmergencyStep": false
+        }
+      ]
+    },
+    {
+      "id": "shock",
+      "title": "Shock",
+      "category": "Critical",
+      "description": "First aid for shock",
+      "iconResource": "ic_shock",
+      "searchKeywords": "shock,pale,cold,clammy,weak,rapid,pulse",
+      "estimatedTime": "Until help arrives",
+      "difficulty": "Intermediate",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "shock_step_1",
+          "stepNumber": 1,
+          "instruction": "Call emergency services immediately.",
+          "detailedInstructions": "If you suspect someone is in shock, call for emergency medical help immediately.",
+          "isEmergencyStep": true
+        },
+        {
+          "id": "shock_step_2",
+          "stepNumber": 2,
+          "instruction": "Lay the person down.",
+          "detailedInstructions": "Lay the person flat on their back. If there are no signs of head, neck, or back injury, elevate their legs about 12 inches.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "shock_step_3",
+          "stepNumber": 3,
+          "instruction": "Keep the person warm and comfortable.",
+          "detailedInstructions": "Cover the person with a blanket or jacket to keep them warm. Loosen any tight clothing.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "shock_step_4",
+          "stepNumber": 4,
+          "instruction": "Do not give food or drink.",
+          "detailedInstructions": "Do not give the person anything to eat or drink, even if they complain of thirst.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "shock_step_5",
+          "stepNumber": 5,
+          "instruction": "Monitor the person.",
+          "detailedInstructions": "Monitor the person's breathing and consciousness. If they stop breathing, begin CPR.",
+          "isEmergencyStep": false
+        }
+      ]
+    },
+    {
+      "id": "hypothermia",
+      "title": "Hypothermia",
+      "category": "Serious",
+      "description": "First aid for low body temperature",
+      "iconResource": "ic_hypothermia",
+      "searchKeywords": "hypothermia,cold,shivering,drowsy,confused",
+      "estimatedTime": "Until help arrives",
+      "difficulty": "Intermediate",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "hypothermia_step_1",
+          "stepNumber": 1,
+          "instruction": "Move the person to a warm place.",
+          "detailedInstructions": "Move the person out of the cold and into a warm, dry place.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "hypothermia_step_2",
+          "stepNumber": 2,
+          "instruction": "Remove wet clothing.",
+          "detailedInstructions": "Gently remove any wet clothing and replace it with dry, warm layers or blankets. Cover their head.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "hypothermia_step_3",
+          "stepNumber": 3,
+          "instruction": "Warm the person gradually.",
+          "detailedInstructions": "Warm the center of the body first (chest, neck, head, and groin) using warm compresses. Do not rewarm too quickly.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "hypothermia_step_4",
+          "stepNumber": 4,
+          "instruction": "Give warm drinks if conscious.",
+          "detailedInstructions": "If the person is fully conscious, give them warm, non-alcoholic beverages to drink.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "hypothermia_step_5",
+          "stepNumber": 5,
+          "instruction": "Call for medical help.",
+          "detailedInstructions": "Call emergency services if the person's condition is severe (e.g., they are drowsy or confused).",
+          "isEmergencyStep": true
+        }
+      ]
+    },
+    {
+      "id": "heat_exhaustion",
+      "title": "Heat Exhaustion",
+      "category": "Serious",
+      "description": "First aid for heat exhaustion",
+      "iconResource": "ic_heat_exhaustion",
+      "searchKeywords": "heat,exhaustion,cool,water,rest",
+      "estimatedTime": "30 minutes",
+      "difficulty": "Basic",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "heat_exhaustion_step_1",
+          "stepNumber": 1,
+          "instruction": "Move to a cool place.",
+          "detailedInstructions": "Move the person to a cool, shaded area or an air-conditioned room.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "heat_exhaustion_step_2",
+          "stepNumber": 2,
+          "instruction": "Loosen clothing and cool the skin.",
+          "detailedInstructions": "Remove any excess clothing. Cool the person's skin by fanning them or applying cool, wet cloths.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "heat_exhaustion_step_3",
+          "stepNumber": 3,
+          "instruction": "Give cool fluids.",
+          "detailedInstructions": "If the person is conscious, give them sips of cool water or an electrolyte drink.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "heat_exhaustion_step_4",
+          "stepNumber": 4,
+          "instruction": "Elevate the feet.",
+          "detailedInstructions": "Have the person lie down and elevate their feet slightly.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "heat_exhaustion_step_5",
+          "stepNumber": 5,
+          "instruction": "Seek medical help if symptoms worsen.",
+          "detailedInstructions": "If the person's symptoms do not improve or if they show signs of heatstroke (e.g., confusion, high fever), call for emergency medical help.",
+          "isEmergencyStep": true
+        }
+      ]
+    },
+    {
+      "id": "seizures",
+      "title": "Seizures",
+      "category": "Serious",
+      "description": "First aid for seizures",
+      "iconResource": "ic_seizure",
+      "searchKeywords": "seizure,convulsion,epilepsy,fit",
+      "estimatedTime": "5-10 minutes",
+      "difficulty": "Intermediate",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "seizures_step_1",
+          "stepNumber": 1,
+          "instruction": "Keep the person safe.",
+          "detailedInstructions": "Stay calm and ensure the person is in a safe place. Move any nearby objects that could cause injury.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "seizures_step_2",
+          "stepNumber": 2,
+          "instruction": "Cushion their head.",
+          "detailedInstructions": "Place something soft, like a jacket or pillow, under their head to protect it.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "seizures_step_3",
+          "stepNumber": 3,
+          "instruction": "Turn them on their side.",
+          "detailedInstructions": "Once the seizure has stopped, gently roll the person onto their side (recovery position) to help them breathe.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "seizures_step_4",
+          "stepNumber": 4,
+          "instruction": "Time the seizure.",
+          "detailedInstructions": "Note the time the seizure started and how long it lasts.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "seizures_step_5",
+          "stepNumber": 5,
+          "instruction": "Call for help if needed.",
+          "detailedInstructions": "Call emergency services if the seizure lasts more than 5 minutes, if it's their first seizure, if they have multiple seizures, or if they are injured.",
+          "isEmergencyStep": true
+        }
+      ]
+    },
+    {
+      "id": "poisoning",
+      "title": "Poisoning",
+      "category": "Critical",
+      "description": "First aid for poisoning",
+      "iconResource": "ic_poisoning",
+      "searchKeywords": "poison,ingestion,inhalation,toxic,chemical",
+      "estimatedTime": "Immediate",
+      "difficulty": "Intermediate",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "poisoning_step_1",
+          "stepNumber": 1,
+          "instruction": "Call poison control or emergency services.",
+          "detailedInstructions": "Call your local poison control center or emergency services immediately. Be ready to provide information about the person and the poison.",
+          "isEmergencyStep": true
+        },
+        {
+          "id": "poisoning_step_2",
+          "stepNumber": 2,
+          "instruction": "Follow the dispatcher's instructions.",
+          "detailedInstructions": "Follow the instructions given by the poison control or emergency dispatcher. Do not induce vomiting unless instructed to do so.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "poisoning_step_3",
+          "stepNumber": 3,
+          "instruction": "For inhaled poison, get to fresh air.",
+          "detailedInstructions": "If the person has inhaled poison, move them to fresh air immediately.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "poisoning_step_4",
+          "stepNumber": 4,
+          "instruction": "For poison on the skin, rinse with water.",
+          "detailedInstructions": "If the poison is on the skin, remove any contaminated clothing and rinse the skin with water for 15-20 minutes.",
+          "isEmergencyStep": false
+        }
+      ]
+    },
+    {
+      "id": "bites_stings",
+      "title": "Bites and Stings",
+      "category": "Common",
+      "description": "First aid for insect bites and stings",
+      "iconResource": "ic_bites_stings",
+      "searchKeywords": "bite,sting,insect,bee,wasp,spider",
+      "estimatedTime": "10-15 minutes",
+      "difficulty": "Basic",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "bites_stings_step_1",
+          "stepNumber": 1,
+          "instruction": "Remove the stinger.",
+          "detailedInstructions": "If the stinger is still in the skin, remove it by scraping it out with a flat-edged object like a credit card. Do not use tweezers, as this can squeeze more venom into the skin.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "bites_stings_step_2",
+          "stepNumber": 2,
+          "instruction": "Wash the area.",
+          "detailedInstructions": "Wash the affected area with soap and water.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "bites_stings_step_3",
+          "stepNumber": 3,
+          "instruction": "Apply a cold pack.",
+          "detailedInstructions": "Apply a cold pack or cloth filled with ice to the area to reduce pain and swelling.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "bites_stings_step_4",
+          "stepNumber": 4,
+          "instruction": "Watch for allergic reaction.",
+          "detailedInstructions": "Monitor the person for signs of an allergic reaction, such as difficulty breathing, swelling of the face or throat, or hives. If these occur, call for emergency medical help.",
+          "isEmergencyStep": true
+        }
+      ]
+    },
+    {
+      "id": "allergic_reaction",
+      "title": "Allergic Reaction (Anaphylaxis)",
+      "category": "Critical",
+      "description": "First aid for severe allergic reactions",
+      "iconResource": "ic_allergic_reaction",
+      "searchKeywords": "allergic,reaction,anaphylaxis,epipen,epinephrine",
+      "estimatedTime": "Immediate",
+      "difficulty": "Advanced",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "allergic_reaction_step_1",
+          "stepNumber": 1,
+          "instruction": "Call emergency services immediately.",
+          "detailedInstructions": "If you suspect a severe allergic reaction (anaphylaxis), call for emergency medical help immediately.",
+          "isEmergencyStep": true
+        },
+        {
+          "id": "allergic_reaction_step_2",
+          "stepNumber": 2,
+          "instruction": "Use an epinephrine auto-injector if available.",
+          "detailedInstructions": "If the person has a prescribed epinephrine auto-injector (like an EpiPen), help them use it. Inject it into the outer thigh.",
+          "isEmergencyStep": true
+        },
+        {
+          "id": "allergic_reaction_step_3",
+          "stepNumber": 3,
+          "instruction": "Lay the person down.",
+          "detailedInstructions": "Have the person lie down with their legs elevated, unless they are having trouble breathing, in which case they should sit up.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "allergic_reaction_step_4",
+          "stepNumber": 4,
+          "instruction": "Be prepared for a second dose.",
+          "detailedInstructions": "If symptoms do not improve after 5-10 minutes, a second dose of epinephrine may be needed if available.",
+          "isEmergencyStep": false
+        }
+      ]
+    },
+    {
+      "id": "asthma_attack",
+      "title": "Asthma Attack",
+      "category": "Serious",
+      "description": "First aid for an asthma attack",
+      "iconResource": "ic_asthma",
+      "searchKeywords": "asthma,attack,inhaler,wheezing,breathing",
+      "estimatedTime": "5-15 minutes",
+      "difficulty": "Intermediate",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "asthma_attack_step_1",
+          "stepNumber": 1,
+          "instruction": "Help the person sit upright.",
+          "detailedInstructions": "Help the person sit in a comfortable upright position and stay calm.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "asthma_attack_step_2",
+          "stepNumber": 2,
+          "instruction": "Assist with their inhaler.",
+          "detailedInstructions": "If the person has a quick-relief inhaler, help them use it. Usually, this involves taking 2-4 puffs.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "asthma_attack_step_3",
+          "stepNumber": 3,
+          "instruction": "Encourage slow, steady breaths.",
+          "detailedInstructions": "Encourage the person to take slow, steady breaths.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "asthma_attack_step_4",
+          "stepNumber": 4,
+          "instruction": "Call for help if symptoms don't improve.",
+          "detailedInstructions": "If the person's symptoms do not improve after a few minutes, or if they get worse, call for emergency medical help.",
+          "isEmergencyStep": true
+        }
+      ]
+    },
+    {
+      "id": "diabetic_emergencies",
+      "title": "Diabetic Emergencies",
+      "category": "Serious",
+      "description": "First aid for low and high blood sugar",
+      "iconResource": "ic_diabetes",
+      "searchKeywords": "diabetes,hypoglycemia,hyperglycemia,sugar,insulin",
+      "estimatedTime": "15-20 minutes",
+      "difficulty": "Intermediate",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "diabetic_emergencies_step_1",
+          "stepNumber": 1,
+          "instruction": "For low blood sugar, give sugar.",
+          "detailedInstructions": "If the person is conscious and able to swallow, give them 15-20 grams of a quick-acting carbohydrate, such as juice, regular soda, or glucose tablets.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "diabetic_emergencies_step_2",
+          "stepNumber": 2,
+          "instruction": "Recheck blood sugar if possible.",
+          "detailedInstructions": "If you have a glucose meter, recheck the person's blood sugar after 15 minutes. Repeat the sugar if it is still low.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "diabetic_emergencies_step_3",
+          "stepNumber": 3,
+          "instruction": "For high blood sugar, encourage water.",
+          "detailedInstructions": "If the person has high blood sugar, encourage them to drink water. They may need insulin, but only if they are trained to administer it themselves.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "diabetic_emergencies_step_4",
+          "stepNumber": 4,
+          "instruction": "Call for help if the person is unconscious.",
+          "detailedInstructions": "If the person is unconscious, having a seizure, or unable to swallow, call for emergency medical help immediately. Do not give them anything by mouth.",
+          "isEmergencyStep": true
+        }
+      ]
+    },
+    {
+      "id": "drowning",
+      "title": "Drowning",
+      "category": "Critical",
+      "description": "First aid for drowning",
+      "iconResource": "ic_drowning",
+      "searchKeywords": "drowning,water,rescue,cpr,breathing",
+      "estimatedTime": "Until help arrives",
+      "difficulty": "Advanced",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "drowning_step_1",
+          "stepNumber": 1,
+          "instruction": "Remove the person from the water safely.",
+          "detailedInstructions": "Do not put yourself at risk. Only attempt a rescue if it is safe to do so. Once the person is out of the water, check for responsiveness and breathing.",
+          "isEmergencyStep": true
+        },
+        {
+          "id": "drowning_step_2",
+          "stepNumber": 2,
+          "instruction": "Call for emergency medical help.",
+          "detailedInstructions": "Call for emergency medical help immediately.",
+          "isEmergencyStep": true
+        },
+        {
+          "id": "drowning_step_3",
+          "stepNumber": 3,
+          "instruction": "Begin CPR if not breathing.",
+          "detailedInstructions": "If the person is not breathing, begin CPR. Start with 5 rescue breaths, then continue with cycles of 30 chest compressions and 2 breaths.",
+          "isEmergencyStep": true
+        },
+        {
+          "id": "drowning_step_4",
+          "stepNumber": 4,
+          "instruction": "Place in recovery position if breathing.",
+          "detailedInstructions": "If the person is breathing, place them in the recovery position and keep them warm until help arrives.",
+          "isEmergencyStep": false
+        }
+      ]
+    },
+    {
+      "id": "nosebleeds",
+      "title": "Nosebleeds",
+      "category": "Common",
+      "description": "First aid for nosebleeds",
+      "iconResource": "ic_nosebleed",
+      "searchKeywords": "nosebleed,bleeding,nose,pinch",
+      "estimatedTime": "10-20 minutes",
+      "difficulty": "Basic",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "nosebleeds_step_1",
+          "stepNumber": 1,
+          "instruction": "Sit down and lean forward.",
+          "detailedInstructions": "Have the person sit down and lean their head forward to prevent them from swallowing blood.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "nosebleeds_step_2",
+          "stepNumber": 2,
+          "instruction": "Pinch the soft part of the nose.",
+          "detailedInstructions": "Ask the person to pinch the soft part of their nose, just below the bony bridge, for 10-15 minutes.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "nosebleeds_step_3",
+          "stepNumber": 3,
+          "instruction": "Breathe through the mouth.",
+          "detailedInstructions": "Encourage the person to breathe through their mouth while pinching their nose.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "nosebleeds_step_4",
+          "stepNumber": 4,
+          "instruction": "Seek medical help if bleeding persists.",
+          "detailedInstructions": "If the bleeding does not stop after 20-30 minutes of continuous pressure, or if it is very heavy, seek medical help.",
+          "isEmergencyStep": true
+        }
+      ]
+    },
+    {
+      "id": "eye_injuries",
+      "title": "Eye Injuries",
+      "category": "Serious",
+      "description": "First aid for eye injuries",
+      "iconResource": "ic_eye_injury",
+      "searchKeywords": "eye,injury,foreign,object,chemical,splash",
+      "estimatedTime": "20 minutes",
+      "difficulty": "Intermediate",
+      "isFavorite": false,
+      "steps": [
+        {
+          "id": "eye_injuries_step_1",
+          "stepNumber": 1,
+          "instruction": "For a foreign object, flush the eye.",
+          "detailedInstructions": "If there is a small foreign object in the eye, try to flush it out with clean water or saline solution.",
+          "isEmergencyStep": false
+        },
+        {
+          "id": "eye_injuries_step_2",
+          "stepNumber": 2,
+          "instruction": "For a chemical splash, flush continuously.",
+          "detailedInstructions": "For a chemical splash, immediately flush the eye with lukewarm water for at least 20 minutes. Then seek emergency medical care.",
+          "isEmergencyStep": true
+        },
+        {
+          "id": "eye_injuries_step_3",
+          "stepNumber": 3,
+          "instruction": "For a blow or penetrating injury, protect the eye.",
+          "detailedInstructions": "For a blow or penetrating injury, do not press on the eye. Apply a loose shield, like a paper cup, to protect it and seek immediate medical help.",
+          "isEmergencyStep": true
+        },
+        {
+          "id": "eye_injuries_step_4",
+          "stepNumber": 4,
+          "instruction": "Do not rub the eye.",
+          "detailedInstructions": "Instruct the person not to rub their eye, as this can cause more damage.",
           "isEmergencyStep": false
         }
       ]

@@ -39,8 +39,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                 database.searchDao()
             )
 
-            Log.d("HomeViewModel", "Forcing immediate reinitialization")
-            DataInitializer(getApplication()).forceImmediateReinitialization()
+            Log.d("HomeViewModel", "Starting data initialization")
+            DataInitializer.initializeData(getApplication())
 
             repository.allGuides.observeForever { guides ->
                 Log.d("HomeViewModel", "Total guides available: ${guides.size}")
@@ -94,12 +94,5 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     fun clearSearch() {
         _searchResults.value = emptyList()
-    }
-
-    fun callEmergencyServices(context: Context) {
-        val intent = Intent(Intent.ACTION_DIAL).apply {
-            data = "tel:911".toUri()
-        }
-        context.startActivity(intent)
     }
 }

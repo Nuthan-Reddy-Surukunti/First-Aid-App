@@ -45,4 +45,18 @@ class GuideDetailViewModel(application: Application) : AndroidViewModel(applicat
             repository.toggleFavorite(guideId, isFavorite)
         }
     }
+
+    fun markStepCompleted(step: com.example.firstaidapp.data.models.GuideStep) {
+        viewModelScope.launch {
+            // Handle step completion logic
+            // This could involve updating user progress, analytics, etc.
+            // For now, we'll just log the completion
+            android.util.Log.d("GuideDetailViewModel", "Step completed: ${step.title}")
+
+            // You can add more logic here such as:
+            // - Updating user progress in database
+            // - Sending analytics events
+            // - Triggering haptic feedback
+        }
+    }
 }

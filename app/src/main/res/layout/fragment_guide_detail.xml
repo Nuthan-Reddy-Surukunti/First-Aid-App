@@ -59,7 +59,75 @@
             android:layout_marginTop="16dp"
             android:textColor="@color/text_primary"
             android:textSize="16sp"
+            android:lineSpacingExtra="4dp"
             tools:text="Description" />
+
+        <!-- Toggle Button for Detailed Instructions -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnToggleDetails"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Show Detailed Instructions"
+            android:textColor="@color/primary"
+            app:icon="@drawable/ic_expand_more"
+            app:iconTint="@color/primary"
+            app:strokeColor="@color/primary" />
+
+        <!-- Detailed Instructions Section for Guide -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvDetailedInstructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/background_secondary">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_lightbulb"
+                        app:tint="@color/primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Detailed Instructions"
+                        android:textColor="@color/primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDetailedDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"
+                    tools:text="Detailed instructions will appear here..." />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCallEmergency"
@@ -72,7 +140,7 @@
             app:icon="@android:drawable/ic_menu_call"
             app:iconTint="@color/white" />
 
-        <!-- Photo Demonstration Section -->
+        <!-- Main Guide Image Section - Enhanced for single image per guide -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvPhotoDemo"
             android:layout_width="match_parent"
@@ -90,9 +158,12 @@
                 <ImageView
                     android:id="@+id/ivGuidePhoto"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="Step-by-step demonstration photo" />
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="400dp"
+                    android:scaleType="centerInside"
+                    android:background="@color/background_secondary"
+                    android:contentDescription="Guide demonstration image" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -113,21 +184,21 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="8dp"
-                        android:text="Visual demonstration"
+                        android:text="Visual Guide"
                         android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/tvViewFullPhoto"
+                        style="@style/Widget.Material3.Button.TextButton"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackground"
-                        android:padding="8dp"
+                        android:layout_height="36dp"
                         android:text="View Full Size"
-                        android:textColor="@color/primary"
                         android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:drawableStart="@drawable/ic_fullscreen"
+                        android:drawablePadding="4dp"
+                        app:drawableTint="@color/primary" />
 
                 </LinearLayout>
 

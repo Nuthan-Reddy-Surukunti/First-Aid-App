@@ -12,8 +12,7 @@ class DataInitializationWorker(appContext: Context, params: WorkerParameters): C
     override suspend fun doWork(): Result {
         return try {
             Log.i(TAG, "doWork: starting data initialization via WorkManager")
-            val initializer = DataInitializer(applicationContext)
-            initializer.initializeDataBlocking()
+            DataInitializer.initializeDataBlocking(applicationContext)
             Log.i(TAG, "doWork: data initialization completed successfully")
             Result.success()
         } catch (e: Exception) {
@@ -23,4 +22,3 @@ class DataInitializationWorker(appContext: Context, params: WorkerParameters): C
         }
     }
 }
-

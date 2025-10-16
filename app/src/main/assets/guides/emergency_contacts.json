@@ -1,37 +1,44 @@
 {
   "emergencyContacts": [
     {
-      "id": "emergency_911",
-      "name": "Emergency Services",
-      "phoneNumber": "911",
-      "description": "Fire, Police, Medical Emergency",
+      "id": "emergency_112",
+      "name": "Emergency Services (All)",
+      "phoneNumber": "112",
+      "description": "Unified emergency number for Police, Fire, and Medical emergencies in India",
       "category": "Emergency",
       "isDefault": true
     },
     {
-      "id": "poison_control",
-      "name": "Poison Control Center",
-      "phoneNumber": "1-800-222-1222",
-      "description": "24/7 poison emergency hotline",
+      "id": "police",
+      "name": "Police",
+      "phoneNumber": "100",
+      "description": "Police emergency services",
+      "category": "Emergency",
+      "isDefault": true
+    },
+    {
+      "id": "fire_brigade",
+      "name": "Fire Brigade",
+      "phoneNumber": "101",
+      "description": "Fire and rescue services",
+      "category": "Emergency",
+      "isDefault": true
+    },
+    {
+      "id": "medical_emergency",
+      "name": "Medical Emergency",
+      "phoneNumber": "108",
+      "description": "Medical emergency and ambulance services",
+      "category": "Emergency",
+      "isDefault": true
+    },
+    {
+      "id": "poison_control_in",
+      "name": "National Poison Information Centre",
+      "phoneNumber": "1800-11-6117",
+      "description": "24/7 poison emergency hotline in India",
       "category": "Medical",
-      "isDefault": true
-    },
-    {
-      "id": "suicide_prevention",
-      "name": "Suicide Prevention Lifeline",
-      "phoneNumber": "988",
-      "description": "24/7 crisis support and suicide prevention",
-      "category": "Crisis",
-      "isDefault": true
-    },
-    {
-      "id": "red_cross",
-      "name": "American Red Cross",
-      "phoneNumber": "1-800-733-2767",
-      "description": "Disaster relief and emergency assistance",
-      "category": "Support",
       "isDefault": true
     }
   ]
 }
-

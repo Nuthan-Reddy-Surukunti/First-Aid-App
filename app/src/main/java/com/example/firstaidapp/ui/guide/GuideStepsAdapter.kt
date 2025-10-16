@@ -22,12 +22,14 @@ import com.example.firstaidapp.R
 import com.example.firstaidapp.data.models.GuideStep
 import com.example.firstaidapp.data.models.StepType
 import com.example.firstaidapp.databinding.ItemGuideStepBinding
+import com.example.firstaidapp.utils.GuideImageMapper
 import com.google.android.material.chip.Chip
 
 class GuideStepsAdapter(
     private val onStepCompleted: (GuideStep) -> Unit = {},
     private val onVideoPlay: (String) -> Unit = {},
-    private val onStepExpanded: (GuideStep) -> Unit = {}
+    private val onStepExpanded: (GuideStep) -> Unit = {},
+    private val guideName: String? = null // Add guide name for context
 ) : ListAdapter<GuideStep, GuideStepsAdapter.StepViewHolder>(StepDiffCallback()) {
 
     private var expandedSteps = mutableSetOf<Int>()
@@ -91,17 +93,16 @@ class GuideStepsAdapter(
                 // Critical warning
                 ivCriticalWarning.visibility = if (step.isCritical) View.VISIBLE else View.GONE
 
-                // Step image
-                step.imageRes?.let { imageRes ->
-                    cardStepImage.visibility = View.VISIBLE
-                    ivStepImage.setImageResource(imageRes)
-                } ?: run {
-                    cardStepImage.visibility = View.GONE
-                }
-
-                // Detailed instructions
+                // Detailed instructions - Enhanced display
                 if (!step.detailedInstructions.isNullOrEmpty()) {
                     tvDetailedInstructions.text = step.detailedInstructions
+
+                    // Initially hidden, can be expanded by clicking "More Details" button
+                    if (expandedSteps.contains(position)) {
+                        layoutDetailedInstructions.visibility = View.VISIBLE
+                    } else {
+                        layoutDetailedInstructions.visibility = View.GONE
+                    }
                 } else {
                     layoutDetailedInstructions.visibility = View.GONE
                 }
@@ -114,7 +115,7 @@ class GuideStepsAdapter(
                     layoutRequiredTools.visibility = View.GONE
                 }
 
-                // Tips
+                // Tips - Enhanced display
                 if (!step.tips.isNullOrEmpty()) {
                     layoutTips.visibility = View.VISIBLE
                     populateTips(step.tips!!)
@@ -122,12 +123,12 @@ class GuideStepsAdapter(
                     layoutTips.visibility = View.GONE
                 }
 
-                // Warnings
+                // Warnings - Enhanced display
                 if (!step.warnings.isNullOrEmpty()) {
-                    // Handle warnings display
-                    step.warnings?.forEach { warning ->
-                        // Add warning display logic here
-                    }
+                    layoutWarnings.visibility = View.VISIBLE
+                    populateWarnings(step.warnings!!)
+                } else {
+                    layoutWarnings.visibility = View.GONE
                 }
 
                 setupClickListeners(step, position)
@@ -147,7 +148,30 @@ class GuideStepsAdapter(
         }
 
         private fun populateTips(tips: List<String>) {
-            // Add tips to layout (implementation depends on your layout structure)
+            binding.layoutTipsList.removeAllViews()
+            tips.forEach { tip ->
+                val tipView = TextView(binding.root.context).apply {
+                    text = "• $tip"
+                    textSize = 13f
+                    setTextColor(ContextCompat.getColor(context, R.color.text_primary))
+                    setPadding(0, 4, 0, 4)
+                }
+                binding.layoutTipsList.addView(tipView)
+            }
+        }
+
+        private fun populateWarnings(warnings: List<String>) {
+            binding.layoutWarningsList.removeAllViews()
+            warnings.forEach { warning ->
+                val warningView = TextView(binding.root.context).apply {
+                    text = "⚠ $warning"
+                    textSize = 13f
+                    setTextColor(ContextCompat.getColor(context, R.color.warning))
+                    setPadding(0, 4, 0, 4)
+                    setTypeface(null, android.graphics.Typeface.BOLD)
+                }
+                binding.layoutWarningsList.addView(warningView)
+            }
         }
 
         private fun setupClickListeners(step: GuideStep, position: Int) {
@@ -161,11 +185,22 @@ class GuideStepsAdapter(
                     markCompleted(step)
                 }
 
-                fabPlayVideo.setOnClickListener {
-                    step.videoUrl?.let { url ->
-                        onVideoPlay(url)
-                    }
+                // More Details button to toggle detailed instructions
+                btnMoreDetails.setOnClickListener {
+                    toggleExpansion(position)
+                    onStepExpanded(step)
                 }
+
+                // Update button text based on expansion state
+                updateMoreDetailsButton(position)
+            }
+        }
+
+        private fun updateMoreDetailsButton(position: Int) {
+            val isExpanded = expandedSteps.contains(position)
+            binding.btnMoreDetails.apply {
+                text = if (isExpanded) "Less Details" else "More Details"
+                setIconResource(if (isExpanded) R.drawable.ic_expand_less else R.drawable.ic_expand_more)
             }
         }
 

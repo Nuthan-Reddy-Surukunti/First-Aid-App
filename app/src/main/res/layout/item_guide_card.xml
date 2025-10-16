@@ -161,13 +161,13 @@
                         android:layout_height="1dp"
                         android:layout_weight="1" />
 
-                    <!-- Show Photo Button -->
+                    <!-- View Demo Button -->
                     <TextView
-                        android:id="@+id/tvShowPhoto"
+                        android:id="@+id/tvViewDemo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
-                        android:drawableStart="@drawable/ic_photo"
+                        android:drawableStart="@drawable/ic_video_play"
                         android:drawablePadding="4dp"
                         android:paddingHorizontal="8dp"
                         android:paddingVertical="4dp"

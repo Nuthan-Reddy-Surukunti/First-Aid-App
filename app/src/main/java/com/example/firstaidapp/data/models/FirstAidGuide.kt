@@ -25,5 +25,6 @@ data class FirstAidGuide(
     // Properties expected by GuideDao queries
     val isFavorite: Boolean = false,
     val lastAccessedTimestamp: Long = System.currentTimeMillis(), // Required by GuideDao
-    val viewCount: Int = 0
+    val viewCount: Int = 0,
+    val youtubeLink: String = "" // YouTube video demonstration link
 )

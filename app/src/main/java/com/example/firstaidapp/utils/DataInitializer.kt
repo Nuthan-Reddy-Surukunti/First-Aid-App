@@ -49,10 +49,11 @@ object DataInitializer {
                 Log.i(TAG, "initializeData: guidesCount=$guidesCount, contactsCount=$contactsCount")
 
                 val expectedGuidesCount = 19
-                val needsFullReinitialization = guidesCount < expectedGuidesCount
+                val expectedContactsCount = 40 // Updated to include state-specific contacts
+                val needsFullReinitialization = guidesCount < expectedGuidesCount || contactsCount < expectedContactsCount
 
                 if (needsFullReinitialization) {
-                    Log.i(TAG, "initializeData: forcing reinitialization - found $guidesCount guides, expected $expectedGuidesCount")
+                    Log.i(TAG, "initializeData: forcing reinitialization - found $guidesCount guides (expected $expectedGuidesCount), $contactsCount contacts (expected $expectedContactsCount)")
 
                     database.guideDao().deleteAllGuides()
                     database.contactDao().deleteAllContacts()
@@ -78,7 +79,7 @@ object DataInitializer {
                     prefs.edit(commit = true) { putBoolean("data_initialized", true) }
                     Log.i(TAG, "initializeData: marked data_initialized=true")
                 } else {
-                    Log.i(TAG, "initializeData: all guides already present ($guidesCount/$expectedGuidesCount)")
+                    Log.i(TAG, "initializeData: all guides and contacts already present ($guidesCount/$expectedGuidesCount guides, $contactsCount/$expectedContactsCount contacts)")
                 }
 
             } catch (e: Throwable) {

@@ -15,7 +15,7 @@ import com.example.firstaidapp.data.models.*
         EmergencyContact::class,
         SearchHistory::class
     ],
-    version = 6, // Added youtubeLink field to FirstAidGuide (5->6)
+    version = 7, // Added state field to EmergencyContact (6->7)
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -32,29 +32,10 @@ abstract class AppDatabase : RoomDatabase() {
         // Migration from 3 to 4: add columns used by queries/UI to first_aid_guides
         private val MIGRATION_3_4 = object : Migration(3, 4) {
             override fun migrate(db: SupportSQLiteDatabase) {
-                // Check if columns exist before adding them to prevent duplicate column errors
-                try {
-                    // Try to add each column, ignore if it already exists
-                    try {
-                        db.execSQL("ALTER TABLE first_aid_guides ADD COLUMN isFavorite INTEGER NOT NULL DEFAULT 0")
-                    } catch (e: Exception) {
-                        // Column might already exist, continue with other columns
-                    }
-
-                    try {
-                        db.execSQL("ALTER TABLE first_aid_guides ADD COLUMN lastAccessedTimestamp INTEGER NOT NULL DEFAULT 0")
-                    } catch (e: Exception) {
-                        // Column might already exist, continue with other columns
-                    }
-
-                    try {
-                        db.execSQL("ALTER TABLE first_aid_guides ADD COLUMN viewCount INTEGER NOT NULL DEFAULT 0")
-                    } catch (e: Exception) {
-                        // Column might already exist, continue
-                    }
-                } catch (e: Exception) {
-                    // If all else fails, continue - the columns might already be present
-                }
+                // Add columns with defaults to satisfy NOT NULL constraints
+                db.execSQL("ALTER TABLE first_aid_guides ADD COLUMN isFavorite INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE first_aid_guides ADD COLUMN lastAccessedTimestamp INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE first_aid_guides ADD COLUMN viewCount INTEGER NOT NULL DEFAULT 0")
             }
         }
 
@@ -82,6 +63,14 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        // Migration from 6 to 7: add state column to emergency_contacts
+        private val MIGRATION_6_7 = object : Migration(6, 7) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                // Add state column with NULL as default to allow existing data
+                db.execSQL("ALTER TABLE emergency_contacts ADD COLUMN state TEXT")
+            }
+        }
+
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -90,7 +79,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "first_aid_database"
                 )
                     // Replace destructive fallback with proper migrations
-                    .addMigrations(MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+                    .addMigrations(MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
                     .build()
                 INSTANCE = instance
                 instance

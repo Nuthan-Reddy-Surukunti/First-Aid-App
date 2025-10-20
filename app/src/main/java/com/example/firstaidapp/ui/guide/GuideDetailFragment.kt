@@ -209,9 +209,14 @@ class GuideDetailFragment : Fragment() {
             makeEmergencyCall()
         }
 
-        // Simple photo tap feedback (optional - can be removed entirely)
+        // Full photo view click listener
+        binding.tvViewFullPhoto.setOnClickListener {
+            showFullSizePhoto()
+        }
+
+        // Handle photo tap for full-size viewing
         binding.ivGuidePhoto.setOnClickListener {
-            // Photo is already fully visible, no action needed
+            showFullSizePhoto()
         }
 
         // Toggle detailed instructions visibility
@@ -234,7 +239,25 @@ class GuideDetailFragment : Fragment() {
         }
     }
 
+    private fun showFullSizePhoto() {
+        // Create and show a full-screen image dialog
+        val dialog = Dialog(requireContext(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+        val imageView = ImageView(requireContext())
+        imageView.scaleType = ImageView.ScaleType.CENTER_INSIDE
 
+        // Set the same image as the guide photo
+        binding.ivGuidePhoto.drawable?.let { drawable ->
+            imageView.setImageDrawable(drawable)
+        }
+
+        // Close dialog on tap
+        imageView.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.setContentView(imageView)
+        dialog.show()
+    }
 
     private fun makeEmergencyCall() {
         try {

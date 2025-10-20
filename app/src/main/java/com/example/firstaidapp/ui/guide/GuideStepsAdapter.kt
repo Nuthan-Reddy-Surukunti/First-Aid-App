@@ -93,9 +93,6 @@ class GuideStepsAdapter(
                 // Critical warning
                 ivCriticalWarning.visibility = if (step.isCritical) View.VISIBLE else View.GONE
 
-                // Load step photo if available
-                loadStepPhoto(step, position)
-
                 // Detailed instructions - Enhanced display
                 if (!step.detailedInstructions.isNullOrEmpty()) {
                     tvDetailedInstructions.text = step.detailedInstructions
@@ -199,49 +196,11 @@ class GuideStepsAdapter(
             }
         }
 
-        private fun loadStepPhoto(step: GuideStep, position: Int) {
-            // Try to get a photo for this specific step
-            val stepPhotoPath = GuideImageMapper.getImageForStep(guideName ?: "", step.stepNumber, step.title)
-
-            if (stepPhotoPath != null) {
-                try {
-                    // Load the photo from assets
-                    val context = binding.root.context
-                    val inputStream = context.assets.open(stepPhotoPath)
-                    val drawable = android.graphics.drawable.Drawable.createFromStream(inputStream, null)
-
-                    if (drawable != null) {
-                        binding.ivStepPhoto.setImageDrawable(drawable)
-                        binding.cvStepPhoto.visibility = View.VISIBLE
-
-                        // Simple tap feedback (photos are already fully visible)
-                        binding.ivStepPhoto.setOnClickListener {
-                            // Photo is already optimally sized, no action needed
-                        }
-                    } else {
-                        binding.cvStepPhoto.visibility = View.GONE
-                    }
-
-                    inputStream.close()
-
-                } catch (_: java.io.IOException) {
-                    // Photo file doesn't exist, hide the photo section
-                    binding.cvStepPhoto.visibility = View.GONE
-                }
-            } else {
-                // No photo mapping found, hide the photo section
-                binding.cvStepPhoto.visibility = View.GONE
-            }
-        }
-
-
-
         private fun updateMoreDetailsButton(position: Int) {
             val isExpanded = expandedSteps.contains(position)
             binding.btnMoreDetails.apply {
                 text = if (isExpanded) "Less Details" else "More Details"
-                val iconRes = if (isExpanded) R.drawable.ic_expand_less else R.drawable.ic_expand_more
-                icon = ContextCompat.getDrawable(context, iconRes)
+                setIconResource(if (isExpanded) R.drawable.ic_expand_less else R.drawable.ic_expand_more)
             }
         }
 

@@ -49,42 +49,6 @@
     <string name="category_breathing">Breathing Problems</string>
 
     <!-- Severity Levels -->
-
-    <!-- Voice Assistant -->
-    <string name="voice_assistant_title">Voice Assistant</string>
-    <string name="voice_assistant_ready">Voice Assistant Ready</string>
-    <string name="voice_assistant_initializing">Initializing…</string>
-    <string name="voice_tap_to_speak">Tap to speak</string>
-    <string name="voice_listening">Listening…</string>
-    <string name="voice_processing">Processing…</string>
-    <string name="voice_speaking">Speaking…</string>
-    <string name="voice_error">Error: %s</string>
-
-    <!-- Voice Commands -->
-    <string name="voice_you_said">You said:</string>
-    <string name="voice_assistant_says">Assistant:</string>
-    <string name="voice_waiting_input">Waiting for input…</string>
-    <string name="voice_how_can_help">How can I help you with first aid?</string>
-
-    <!-- Emergency Mode -->
-    <string name="emergency_mode_title">⚠️ EMERGENCY MODE ⚠️</string>
-    <string name="emergency_mode_following">Following emergency guidance…</string>
-    <string name="exit_emergency_mode">Exit Emergency Mode</string>
-    <string name="emergency_quick_actions">Emergency Quick Actions</string>
-
-    <!-- Permissions -->
-    <string name="permissions_required">Permissions Required</string>
-    <string name="permissions_denied">Permissions Denied</string>
-    <string name="permissions_voice_assistant">The Voice Assistant needs the following permissions to function properly</string>
-    <string name="permissions_grant">Grant</string>
-    <string name="permissions_cannot_function">The Voice Assistant cannot function without the required permissions. Please grant permissions in app settings.</string>
-
-    <!-- Actions -->
-    <string name="action_stop">Stop</string>
-    <string name="action_clear">Clear</string>
-    <string name="conversation_cleared">Conversation cleared</string>
-    <string name="permissions_granted">Permissions granted</string>
-    <string name="voice_requires_permissions">Voice Assistant requires permissions to work</string>
     <string name="severity_low">Low</string>
     <string name="severity_medium">Medium</string>
     <string name="severity_high">High</string>

@@ -140,46 +140,6 @@ object GuideImageMapper {
     }
 
     /**
-     * Get image file path for a specific step (returns asset path for photos)
-     */
-    fun getImageForStep(guideName: String, stepNumber: Int, stepTitle: String): String? {
-        val guideKey = guideName.lowercase().replace(" ", "_")
-
-        return when {
-            guideName.contains("CPR", ignoreCase = true) -> {
-                // Use the main CPR demonstration photo for all steps since specific step images don't exist
-                "photos/cpr_demonstration.png"
-            }
-
-            guideName.contains("Choking", ignoreCase = true) -> {
-                // Use the choking photo for choking-related steps
-                "photos/Choking.png"
-            }
-
-            guideName.contains("Burns", ignoreCase = true) -> {
-                when (stepNumber) {
-                    1 -> "images/burns_safety.jpg"
-                    2 -> "images/burns_cool_water.jpg"
-                    3 -> "images/burns_covering.jpg"
-                    else -> "images/burns_general.jpg"
-                }
-            }
-
-            guideName.contains("Bleeding", ignoreCase = true) ||
-            guideName.contains("Cuts", ignoreCase = true) -> {
-                when (stepNumber) {
-                    1 -> "images/bleeding_assessment.jpg"
-                    2 -> "images/bleeding_pressure.jpg"
-                    3 -> "images/bleeding_bandaging.jpg"
-                    else -> "images/bleeding_general.jpg"
-                }
-            }
-
-            else -> null
-        }
-    }
-
-    /**
      * Get category icon for guide cards
      */
     fun getCategoryIcon(category: String): Int {
@@ -189,13 +149,13 @@ object GuideImageMapper {
             "burns" -> R.drawable.ic_burns
             "bleeding", "cuts" -> R.drawable.ic_bleeding
             "fractures" -> R.drawable.ic_fractures
-            "allergic_reactions", "allergic reaction" -> R.drawable.ic_allergic_reaction
-            "poisoning" -> R.drawable.ic_poisoning
-            "shock" -> R.drawable.ic_shock
-            "seizures", "seizure" -> R.drawable.ic_seizure
             "heart attack" -> R.drawable.ic_heart_attack
             "stroke" -> R.drawable.ic_stroke
+            "seizure" -> R.drawable.ic_seizure
+            "allergic reaction" -> R.drawable.ic_allergic_reaction
+            "poisoning" -> R.drawable.ic_poisoning
             "drowning" -> R.drawable.ic_drowning
+            "shock" -> R.drawable.ic_shock
             "diabetes" -> R.drawable.ic_diabetes
             "asthma" -> R.drawable.ic_asthma
             "eye injury" -> R.drawable.ic_eye_injury

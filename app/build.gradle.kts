@@ -1,12 +1,8 @@
-import java.util.Properties
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
     id("androidx.navigation.safeargs.kotlin")
-    id("com.google.gms.google-services")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
 }
 
 android {
@@ -16,20 +12,11 @@ android {
     defaultConfig {
         applicationId = "com.example.firstaidapp"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        
-        // Load API key from local.properties
-        val localProperties = Properties()
-        val localPropertiesFile = rootProject.file("local.properties")
-        if (localPropertiesFile.exists()) {
-            localProperties.load(localPropertiesFile.inputStream())
-        }
-        
-        buildConfigField("String", "GEMINI_API_KEY", "\"${localProperties.getProperty("GEMINI_API_KEY", "")}\"")
     }
 
     buildTypes {
@@ -51,7 +38,6 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
-        buildConfig = true
     }
 }
 
@@ -75,11 +61,6 @@ dependencies {
     // Room Database
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    implementation(libs.firebase.auth)
-    implementation(libs.androidx.credentials)
-    implementation(libs.androidx.credentials.play.services.auth)
-    implementation(libs.googleid)
-    implementation(libs.firebase.ai)
     ksp(libs.androidx.room.compiler)
 
     // Coroutines
@@ -100,57 +81,14 @@ dependencies {
     // FlexboxLayout
     implementation(libs.flexbox)
 
-    // Firebase AI Logic
-    implementation(platform("com.google.firebase:firebase-bom:34.4.0"))
-    implementation("com.google.firebase:firebase-ai")
-
-    // Google AI Client for Gemini
-    implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
-
-    // Force Ktor 2.3.12 to match Google AI Client expectations and avoid conflicts
-    val ktorVersion = "2.3.12"
-    implementation("io.ktor:ktor-client-core:$ktorVersion")
-    implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
-    implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-    implementation("io.ktor:ktor-client-logging:$ktorVersion")
-
-    // Add missing Ktor dependencies that the AI client needs
-    implementation("io.ktor:ktor-utils:$ktorVersion")
-    implementation("io.ktor:ktor-http:$ktorVersion")
-    implementation("io.ktor:ktor-io:$ktorVersion")
-    implementation("io.ktor:ktor-events:$ktorVersion")
-
-    // Force all Ktor dependencies to use the same version to avoid conflicts
-    configurations.all {
-        resolutionStrategy {
-            force("io.ktor:ktor-client-core:$ktorVersion")
-            force("io.ktor:ktor-client-core-jvm:$ktorVersion")
-            force("io.ktor:ktor-client-okhttp:$ktorVersion")
-            force("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-            force("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-            force("io.ktor:ktor-client-logging:$ktorVersion")
-            force("io.ktor:ktor-utils:$ktorVersion")
-            force("io.ktor:ktor-http:$ktorVersion")
-            force("io.ktor:ktor-io:$ktorVersion")
-            force("io.ktor:ktor-events:$ktorVersion")
-            force("io.ktor:ktor-websockets:$ktorVersion")
-            force("io.ktor:ktor-serialization:$ktorVersion")
-        }
-    }
-
-    // Kotlinx serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
-
-
-    // Additional dependencies for audio handling
-    implementation(libs.media3.exoplayer)
-    implementation(libs.media3.ui)
-
-
-    // Voice Assistant Dependencies (speech recognition and animations)
+    // WorkManager for background initialization
     implementation(libs.androidx.work.runtime.ktx)
+
+    // Lottie Animations for engaging first aid procedure demonstrations
     implementation(libs.lottie)
+
+    // Google Play Services for Location
+    implementation(libs.play.services.location)
 
     // Testing
     testImplementation(libs.junit)
@@ -158,4 +96,3 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.room.testing)
 }
-

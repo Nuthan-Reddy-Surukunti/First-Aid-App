@@ -19,12 +19,3 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
-
-# Keep Ktor classes for Firebase Vertex AI
--keep class io.ktor.** { *; }
--keepclassmembers class io.ktor.** { *; }
--dontwarn io.ktor.**
-
-# Keep Firebase Vertex AI classes
--keep class com.google.firebase.vertexai.** { *; }
--keepclassmembers class com.google.firebase.vertexai.** { *; }

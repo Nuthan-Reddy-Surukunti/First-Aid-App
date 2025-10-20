@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Your State"
+        android:textColor="@color/text_primary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose how you want to see emergency contacts:"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:layout_marginBottom="24dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnUseLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Use My Location (GPS)"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/primary"
+        app:icon="@android:drawable/ic_menu_mylocation"
+        app:iconGravity="start"
+        android:layout_marginBottom="12dp"
+        style="@style/Widget.Material3.Button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnManualSelection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select State Manually"
+        android:textColor="@color/primary"
+        app:icon="@android:drawable/ic_menu_edit"
+        app:iconGravity="start"
+        android:layout_marginBottom="12dp"
+        style="@style/Widget.Material3.Button.OutlinedButton" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnShowAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show All Contacts"
+        android:textColor="@color/text_secondary"
+        style="@style/Widget.Material3.Button.TextButton" />
+
+</LinearLayout>

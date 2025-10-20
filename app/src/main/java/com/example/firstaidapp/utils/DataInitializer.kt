@@ -106,47 +106,11 @@ object DataInitializer {
     }
 
     private suspend fun initializeContacts(database: AppDatabase) {
-        val contacts = listOf(
-            EmergencyContact(
-                name = "Emergency Services (All)",
-                phoneNumber = EMERGENCY_NUMBER_IN,
-                type = ContactType.EMERGENCY_SERVICE,
-                relationship = "Emergency",
-                notes = "Unified emergency number for Police, Fire, and Medical emergencies in India"
-            ),
-            EmergencyContact(
-                name = "Police",
-                phoneNumber = "100",
-                type = ContactType.POLICE,
-                relationship = "Emergency",
-                notes = "Police emergency services"
-            ),
-            EmergencyContact(
-                name = "Fire Brigade",
-                phoneNumber = "101",
-                type = ContactType.FIRE_DEPARTMENT,
-                relationship = "Emergency",
-                notes = "Fire and rescue services"
-            ),
-            EmergencyContact(
-                name = "Medical Emergency",
-                phoneNumber = "108",
-                type = ContactType.EMERGENCY_SERVICE,
-                relationship = "Emergency",
-                notes = "Medical emergency and ambulance services"
-            ),
-            EmergencyContact(
-                name = "National Poison Information Centre",
-                phoneNumber = POISON_CONTROL_IN,
-                type = ContactType.POISON_CONTROL,
-                relationship = "Emergency",
-                notes = "24/7 poison emergency hotline in India"
-            )
-        )
+        val contacts = com.example.firstaidapp.data.repository.EmergencyContactsData.getAllEmergencyContacts()
 
         for ((index, contact) in contacts.withIndex()) {
             try {
-                Log.i(TAG, "insertContact: inserting ${contact.name} (index=${index})")
+                Log.i(TAG, "insertContact: inserting ${contact.name} (index=${index}) for state: ${contact.state}")
                 database.contactDao().insertContact(contact)
                 delay(30)
             } catch (e: Exception) {

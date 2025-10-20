@@ -15,7 +15,7 @@ import com.example.firstaidapp.data.models.*
         EmergencyContact::class,
         SearchHistory::class
     ],
-    version = 6, // Added youtubeLink field to FirstAidGuide (5->6)
+    version = 7, // Added state field to EmergencyContact (6->7)
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -63,6 +63,14 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        // Migration from 6 to 7: add state column to emergency_contacts
+        private val MIGRATION_6_7 = object : Migration(6, 7) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                // Add state column with NULL as default to allow existing data
+                db.execSQL("ALTER TABLE emergency_contacts ADD COLUMN state TEXT")
+            }
+        }
+
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -71,7 +79,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "first_aid_database"
                 )
                     // Replace destructive fallback with proper migrations
-                    .addMigrations(MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+                    .addMigrations(MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
                     .build()
                 INSTANCE = instance
                 instance

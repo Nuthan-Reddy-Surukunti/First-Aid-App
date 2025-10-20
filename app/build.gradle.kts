@@ -20,12 +20,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "GEMINI_API_KEY", "\"${project.findProperty("GEMINI_API_KEY") ?: ""}\"")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "GEMINI_API_KEY", "\"${project.findProperty("GEMINI_API_KEY") ?: ""}\"")
         }
     }
     compileOptions {
@@ -38,6 +42,7 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        buildConfig = true
     }
 }
 
@@ -89,6 +94,9 @@ dependencies {
 
     // Google Play Services for Location
     implementation(libs.play.services.location)
+
+    // Google AI SDK for Gemini
+    implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
 
     // Testing
     testImplementation(libs.junit)

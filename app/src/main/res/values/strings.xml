@@ -5,6 +5,7 @@
     <!-- Navigation -->
     <string name="nav_home">Home</string>
     <string name="nav_search">Search</string>
+    <string name="nav_voice_assistant">AI Assistant</string>
     <string name="nav_contacts">Contacts</string>
     <string name="nav_settings">Settings</string>
 
@@ -58,6 +59,8 @@
     <string name="permission_call_required">Phone call permission required</string>
     <string name="permission_call_rationale">This permission is needed to call emergency services</string>
     <string name="permission_required">Permission required</string>
+    <string name="permission_microphone_rationale">Microphone access is required for voice commands and AI emergency guidance</string>
+    <string name="permission_location_rationale">Location access is needed to find nearby hospitals and emergency services</string>
     <string name="contacts_permission_rationale">We need access to your contacts to let you import and quickly call trusted people in emergencies.</string>
     <string name="contacts_permission_permanently_denied">Contacts permission was denied. Please enable it in Settings to import phone contacts.</string>
     <string name="open_settings">Open Settings</string>

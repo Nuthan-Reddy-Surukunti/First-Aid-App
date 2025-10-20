@@ -337,6 +337,10 @@ class VoiceAssistantManager(private val context: Context) {
                 Log.d(tag, "Show steps: ${action.steps.size} steps")
                 // Display procedure steps
             }
+            is VoiceAction.ShowGuide -> {
+                Log.d(tag, "Show guide: ${action.guideId}")
+                // Display specific guide
+            }
         }
     }
 

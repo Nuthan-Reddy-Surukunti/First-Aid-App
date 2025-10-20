@@ -59,5 +59,6 @@ sealed class VoiceAction {
     data class CallEmergency(val number: String) : VoiceAction()
     data class FindHospital(val latitude: Double, val longitude: Double) : VoiceAction()
     data class ShowSteps(val steps: List<String>) : VoiceAction()
+    data class ShowGuide(val guideId: String) : VoiceAction()
 }
 

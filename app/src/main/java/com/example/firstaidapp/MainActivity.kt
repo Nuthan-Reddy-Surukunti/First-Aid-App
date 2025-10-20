@@ -1,12 +1,16 @@
 package com.example.firstaidapp
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.firstaidapp.voice.VoicePermissionManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 /**
@@ -14,10 +18,22 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
  */
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var voicePermissionManager: VoicePermissionManager
+
+    // Permission launcher for requesting multiple permissions
+    private val permissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        handlePermissionResults(permissions)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         try {
+            // Initialize permission manager
+            voicePermissionManager = VoicePermissionManager(this)
+
             // Enable edge-to-edge display for modern Android UI
             enableEdgeToEdge()
             setContentView(R.layout.activity_main)
@@ -30,6 +46,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             setupNavigation()
+
+            // Request required permissions for AI voice assistant
+            requestRequiredPermissions()
 
         } catch (e: Exception) {
             e.printStackTrace()
@@ -59,5 +78,92 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
             // Navigation setup failed, but app can still run
         }
+    }
+
+    /**
+     * Request all required permissions for AI voice assistant functionality
+     */
+    private fun requestRequiredPermissions() {
+        if (!voicePermissionManager.areAllPermissionsGranted()) {
+            val missingPermissions = voicePermissionManager.getMissingPermissions()
+
+            // Show rationale dialog for critical permissions
+            if (missingPermissions.contains(android.Manifest.permission.RECORD_AUDIO)) {
+                showPermissionRationaleDialog {
+                    permissionLauncher.launch(missingPermissions.toTypedArray())
+                }
+            } else {
+                // Request permissions directly
+                permissionLauncher.launch(missingPermissions.toTypedArray())
+            }
+        }
+    }
+
+    /**
+     * Handle the results of permission requests
+     */
+    private fun handlePermissionResults(permissions: Map<String, Boolean>) {
+        val deniedPermissions = permissions.filter { !it.value }.keys
+
+        if (deniedPermissions.isEmpty()) {
+            // All permissions granted - AI voice assistant is ready
+            return
+        }
+
+        // Check for critically denied permissions
+        val criticalPermissionsDenied = deniedPermissions.intersect(
+            setOf(
+                android.Manifest.permission.RECORD_AUDIO,
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.CALL_PHONE
+            )
+        )
+
+        if (criticalPermissionsDenied.isNotEmpty()) {
+            showPermissionDeniedDialog(criticalPermissionsDenied.toList())
+        }
+    }
+
+    /**
+     * Show rationale dialog explaining why permissions are needed
+     */
+    private fun showPermissionRationaleDialog(onPositive: () -> Unit) {
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.permission_required))
+            .setMessage(getString(R.string.permission_microphone_rationale) + "\n\n" +
+                       getString(R.string.permission_location_rationale) + "\n\n" +
+                       getString(R.string.permission_call_rationale))
+            .setPositiveButton(getString(R.string.allow)) { _, _ ->
+                onPositive()
+            }
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    /**
+     * Show dialog when critical permissions are denied
+     */
+    private fun showPermissionDeniedDialog(deniedPermissions: List<String>) {
+        val permissionNames = deniedPermissions.map { permission ->
+            when (permission) {
+                android.Manifest.permission.RECORD_AUDIO -> "Microphone"
+                android.Manifest.permission.ACCESS_FINE_LOCATION -> "Location"
+                android.Manifest.permission.CALL_PHONE -> "Phone"
+                else -> "Required Permission"
+            }
+        }.joinToString(", ")
+
+        AlertDialog.Builder(this)
+            .setTitle("Permissions Required")
+            .setMessage("The following permissions are required for full AI voice assistant functionality: $permissionNames\n\nYou can enable them in Settings.")
+            .setPositiveButton(getString(R.string.open_settings)) { _, _ ->
+                // Open app settings (you could implement this to redirect to app settings)
+            }
+            .setNegativeButton(getString(R.string.ok)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }

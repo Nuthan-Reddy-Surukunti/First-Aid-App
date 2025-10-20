@@ -14,7 +14,8 @@ import kotlinx.coroutines.launch
 class ContactsViewModel(application: Application) : AndroidViewModel(application) {
 
     private lateinit var repository: GuideRepository
-    private lateinit var contactDao: com.example.firstaidapp.data.database.ContactDao
+    private val database = AppDatabase.getDatabase(application)
+    private val contactDao = database.contactDao()
 
     private val _selectedState = MutableLiveData<String?>(null)
     val selectedState: LiveData<String?> = _selectedState
@@ -32,8 +33,6 @@ class ContactsViewModel(application: Application) : AndroidViewModel(application
 
     init {
         viewModelScope.launch {
-            val database = AppDatabase.getDatabase(application)
-            contactDao = database.contactDao()
             repository = GuideRepository(
                 database.guideDao(),
                 contactDao,

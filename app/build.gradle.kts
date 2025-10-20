@@ -6,17 +6,17 @@ plugins {
     alias(libs.plugins.ksp)
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.gms.google-services")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
 }
 
 android {
     namespace = "com.example.firstaidapp"
-    compileSdk = 36
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.firstaidapp"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -102,7 +102,7 @@ dependencies {
 
     // Firebase AI Logic
     implementation(platform("com.google.firebase:firebase-bom:34.4.0"))
-    implementation("com.google.firebase:firebase-ai")
+    implementation(libs.firebase.ai)
 
     // Google AI Client for Gemini
     implementation("com.google.ai.client.generativeai:generativeai:0.7.0")

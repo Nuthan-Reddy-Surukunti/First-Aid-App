@@ -91,6 +91,8 @@ abstract class AppDatabase : RoomDatabase() {
                 )
                     // Replace destructive fallback with proper migrations
                     .addMigrations(MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+                    // Allow destructive migrations for downgrades or missing migrations
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance

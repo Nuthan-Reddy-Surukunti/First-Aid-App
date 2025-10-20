@@ -6,6 +6,11 @@
         android:title="@string/nav_home" />
 
     <item
+        android:id="@+id/navigation_voice_assistant"
+        android:icon="@android:drawable/ic_btn_speak_now"
+        android:title="AI Assistant" />
+
+    <item
         android:id="@+id/navigation_contacts"
         android:icon="@android:drawable/ic_menu_call"
         android:title="@string/nav_contacts" />

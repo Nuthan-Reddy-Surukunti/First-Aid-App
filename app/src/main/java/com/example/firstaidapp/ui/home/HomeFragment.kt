@@ -131,6 +131,17 @@ class HomeFragment : Fragment() {
             Log.d("HomeFragment", "Emergency call button clicked")
             makeEmergencyCall()
         }
+
+        // AI Assistant FAB button
+        binding.fabAIAssistant.setOnClickListener {
+            Log.d("HomeFragment", "AI Assistant button clicked")
+            try {
+                findNavController().navigate(com.example.firstaidapp.R.id.navigation_voice_assistant)
+            } catch (e: Exception) {
+                Log.e("HomeFragment", "Failed to navigate to AI Assistant", e)
+                Toast.makeText(requireContext(), "Unable to open AI Assistant", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun makeEmergencyCall() {

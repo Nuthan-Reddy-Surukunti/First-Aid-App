@@ -9,10 +9,13 @@ object PhotoMapper {
     private val guidePhotoMap = mapOf(
         // Life-Threatening Emergencies - Critical procedure photos
         "CPR (Cardiopulmonary Resuscitation)" to "photos/cpr_demonstration.png",
-        "Choking Emergency" to "photos/choking_demonstration.jpg",
-        "Heart Attack Emergency" to "photos/heart_attack_care.jpg",
-        "Stroke Emergency (FAST)" to "photos/stroke_assessment.jpg",
-        "Drowning" to "photos/drowning_rescue.jpg",
+        "CPR - Adult" to "photos/cpr_demonstration.png", // Alternative mapping for CPR
+        "Adult CPR" to "photos/cpr_demonstration.png", // Another alternative
+        "Choking Emergency" to "photos/Choking.png",
+        "Choking" to "photos/Choking.png", // Alternative mapping
+        "Heart Attack Emergency" to "photos/cpr_demonstration.png", // Fallback to available photo
+        "Stroke Emergency (FAST)" to "photos/cpr_demonstration.png", // Fallback to available photo
+        "Drowning" to "photos/cpr_demonstration.png", // Fallback to available photo
 
         // Trauma & Injuries - Medical procedure photos
         "Severe Bleeding Control" to "photos/bleeding_control.jpg",

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Normal Mode Layout -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/normalModeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Header -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Voice Assistant"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tap microphone to start"
+                android:textSize="16sp"
+                android:textColor="@android:color/darker_gray"
+                android:gravity="center"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Microphone Button with Animations -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="24dp">
+
+                <!-- Listening Animation - Simple ProgressBar -->
+                <ProgressBar
+                    android:id="@+id/listeningAnimation"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:indeterminateTint="@color/primary"/>
+
+                <!-- Processing Animation - Simple ProgressBar -->
+                <ProgressBar
+                    android:id="@+id/processingAnimation"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/accent"/>
+
+                <!-- Speaking Animation - Simple ImageView with icon -->
+                <ImageView
+                    android:id="@+id/speakingAnimation"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:src="@android:drawable/ic_lock_silent_mode_off"
+                    android:tint="@color/primary"
+                    android:padding="24dp"/>
+
+                <!-- Microphone Button -->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/microphoneButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/ic_btn_speak_now"
+                    app:fabSize="normal"
+                    app:tint="@android:color/white"
+                    android:contentDescription="Voice command button"/>
+
+            </FrameLayout>
+
+            <!-- Urgency Indicator -->
+            <View
+                android:id="@+id/urgencyIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@android:color/holo_green_dark"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Recognized Text Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="You said:"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:id="@+id/tvRecognizedText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Waiting for input..."
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"
+                        android:minHeight="40dp"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Response Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="@android:color/holo_blue_light">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Assistant:"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:id="@+id/tvResponse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="How can I help you with first aid?"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/white"
+                        android:minHeight="60dp"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Emergency Quick Actions -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Emergency Quick Actions"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:alignmentMode="alignBounds"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEmergencyCpr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:text="CPR"
+                    android:textColor="@android:color/white"
+                    app:backgroundTint="@android:color/holo_red_dark"
+                    app:icon="@android:drawable/ic_menu_help"
+                    app:iconTint="@android:color/white"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEmergencyChoking"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:text="Choking"
+                    android:textColor="@android:color/white"
+                    app:backgroundTint="@android:color/holo_orange_dark"
+                    app:icon="@android:drawable/ic_menu_help"
+                    app:iconTint="@android:color/white"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEmergencyBleeding"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:text="Bleeding"
+                    android:textColor="@android:color/white"
+                    app:backgroundTint="@android:color/holo_red_light"
+                    app:icon="@android:drawable/ic_menu_help"
+                    app:iconTint="@android:color/white"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEmergencyBurns"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:text="Burns"
+                    android:textColor="@android:color/white"
+                    app:backgroundTint="@android:color/holo_orange_light"
+                    app:icon="@android:drawable/ic_menu_help"
+                    app:iconTint="@android:color/white"/>
+
+            </GridLayout>
+
+            <!-- Control Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp"
+                    android:text="Stop"
+                    app:icon="@android:drawable/ic_media_pause"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnClear"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp"
+                    android:text="Clear"
+                    app:icon="@android:drawable/ic_menu_delete"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Emergency Mode Overlay -->
+    <FrameLayout
+        android:id="@+id/emergencyOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_red_dark"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="⚠️ EMERGENCY MODE ⚠️"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:layout_marginBottom="32dp"/>
+
+            <ProgressBar
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="24dp"
+                android:indeterminateTint="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/tvEmergencyResponse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Following emergency guidance..."
+                android:textSize="24sp"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:layout_marginBottom="32dp"
+                android:minHeight="150dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnExitEmergency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exit Emergency Mode"
+                android:textSize="18sp"
+                android:textColor="@android:color/holo_red_dark"
+                app:backgroundTint="@android:color/white"
+                android:padding="16dp"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

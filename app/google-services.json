@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "938038014371",
+    "firebase_url": "https://sample-firebase-ai-app-4a522-default-rtdb.firebaseio.com",
+    "project_id": "sample-firebase-ai-app-4a522",
+    "storage_bucket": "sample-firebase-ai-app-4a522.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938038014371:android:7ceae7574cdd485301ea16",
+        "android_client_info": {
+          "package_name": "com.example.firstaidapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxEMdxIRXa080J8lLf94mCSytk-qVxraY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

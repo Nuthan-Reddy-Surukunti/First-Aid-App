@@ -16,11 +16,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstaidapp.R
-import kotlinx.coroutines.launch
 import com.example.firstaidapp.data.models.ContactType
 import com.example.firstaidapp.data.models.EmergencyContact
 import com.example.firstaidapp.databinding.FragmentContactsBinding
@@ -43,19 +41,6 @@ class ContactsFragment : Fragment() {
             Snackbar.make(binding.root, "Permission granted! Tap call button again to make direct call", Snackbar.LENGTH_SHORT).show()
         } else {
             Snackbar.make(binding.root, "Using dialer instead", Snackbar.LENGTH_SHORT).show()
-        }
-    }
-    
-    private val requestLocationPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestMultiplePermissions()
-    ) { permissions ->
-        if (permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true ||
-            permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true) {
-            // Permission granted, get location
-            detectLocationAndSetState()
-        } else {
-            Snackbar.make(binding.root, "Location permission denied. Please select your state manually.", Snackbar.LENGTH_LONG).show()
-            showManualStateSelection()
         }
     }
 
@@ -108,10 +93,6 @@ class ContactsFragment : Fragment() {
 
         binding.fabAddContact.setOnClickListener {
             showAddContactDialog()
-        }
-        
-        binding.btnSelectState.setOnClickListener {
-            showStateSelectionDialog()
         }
     }
 
@@ -387,115 +368,6 @@ class ContactsFragment : Fragment() {
         super.onDestroyView()
 
         _binding = null
-    }
-
-    private fun showStateSelectionDialog() {
-        if (_binding == null || !isAdded) return
-        
-        try {
-            val dialogView = LayoutInflater.from(requireContext())
-                .inflate(R.layout.dialog_select_state, null)
-            
-            val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
-                .setView(dialogView)
-                .create()
-            
-            val btnUseLocation = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnUseLocation)
-            val btnManualSelection = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnManualSelection)
-            val btnShowAll = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnShowAll)
-            
-            btnUseLocation.setOnClickListener {
-                dialog.dismiss()
-                requestLocationAndDetectState()
-            }
-            
-            btnManualSelection.setOnClickListener {
-                dialog.dismiss()
-                showManualStateSelection()
-            }
-            
-            btnShowAll.setOnClickListener {
-                dialog.dismiss()
-                viewModel.setSelectedState(null)
-                Snackbar.make(binding.root, "Showing all contacts", Snackbar.LENGTH_SHORT).show()
-            }
-            
-            dialog.show()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            if (_binding != null) {
-                Snackbar.make(binding.root, "Error showing state selection", Snackbar.LENGTH_SHORT).show()
-            }
-        }
-    }
-    
-    private fun requestLocationAndDetectState() {
-        val locationHelper = com.example.firstaidapp.utils.LocationHelper(requireContext())
-        
-        if (locationHelper.hasLocationPermission()) {
-            detectLocationAndSetState()
-        } else {
-            requestLocationPermissionLauncher.launch(
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                )
-            )
-        }
-    }
-    
-    private fun detectLocationAndSetState() {
-        if (_binding == null || !isAdded) return
-        
-        val locationHelper = com.example.firstaidapp.utils.LocationHelper(requireContext())
-        
-        androidx.lifecycle.lifecycleScope.launch {
-            try {
-                Snackbar.make(binding.root, "Detecting your location...", Snackbar.LENGTH_SHORT).show()
-                
-                val state = locationHelper.getCurrentState()
-                
-                if (state != null) {
-                    viewModel.setSelectedState(state)
-                    Snackbar.make(binding.root, "Showing contacts for $state", Snackbar.LENGTH_LONG).show()
-                } else {
-                    Snackbar.make(binding.root, "Could not detect state. Please select manually.", Snackbar.LENGTH_LONG).show()
-                    showManualStateSelection()
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                if (_binding != null) {
-                    Snackbar.make(binding.root, "Error detecting location. Please select manually.", Snackbar.LENGTH_LONG).show()
-                    showManualStateSelection()
-                }
-            }
-        }
-    }
-    
-    private fun showManualStateSelection() {
-        if (_binding == null || !isAdded) return
-        
-        try {
-            val states = com.example.firstaidapp.data.repository.EmergencyContactsData.getStatesList()
-            val stateArray = states.toTypedArray()
-            
-            androidx.appcompat.app.AlertDialog.Builder(requireContext())
-                .setTitle("Select Your State")
-                .setItems(stateArray) { dialog, which ->
-                    val selectedState = stateArray[which]
-                    viewModel.setSelectedState(selectedState)
-                    Snackbar.make(binding.root, "Showing contacts for $selectedState", Snackbar.LENGTH_LONG).show()
-                }
-                .setNegativeButton("Cancel") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .show()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            if (_binding != null) {
-                Snackbar.make(binding.root, "Error showing state list", Snackbar.LENGTH_SHORT).show()
-            }
-        }
     }
 
     override fun onPause() {

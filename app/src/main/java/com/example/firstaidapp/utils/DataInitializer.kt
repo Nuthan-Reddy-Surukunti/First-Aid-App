@@ -49,11 +49,10 @@ object DataInitializer {
                 Log.i(TAG, "initializeData: guidesCount=$guidesCount, contactsCount=$contactsCount")
 
                 val expectedGuidesCount = 19
-                val expectedContactsCount = 35 // Updated to include state-specific contacts (9 national + 26 state-specific)
-                val needsFullReinitialization = guidesCount < expectedGuidesCount || contactsCount < expectedContactsCount
+                val needsFullReinitialization = guidesCount < expectedGuidesCount
 
                 if (needsFullReinitialization) {
-                    Log.i(TAG, "initializeData: forcing reinitialization - found $guidesCount guides (expected $expectedGuidesCount), $contactsCount contacts (expected $expectedContactsCount)")
+                    Log.i(TAG, "initializeData: forcing reinitialization - found $guidesCount guides, expected $expectedGuidesCount")
 
                     database.guideDao().deleteAllGuides()
                     database.contactDao().deleteAllContacts()
@@ -79,7 +78,7 @@ object DataInitializer {
                     prefs.edit(commit = true) { putBoolean("data_initialized", true) }
                     Log.i(TAG, "initializeData: marked data_initialized=true")
                 } else {
-                    Log.i(TAG, "initializeData: all guides and contacts already present ($guidesCount/$expectedGuidesCount guides, $contactsCount/$expectedContactsCount contacts)")
+                    Log.i(TAG, "initializeData: all guides already present ($guidesCount/$expectedGuidesCount)")
                 }
 
             } catch (e: Throwable) {
@@ -107,11 +106,47 @@ object DataInitializer {
     }
 
     private suspend fun initializeContacts(database: AppDatabase) {
-        val contacts = com.example.firstaidapp.data.repository.EmergencyContactsData.getAllEmergencyContacts()
+        val contacts = listOf(
+            EmergencyContact(
+                name = "Emergency Services (All)",
+                phoneNumber = EMERGENCY_NUMBER_IN,
+                type = ContactType.EMERGENCY_SERVICE,
+                relationship = "Emergency",
+                notes = "Unified emergency number for Police, Fire, and Medical emergencies in India"
+            ),
+            EmergencyContact(
+                name = "Police",
+                phoneNumber = "100",
+                type = ContactType.POLICE,
+                relationship = "Emergency",
+                notes = "Police emergency services"
+            ),
+            EmergencyContact(
+                name = "Fire Brigade",
+                phoneNumber = "101",
+                type = ContactType.FIRE_DEPARTMENT,
+                relationship = "Emergency",
+                notes = "Fire and rescue services"
+            ),
+            EmergencyContact(
+                name = "Medical Emergency",
+                phoneNumber = "108",
+                type = ContactType.EMERGENCY_SERVICE,
+                relationship = "Emergency",
+                notes = "Medical emergency and ambulance services"
+            ),
+            EmergencyContact(
+                name = "National Poison Information Centre",
+                phoneNumber = POISON_CONTROL_IN,
+                type = ContactType.POISON_CONTROL,
+                relationship = "Emergency",
+                notes = "24/7 poison emergency hotline in India"
+            )
+        )
 
         for ((index, contact) in contacts.withIndex()) {
             try {
-                Log.i(TAG, "insertContact: inserting ${contact.name} (index=${index}) for state: ${contact.state}")
+                Log.i(TAG, "insertContact: inserting ${contact.name} (index=${index})")
                 database.contactDao().insertContact(contact)
                 delay(30)
             } catch (e: Exception) {

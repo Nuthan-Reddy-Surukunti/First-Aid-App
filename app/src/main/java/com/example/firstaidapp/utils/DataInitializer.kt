@@ -49,7 +49,7 @@ object DataInitializer {
                 Log.i(TAG, "initializeData: guidesCount=$guidesCount, contactsCount=$contactsCount")
 
                 val expectedGuidesCount = 19
-                val expectedContactsCount = 40 // Updated to include state-specific contacts
+                val expectedContactsCount = 35 // Updated to include state-specific contacts (9 national + 26 state-specific)
                 val needsFullReinitialization = guidesCount < expectedGuidesCount || contactsCount < expectedContactsCount
 
                 if (needsFullReinitialization) {

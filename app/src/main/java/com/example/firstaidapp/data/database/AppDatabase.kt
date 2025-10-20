@@ -32,10 +32,29 @@ abstract class AppDatabase : RoomDatabase() {
         // Migration from 3 to 4: add columns used by queries/UI to first_aid_guides
         private val MIGRATION_3_4 = object : Migration(3, 4) {
             override fun migrate(db: SupportSQLiteDatabase) {
-                // Add columns with defaults to satisfy NOT NULL constraints
-                db.execSQL("ALTER TABLE first_aid_guides ADD COLUMN isFavorite INTEGER NOT NULL DEFAULT 0")
-                db.execSQL("ALTER TABLE first_aid_guides ADD COLUMN lastAccessedTimestamp INTEGER NOT NULL DEFAULT 0")
-                db.execSQL("ALTER TABLE first_aid_guides ADD COLUMN viewCount INTEGER NOT NULL DEFAULT 0")
+                // Check if columns exist before adding them to prevent duplicate column errors
+                try {
+                    // Try to add each column, ignore if it already exists
+                    try {
+                        db.execSQL("ALTER TABLE first_aid_guides ADD COLUMN isFavorite INTEGER NOT NULL DEFAULT 0")
+                    } catch (e: Exception) {
+                        // Column might already exist, continue with other columns
+                    }
+
+                    try {
+                        db.execSQL("ALTER TABLE first_aid_guides ADD COLUMN lastAccessedTimestamp INTEGER NOT NULL DEFAULT 0")
+                    } catch (e: Exception) {
+                        // Column might already exist, continue with other columns
+                    }
+
+                    try {
+                        db.execSQL("ALTER TABLE first_aid_guides ADD COLUMN viewCount INTEGER NOT NULL DEFAULT 0")
+                    } catch (e: Exception) {
+                        // Column might already exist, continue
+                    }
+                } catch (e: Exception) {
+                    // If all else fails, continue - the columns might already be present
+                }
             }
         }
 

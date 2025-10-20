@@ -18,7 +18,6 @@ data class EmergencyContact(
     val isDefault: Boolean = false,
     val isFavorite: Boolean = false,
     val notes: String? = null,
-    val state: String? = null,
     val createdAt: Long = System.currentTimeMillis(),
     val updatedAt: Long = System.currentTimeMillis()
 )

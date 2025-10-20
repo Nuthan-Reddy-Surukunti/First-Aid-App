@@ -87,9 +87,6 @@ dependencies {
     // Lottie Animations for engaging first aid procedure demonstrations
     implementation(libs.lottie)
 
-    // Google Play Services for Location
-    implementation(libs.play.services.location)
-
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

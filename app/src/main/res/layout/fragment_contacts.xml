@@ -29,18 +29,6 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSelectState"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="Select State"
-                app:icon="@android:drawable/ic_menu_mylocation"
-                app:iconGravity="textStart"
-                app:iconPadding="0dp"
-                app:iconSize="24dp"
-                style="@style/Widget.Material3.Button.IconButton" />
-
-            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSettings"
                 android:layout_width="48dp"
                 android:layout_height="48dp"

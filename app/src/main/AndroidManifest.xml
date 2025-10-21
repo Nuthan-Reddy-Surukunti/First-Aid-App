@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Permissions for the FirstAid app -->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -26,14 +30,14 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
 
-    <!-- Storage Permissions -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- Storage Permissions (Android 13+ compatible) -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
 
-    <!-- Notification and Alarm Permissions -->
+    <!-- Notification Permissions -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
 
     <application
         android:name=".FirstAidApplication"
@@ -58,12 +62,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Phone Contacts Activity -->
-        <activity
-            android:name=".ui.contacts.PhoneContactsActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.FirstAidApp" />
 
         <!-- Learning Reminder Broadcast Receiver -->
         <receiver

@@ -135,7 +135,7 @@
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
                         android:contentDescription="Step illustration"
-                        tools:src="@drawable/ic_first_aid" />
+                        tools:src="@drawable/ic_first_aid_placeholder" />
 
                 </com.google.android.material.card.MaterialCardView>
 

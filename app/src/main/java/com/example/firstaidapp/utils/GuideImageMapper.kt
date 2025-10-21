@@ -14,7 +14,7 @@ object GuideImageMapper {
      */
     fun getStepImage(step: GuideStep, guideName: String? = null): Int {
         // First check if step has specific image
-        step.imageRes?.let { return it }
+        step.imageRes?.let { imageId: Int -> return imageId }
 
         // Then check by guide name/category
         guideName?.let { name ->
@@ -136,6 +136,8 @@ object GuideImageMapper {
             StepType.SAFETY -> R.drawable.ic_warning
             StepType.FOLLOW_UP -> R.drawable.cpr_compression
             StepType.REPEAT -> R.drawable.cpr_compressions
+            StepType.WAIT -> R.drawable.cpr_check_responsiveness
+            StepType.OBSERVE -> R.drawable.cpr_check_responsiveness
         }
     }
 

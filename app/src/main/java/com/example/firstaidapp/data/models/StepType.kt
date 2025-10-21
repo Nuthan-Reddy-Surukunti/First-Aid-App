@@ -1,16 +1,16 @@
 package com.example.firstaidapp.data.models
 
 enum class StepType {
-    ASSESSMENT,      // Check condition/responsiveness
-    EMERGENCY_CALL,  // Call 911 or emergency services
-    POSITIONING,     // Position the person
-    ACTION,          // Perform the first aid action
-    MONITORING,      // Monitor vital signs
-    SAFETY,          // Safety precautions
-    FOLLOW_UP,       // Post-treatment care
-
-    // Additional values used in FirstAidGuidesRepository
-    CHECK,           // Assessment/checking steps
-    CALL,            // Emergency calling steps
-    REPEAT           // Repeated actions
+    CHECK,          // Assessment or checking steps
+    CALL,           // Emergency calling steps
+    ACTION,         // Physical action steps
+    SAFETY,         // Safety-related steps
+    REPEAT,         // Steps that need to be repeated
+    EMERGENCY_CALL, // Specific emergency calling
+    WAIT,           // Waiting steps
+    OBSERVE,        // Observation steps
+    ASSESSMENT,     // Assessment steps
+    POSITIONING,    // Positioning steps
+    MONITORING,     // Monitoring steps
+    FOLLOW_UP       // Follow-up steps
 }

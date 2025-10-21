@@ -5,8 +5,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "search_history")
 data class SearchHistory(
-    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
     val query: String,
     val timestamp: Long = System.currentTimeMillis(),
-    val resultCount: Int = 0
+    val resultCount: Int = 0,
+    val category: String? = null
 )

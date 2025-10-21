@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData
 import com.example.firstaidapp.data.database.ContactDao
 import com.example.firstaidapp.data.database.GuideDao
 import com.example.firstaidapp.data.database.SearchDao
+import com.example.firstaidapp.data.models.ContactType
 import com.example.firstaidapp.data.models.EmergencyContact
 import com.example.firstaidapp.data.models.FirstAidGuide
 import com.example.firstaidapp.data.models.SearchHistory
+import kotlinx.coroutines.flow.Flow
 
 class GuideRepository(
     private val guideDao: GuideDao,
@@ -51,15 +53,38 @@ class GuideRepository(
     }
 
     // Contact operations
-    val allContacts: LiveData<List<EmergencyContact>> = contactDao.getAllContacts()
-    val defaultContacts: LiveData<List<EmergencyContact>> = contactDao.getDefaultContacts()
+    val allContacts: Flow<List<EmergencyContact>> = contactDao.getAllContacts()
 
-    suspend fun insertContact(contact: EmergencyContact) {
-        contactDao.insertContact(contact)
+    fun getContactsByState(state: String): Flow<List<EmergencyContact>> {
+        return contactDao.getContactsByState(state)
+    }
+
+    fun getContactsByStateWithNational(state: String): Flow<List<EmergencyContact>> {
+        return contactDao.getContactsByStateWithNational(state)
+    }
+
+    fun getContactsByType(type: ContactType): Flow<List<EmergencyContact>> {
+        return contactDao.getContactsByType(type)
+    }
+
+    fun searchContacts(query: String): Flow<List<EmergencyContact>> {
+        return contactDao.searchContacts(query)
+    }
+
+    suspend fun getContactsCount(): Int {
+        return contactDao.getContactsCount()
+    }
+
+    suspend fun getAvailableStates(): List<String> {
+        return contactDao.getAvailableStates()
+    }
+
+    suspend fun insertContact(contact: EmergencyContact): Long {
+        return contactDao.insertContact(contact)
     }
 
     suspend fun insertContacts(contacts: List<EmergencyContact>) {
-        contactDao.insertAll(contacts)
+        contactDao.insertContacts(contacts)
     }
 
     suspend fun updateContact(contact: EmergencyContact) {

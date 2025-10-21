@@ -4,72 +4,175 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.example.firstaidapp.data.database.AppDatabase
+import com.example.firstaidapp.data.models.ContactType
 import com.example.firstaidapp.data.models.EmergencyContact
-import com.example.firstaidapp.data.repository.GuideRepository
+import com.example.firstaidapp.data.repository.EmergencyContactsData
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 
 class ContactsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private lateinit var repository: GuideRepository
     private val database = AppDatabase.getDatabase(application)
     private val contactDao = database.contactDao()
 
-    private val _selectedState = MutableLiveData<String?>(null)
-    val selectedState: LiveData<String?> = _selectedState
+    // Current selected state for filtering
+    private val _selectedState = MutableLiveData("National")
+    val selectedState: LiveData<String> = _selectedState
 
-    val allContacts: LiveData<List<EmergencyContact>> = _selectedState.switchMap { state ->
-        if (state.isNullOrEmpty()) {
-            contactDao.getAllContacts()
-        } else {
-            contactDao.getContactsByState(state)
+    // Search query for filtering contacts
+    private val _searchQuery = MutableLiveData("")
+    val searchQuery: LiveData<String> = _searchQuery
+
+    // Loading state
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    // Error message
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage: LiveData<String?> = _errorMessage
+
+    // Available states for dropdown
+    private val _availableStates = MutableLiveData<List<String>>()
+    val availableStates: LiveData<List<String>> = _availableStates
+
+    // All contacts based on selected state
+    val allContacts: LiveData<List<EmergencyContact>> =
+        selectedState.switchMap { state ->
+            if (state == "National") {
+                contactDao.getAllContacts()
+            } else {
+                contactDao.getContactsByStateWithNational(state)
+            }.asLiveData()
         }
-    }
 
-    private val _filteredContacts = MutableLiveData<List<EmergencyContact>>()
-    val filteredContacts: LiveData<List<EmergencyContact>> = _filteredContacts
+    // Filtered contacts based on search query
+    val filteredContacts: LiveData<List<EmergencyContact>> =
+        searchQuery.switchMap { query ->
+            if (query.isBlank()) {
+                // Return empty list when query is blank, as allContacts is used for non-search
+                MutableLiveData(emptyList())
+            } else {
+                contactDao.searchContacts(query).asLiveData()
+            }
+        }
 
     init {
-        viewModelScope.launch {
-            repository = GuideRepository(
-                database.guideDao(),
-                contactDao,
-                database.searchDao()
-            )
-        }
+        loadAvailableStates()
     }
 
-    fun setSelectedState(state: String?) {
+    fun isStateSelected(): Boolean {
+        return _selectedState.value != "National"
+    }
+
+    fun setSelectedState(state: String) {
         _selectedState.value = state
+    }
+    
+    fun clearSelectedState() {
+        _selectedState.value = "National"
+    }
+
+    fun searchContacts(query: String) {
+        _searchQuery.value = query
+    }
+
+    fun clearSearch() {
+        _searchQuery.value = ""
     }
 
     fun addContact(contact: EmergencyContact) {
         viewModelScope.launch {
-            repository.insertContact(contact)
+            try {
+                _isLoading.value = true
+                contactDao.insertContact(contact)
+                _errorMessage.value = null
+            } catch (e: Exception) {
+                _errorMessage.value = "Failed to add contact: ${e.message}"
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun updateContact(contact: EmergencyContact) {
+        viewModelScope.launch {
+            try {
+                _isLoading.value = true
+                contactDao.updateContact(contact)
+                _errorMessage.value = null
+            } catch (e: Exception) {
+                _errorMessage.value = "Failed to update contact: ${e.message}"
+            } finally {
+                _isLoading.value = false
+            }
         }
     }
 
     fun deleteContact(contact: EmergencyContact) {
         viewModelScope.launch {
-            repository.deleteContact(contact)
-        }
-    }
-
-    fun searchContacts(query: String) {
-        viewModelScope.launch {
-            val contacts = allContacts.value ?: emptyList()
-            val filtered = contacts.filter {
-                it.name.contains(query, ignoreCase = true) ||
-                it.phoneNumber.contains(query, ignoreCase = true) ||
-                it.relationship?.contains(query, ignoreCase = true) == true
+            try {
+                _isLoading.value = true
+                if (contact.isDefault) {
+                    // Soft delete for default contacts
+                    contactDao.softDeleteContact(contact.id)
+                } else {
+                    // Hard delete for user-added contacts
+                    contactDao.deleteContact(contact)
+                }
+                _errorMessage.value = null
+            } catch (e: Exception) {
+                _errorMessage.value = "Failed to delete contact: ${e.message}"
+            } finally {
+                _isLoading.value = false
             }
-            _filteredContacts.postValue(filtered)
         }
     }
 
-    fun clearSearch() {
-        _filteredContacts.postValue(allContacts.value ?: emptyList())
+    fun getContactsByType(type: ContactType): LiveData<List<EmergencyContact>> {
+        return contactDao.getContactsByType(type).asLiveData()
+    }
+
+    fun refreshContacts() {
+        viewModelScope.launch {
+            try {
+                _isLoading.value = true
+                loadAvailableStates()
+                _errorMessage.value = null
+            } catch (e: Exception) {
+                _errorMessage.value = "Failed to refresh contacts: ${e.message}"
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    private fun loadAvailableStates() {
+        viewModelScope.launch {
+            try {
+                val states = contactDao.getAvailableStates().toMutableList()
+                // Ensure "National" is always first in the list
+                states.remove("National")
+                states.add(0, "National")
+                _availableStates.value = states
+            } catch (e: Exception) {
+                // Fallback to predefined states if database query fails
+                val fallbackStates = mutableListOf("National")
+                fallbackStates.addAll(EmergencyContactsData.getStatesList())
+                _availableStates.value = fallbackStates
+            }
+        }
+    }
+
+    fun clearError() {
+        _errorMessage.value = null
+    }
+
+    override fun onCleared() {
+        super.onCleared()
     }
 }

@@ -54,6 +54,8 @@ class GuideStepAdapter(
                     StepType.MONITORING -> ivStepTypeIcon.setImageResource(R.drawable.ic_action)
                     StepType.SAFETY -> ivStepTypeIcon.setImageResource(R.drawable.ic_warning)
                     StepType.FOLLOW_UP -> ivStepTypeIcon.setImageResource(R.drawable.ic_action)
+                    StepType.WAIT -> ivStepTypeIcon.setImageResource(R.drawable.ic_action)
+                    StepType.OBSERVE -> ivStepTypeIcon.setImageResource(R.drawable.ic_search)
                 }
 
                 // Show/hide duration if available

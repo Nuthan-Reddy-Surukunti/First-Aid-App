@@ -1,18 +1,9 @@
 package com.example.firstaidapp.ui.guide
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
-import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
-import android.view.animation.OvershootInterpolator
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
@@ -22,7 +13,6 @@ import com.example.firstaidapp.R
 import com.example.firstaidapp.data.models.GuideStep
 import com.example.firstaidapp.data.models.StepType
 import com.example.firstaidapp.databinding.ItemGuideStepBinding
-import com.example.firstaidapp.utils.GuideImageMapper
 import com.google.android.material.chip.Chip
 
 class GuideStepsAdapter(
@@ -74,6 +64,8 @@ class GuideStepsAdapter(
                     StepType.MONITORING -> R.drawable.ic_action
                     StepType.SAFETY -> R.drawable.ic_warning
                     StepType.FOLLOW_UP -> R.drawable.ic_action
+                    StepType.WAIT -> R.drawable.ic_action
+                    StepType.OBSERVE -> R.drawable.ic_visibility
                 }
                 ivStepTypeIcon.setImageResource(iconResource)
 

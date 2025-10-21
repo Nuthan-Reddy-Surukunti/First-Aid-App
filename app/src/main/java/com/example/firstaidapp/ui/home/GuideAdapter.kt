@@ -65,13 +65,13 @@ class GuideAdapter(
 
             // Set click listener for View Demo button
             binding.tvViewDemo.setOnClickListener {
-                if (guide.youtubeLink.isNotEmpty()) {
-                    onViewDemoClick(guide.youtubeLink)
+                if (guide.youtubeLink?.isNotEmpty() == true) {
+                    onViewDemoClick(guide.youtubeLink ?: "")
                 }
             }
 
             // Show/hide demo button based on YouTube link availability
-            binding.tvViewDemo.visibility = if (guide.youtubeLink.isNotEmpty()) {
+            binding.tvViewDemo.visibility = if (guide.youtubeLink?.isNotEmpty() == true) {
                 android.view.View.VISIBLE
             } else {
                 android.view.View.GONE

@@ -69,9 +69,7 @@
         tools:layout="@layout/fragment_contacts">
         <action
             android:id="@+id/action_contacts_to_settings"
-            app:destination="@id/navigation_settings"
-            app:enterAnim="@anim/fade_scale_in"
-            app:exitAnim="@anim/fade_scale_out" />
+            app:destination="@id/navigation_settings" />
     </fragment>
 
     <fragment

@@ -3,7 +3,6 @@ package com.example.firstaidapp.ui.contacts
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,19 +12,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AutoCompleteTextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstaidapp.R
-import kotlinx.coroutines.launch
 import com.example.firstaidapp.data.models.ContactType
 import com.example.firstaidapp.data.models.EmergencyContact
 import com.example.firstaidapp.databinding.FragmentContactsBinding
+import com.example.firstaidapp.utils.LocationHelper
 import com.google.android.material.snackbar.Snackbar
-import androidx.core.net.toUri
+import kotlinx.coroutines.launch
 
 class ContactsFragment : Fragment() {
 
@@ -59,6 +60,7 @@ class ContactsFragment : Fragment() {
         }
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -76,6 +78,11 @@ class ContactsFragment : Fragment() {
         setupObservers()
         setupClickListeners()
         setupSearchFunctionality()
+
+        // Only show state dialog if no state has been selected before
+        if (!viewModel.isStateSelected()) {
+            showStateDialogIfNeeded()
+        }
     }
 
     private fun setupViewModel() {
@@ -95,8 +102,25 @@ class ContactsFragment : Fragment() {
     }
 
     private fun setupObservers() {
+        // Observe all contacts (filtered by state)
         viewModel.allContacts.observe(viewLifecycleOwner) { contacts ->
-            contactsAdapter.submitList(contacts)
+            // Only update if no search is active
+            if (binding.etSearchContacts.text.isNullOrEmpty()) {
+                contactsAdapter.submitList(contacts)
+            }
+        }
+
+        // Observe filtered contacts (for search results)
+        viewModel.filteredContacts.observe(viewLifecycleOwner) { filteredContacts ->
+            // Only update if search is active and we have filtered results
+            if (!binding.etSearchContacts.text.isNullOrEmpty() && filteredContacts.isNotEmpty()) {
+                contactsAdapter.submitList(filteredContacts)
+            }
+        }
+
+        // Observe selected state to update button text
+        viewModel.selectedState.observe(viewLifecycleOwner) { state ->
+            updateStateButtonText(state)
         }
     }
 
@@ -167,7 +191,7 @@ class ContactsFragment : Fragment() {
             val dialogView = LayoutInflater.from(requireContext())
                 .inflate(R.layout.dialog_add_contact, null)
 
-            val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+            val dialog = AlertDialog.Builder(requireContext())
                 .setView(dialogView)
                 .create()
 
@@ -233,7 +257,9 @@ class ContactsFragment : Fragment() {
                         phoneNumber = phone,
                         relationship = relationship,
                         type = contactType,
-                        notes = notes
+                        notes = notes,
+                        // Assign currently selected state for manual contacts
+                        state = viewModel.selectedState.value ?: "National"
                     )
 
                     try {
@@ -374,7 +400,7 @@ class ContactsFragment : Fragment() {
         }
 
         // Basic phone number validation
-        val phoneRegex = "^[+]?[0-9\\s\\-\\(\\)]{7,15}$".toRegex()
+        val phoneRegex = "^[+]?[0-9()]{7,15}$".toRegex()
         if (!phone.matches(phoneRegex)) {
             Snackbar.make(binding.root, "Please enter a valid phone number", Snackbar.LENGTH_SHORT).show()
             return false
@@ -389,14 +415,27 @@ class ContactsFragment : Fragment() {
         _binding = null
     }
 
+    private fun updateStateButtonText(state: String?) {
+        if (_binding == null) return
+
+        if (state.isNullOrEmpty()) {
+            binding.btnSelectState.contentDescription = "Select State"
+            // Keep default location icon
+        } else {
+            binding.btnSelectState.contentDescription = "Current: $state (tap to change)"
+            // Could show a different icon or add text overlay
+        }
+    }
+
     private fun showStateSelectionDialog() {
         if (_binding == null || !isAdded) return
         
         try {
+            val currentState = viewModel.selectedState.value
             val dialogView = LayoutInflater.from(requireContext())
                 .inflate(R.layout.dialog_select_state, null)
             
-            val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+            val dialog = AlertDialog.Builder(requireContext())
                 .setView(dialogView)
                 .create()
             
@@ -404,6 +443,12 @@ class ContactsFragment : Fragment() {
             val btnManualSelection = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnManualSelection)
             val btnShowAll = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnShowAll)
             
+            // Show current state if selected
+            if (!currentState.isNullOrEmpty()) {
+                val titleText = dialogView.findViewById<android.widget.TextView>(android.R.id.title)
+                titleText?.text = "Change State (Current: $currentState)"
+            }
+
             btnUseLocation.setOnClickListener {
                 dialog.dismiss()
                 requestLocationAndDetectState()
@@ -416,8 +461,8 @@ class ContactsFragment : Fragment() {
             
             btnShowAll.setOnClickListener {
                 dialog.dismiss()
-                viewModel.setSelectedState(null)
-                Snackbar.make(binding.root, "Showing all contacts", Snackbar.LENGTH_SHORT).show()
+                viewModel.clearSelectedState()
+                Snackbar.make(binding.root, "State cleared - showing all contacts", Snackbar.LENGTH_SHORT).show()
             }
             
             dialog.show()
@@ -428,58 +473,31 @@ class ContactsFragment : Fragment() {
             }
         }
     }
-    
-    private fun requestLocationAndDetectState() {
-        val locationHelper = com.example.firstaidapp.utils.LocationHelper(requireContext())
-        
-        if (locationHelper.hasLocationPermission()) {
-            detectLocationAndSetState()
-        } else {
-            requestLocationPermissionLauncher.launch(
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                )
-            )
-        }
+
+    private fun showStateDialogIfNeeded() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Welcome! Select Your State")
+            .setMessage("To show relevant emergency contacts for your area, please select your state. This will only be asked once.")
+            .setPositiveButton("Select State") { _, _ ->
+                showStateSelectionDialog()
+             }
+             .setNegativeButton("Use GPS") { _, _ ->
+                 requestLocationAndDetectState()
+             }
+             .setCancelable(false)
+             .show()
     }
-    
-    private fun detectLocationAndSetState() {
-        if (_binding == null || !isAdded) return
-        
-        val locationHelper = com.example.firstaidapp.utils.LocationHelper(requireContext())
-        
-        lifecycleScope.launch {
-            try {
-                Snackbar.make(binding.root, "Detecting your location...", Snackbar.LENGTH_SHORT).show()
-                
-                val state = locationHelper.getCurrentState()
-                
-                if (state != null) {
-                    viewModel.setSelectedState(state)
-                    Snackbar.make(binding.root, "Showing contacts for $state", Snackbar.LENGTH_LONG).show()
-                } else {
-                    Snackbar.make(binding.root, "Could not detect state. Please select manually.", Snackbar.LENGTH_LONG).show()
-                    showManualStateSelection()
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                if (_binding != null) {
-                    Snackbar.make(binding.root, "Error detecting location. Please select manually.", Snackbar.LENGTH_LONG).show()
-                    showManualStateSelection()
-                }
-            }
-        }
-    }
-    
+
+    // ...existing code...
+
     private fun showManualStateSelection() {
         if (_binding == null || !isAdded) return
-        
+
         try {
             val states = com.example.firstaidapp.data.repository.EmergencyContactsData.getStatesList()
             val stateArray = states.toTypedArray()
-            
-            androidx.appcompat.app.AlertDialog.Builder(requireContext())
+
+            AlertDialog.Builder(requireContext())
                 .setTitle("Select Your State")
                 .setItems(stateArray) { dialog, which ->
                     val selectedState = stateArray[which]
@@ -498,7 +516,47 @@ class ContactsFragment : Fragment() {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
+    private fun requestLocationAndDetectState() {
+        val locationHelper = LocationHelper(requireContext())
+        
+        if (locationHelper.hasLocationPermission()) {
+            detectLocationAndSetState()
+        } else {
+            requestLocationPermissionLauncher.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                )
+            )
+        }
+    }
+    
+    private fun detectLocationAndSetState() {
+        if (_binding == null || !isAdded) return
+        
+        val locationHelper = LocationHelper(requireContext())
+        
+        lifecycleScope.launch {
+            try {
+                Snackbar.make(binding.root, "Detecting your location...", Snackbar.LENGTH_SHORT).show()
+                
+                val state = locationHelper.getCurrentState()
+                
+                if (state != null) {
+                    viewModel.setSelectedState(state)
+                    Snackbar.make(binding.root, "Location detected: $state", Snackbar.LENGTH_LONG).show()
+                } else {
+                    Snackbar.make(binding.root, "Could not detect your location. Please select your state manually.", Snackbar.LENGTH_LONG).show()
+                    // Only show manual selection if GPS actually failed
+                    showManualStateSelection()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                if (_binding != null) {
+                    Snackbar.make(binding.root, "Error detecting location. Please select manually.", Snackbar.LENGTH_LONG).show()
+                    showManualStateSelection()
+                }
+            }
+        }
     }
 }

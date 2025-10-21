@@ -49,7 +49,7 @@ object DataInitializer {
                 Log.i(TAG, "initializeData: guidesCount=$guidesCount, contactsCount=$contactsCount")
 
                 val expectedGuidesCount = 19
-                val expectedContactsCount = 35 // Updated to include state-specific contacts (9 national + 26 state-specific)
+                val expectedContactsCount = 81 // 9 national + 72 state-specific contacts (36 states * 2 contacts average)
                 val needsFullReinitialization = guidesCount < expectedGuidesCount || contactsCount < expectedContactsCount
 
                 if (needsFullReinitialization) {
@@ -107,19 +107,22 @@ object DataInitializer {
     }
 
     private suspend fun initializeContacts(database: AppDatabase) {
-        val contacts = com.example.firstaidapp.data.repository.EmergencyContactsData.getAllEmergencyContacts()
+        // Get all contacts including national and all state-specific contacts
+        val allContacts = com.example.firstaidapp.data.repository.EmergencyContactsData.getAllEmergencyContactsWithStates()
 
-        for ((index, contact) in contacts.withIndex()) {
+        Log.i(TAG, "initializeContacts: starting to insert ${allContacts.size} contacts (national + all states)")
+
+        allContacts.forEachIndexed { index, contact ->
             try {
-                Log.i(TAG, "insertContact: inserting ${contact.name} (index=${index}) for state: ${contact.state}")
+                Log.i(TAG, "insertContact: inserting ${contact.name} (index=$index) for state: ${contact.state}")
                 database.contactDao().insertContact(contact)
-                delay(30)
+                if (index % 10 == 0) delay(50) // Add delay every 10 contacts to avoid overwhelming the database
             } catch (e: Exception) {
                 Log.e(TAG, "insertContact: failed to insert ${contact.name}", e)
             }
         }
 
-        Log.i(TAG, "initializeContacts: completed inserting ${contacts.size} contacts")
+        Log.i(TAG, "initializeContacts: completed inserting ${allContacts.size} contacts")
     }
 
     private fun createCPRGuide(): FirstAidGuide {

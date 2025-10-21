@@ -1,6 +1,5 @@
 package com.example.firstaidapp.data.repository
 
-import com.example.firstaidapp.R
 import com.example.firstaidapp.data.models.FirstAidGuide
 
 object FirstAidGuidesData {

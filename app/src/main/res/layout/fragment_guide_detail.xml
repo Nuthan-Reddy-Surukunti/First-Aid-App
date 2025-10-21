@@ -139,6 +139,15 @@
             android:textColor="@color/white"
             app:icon="@android:drawable/ic_menu_call"
             app:iconTint="@color/white" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnWatchVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📺 Watch Tutorial Video"
+            android:visibility="gone"
+            app:icon="@drawable/ic_video_play"
+            style="@style/Widget.Material3.Button.OutlinedButton" />
+
 
         <!-- Main Guide Image Section - Enhanced for single image per guide -->
         <com.google.android.material.card.MaterialCardView

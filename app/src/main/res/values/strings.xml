@@ -8,6 +8,8 @@
     <string name="nav_voice_assistant">AI Assistant</string>
     <string name="nav_contacts">Contacts</string>
     <string name="nav_settings">Settings</string>
+    <string name="nav_all_guides">All Guides</string>
+    <string name="nav_profile">Profile</string>
 
     <!-- Home Screen -->
     <string name="home_title">First Aid Guide</string>
@@ -15,6 +17,19 @@
     <string name="categories_title">Categories</string>
     <string name="recent_guides">Recently Viewed</string>
     <string name="favorites">Favorites</string>
+    <string name="emergency_call_button">🚨 EMERGENCY CALL 112</string>
+    <string name="help_text_all_guides">For first aid guides, tap \'All Guides\' below</string>
+    <string name="quick_actions">Quick Actions</string>
+    <string name="emergency_tip">Emergency Tip</string>
+    <string name="tap_to_learn_more">Tap to learn more</string>
+    <string name="quick_access_ai">Quick Access AI Assistant</string>
+    <string name="ask_ai_assistant">Ask AI Assistant</string>
+    <string name="cpr_label">CPR</string>
+    <string name="choking_label">Choking</string>
+    <string name="burns_label">Burns</string>
+    <string name="bleeding_label">Bleeding</string>
+    <string name="tip_always_call">Always call emergency services in life-threatening situations</string>
+    <string name="no_recent_guides">No recently viewed guides yet</string>
 
     <!-- Search Screen -->
     <string name="search_hint">Search first aid procedures...</string>
@@ -74,4 +89,7 @@
     <string name="confirm">Confirm</string>
     <string name="loading">Loading...</string>
     <string name="error_occurred">An error occurred</string>
+    <string name="coming_soon">Coming Soon</string>
+    <string name="all_guides_title">All Guides</string>
+    <string name="profile_title">Profile</string>
 </resources>

@@ -75,6 +75,7 @@
 
     <!-- Additional UI Colors -->
     <color name="divider">#E0E0E0</color>
+    <color name="divider_color">@color/divider</color>
     <color name="overlay">#80000000</color>
 
     <!-- Accessibility Colors -->

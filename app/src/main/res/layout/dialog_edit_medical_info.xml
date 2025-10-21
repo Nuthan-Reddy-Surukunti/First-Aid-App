@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔒 All information is stored locally on your device"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Blood Type -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Blood Type (e.g., A+, O-, AB+)"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_blood_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Allergies -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Allergies (e.g., Penicillin, Peanuts)"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_allergies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:maxLines="3" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Medications -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Current Medications"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_medications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:maxLines="3" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Medical Conditions -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Medical Conditions (e.g., Diabetes, Asthma)"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_medical_conditions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:maxLines="3" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Emergency Notes -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Emergency Notes (important info for first responders)"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_emergency_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:maxLines="3" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Doctor Name -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Doctor's Name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_doctor_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Doctor Contact -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Doctor's Contact Number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_doctor_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+</ScrollView>
+

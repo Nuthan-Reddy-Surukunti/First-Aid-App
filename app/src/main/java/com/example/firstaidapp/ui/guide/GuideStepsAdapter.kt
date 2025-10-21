@@ -74,6 +74,15 @@ class GuideStepsAdapter(
                     ivStepTypeIcon.setImageResource(it)
                 }
 
+                // Step Illustration Image - Show only on first step (since same image for all steps)
+                val stepImageRes = step.imageRes ?: com.example.firstaidapp.utils.StepImageMapper.getStepImage(step.guideId, step.stepNumber)
+                if (stepImageRes != null && step.stepNumber == 1) {
+                    cardStepImage.visibility = View.VISIBLE
+                    ivStepIllustration.setImageResource(stepImageRes)
+                } else {
+                    cardStepImage.visibility = View.GONE
+                }
+
                 // Duration display
                 if (!step.duration.isNullOrEmpty()) {
                     tvDuration.visibility = View.VISIBLE

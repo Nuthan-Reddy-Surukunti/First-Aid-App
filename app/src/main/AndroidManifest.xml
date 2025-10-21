@@ -30,6 +30,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!-- Notification and Alarm Permissions -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+
     <application
         android:name=".FirstAidApplication"
         android:allowBackup="true"
@@ -59,6 +64,12 @@
             android:exported="false"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.FirstAidApp" />
+
+        <!-- Learning Reminder Broadcast Receiver -->
+        <receiver
+            android:name=".utils.LearningReminderReceiver"
+            android:enabled="true"
+            android:exported="false" />
 
     </application>
 

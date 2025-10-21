@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background_primary"
+    tools:context=".ui.guides.AllGuidesFragment">
+
+    <!-- Search Bar -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:boxStrokeColor="@color/primary"
+        app:hintTextColor="@color/primary"
+        app:startIconDrawable="@android:drawable/ic_menu_search">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search first aid guides..."
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/all_guides_title"
+        android:textColor="@color/primary"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Guides RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvGuides"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        tools:listitem="@layout/item_guide_card" />
+
+</LinearLayout>
+

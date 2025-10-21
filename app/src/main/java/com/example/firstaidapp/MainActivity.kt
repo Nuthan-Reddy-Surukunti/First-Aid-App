@@ -1,6 +1,5 @@
 package com.example.firstaidapp
 
-import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -10,6 +9,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.firstaidapp.utils.LearningDialogManager
+import com.example.firstaidapp.utils.LearningNotificationManager
 import com.example.firstaidapp.voice.VoicePermissionManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -19,6 +20,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private lateinit var voicePermissionManager: VoicePermissionManager
+    private lateinit var learningDialogManager: LearningDialogManager
+    private lateinit var learningNotificationManager: LearningNotificationManager
 
     // Permission launcher for requesting multiple permissions
     private val permissionLauncher = registerForActivityResult(
@@ -46,6 +49,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             setupNavigation()
+
+            // Initialize learning managers
+            learningDialogManager = LearningDialogManager(this)
+            learningNotificationManager = LearningNotificationManager(this)
+
+            // Show learning dialogs
+            showLearningDialogs()
 
             // Request required permissions for AI voice assistant
             requestRequiredPermissions()
@@ -77,6 +87,47 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
             // Navigation setup failed, but app can still run
+        }
+    }
+
+    /**
+     * Show learning dialogs - welcome for first-time users, daily reminder for returning users
+     */
+    private fun showLearningDialogs() {
+        // Delay slightly to ensure UI is fully initialized
+        window.decorView.post {
+            try {
+                // Show welcome dialog first for new users
+                learningDialogManager.showWelcomeDialog {
+                    // After welcome dialog, show daily reminder if applicable
+                    learningDialogManager.showDailyReminderDialog {
+                        // When user clicks "Start Learning", navigate to home screen
+                        navigateToHomeScreen()
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // Failed to show dialog, but app can continue
+            }
+        }
+    }
+
+    /**
+     * Navigate to the home screen (guide list)
+     */
+    private fun navigateToHomeScreen() {
+        try {
+            val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
+            val navController = navHostFragment?.navController
+
+            // Navigate to home destination (guide list)
+            navController?.navigate(R.id.navigation_home)
+
+            // Also select home in bottom navigation
+            findViewById<BottomNavigationView>(R.id.bottom_navigation)?.selectedItemId = R.id.navigation_home
+        } catch (e: Exception) {
+            e.printStackTrace()
+            // Navigation failed, but app can still work
         }
     }
 

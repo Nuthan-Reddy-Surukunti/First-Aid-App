@@ -16,6 +16,8 @@ import com.example.firstaidapp.databinding.FragmentGuideDetailBinding
 import com.example.firstaidapp.data.models.FirstAidGuide
 import com.example.firstaidapp.ui.home.PhotoMapper
 import com.example.firstaidapp.utils.Constants
+import com.example.firstaidapp.utils.UserPreferencesManager
+import com.example.firstaidapp.utils.YouTubeVideoHelper
 import java.io.IOException
 
 class GuideDetailFragment : Fragment() {
@@ -26,6 +28,7 @@ class GuideDetailFragment : Fragment() {
     private lateinit var viewModel: GuideDetailViewModel
     private lateinit var stepsAdapter: GuideStepsAdapter
     private var isDetailedInstructionsVisible = false
+    private lateinit var prefsManager: UserPreferencesManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +42,9 @@ class GuideDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Initialize preferences manager for tracking learning progress
+        prefsManager = UserPreferencesManager(requireContext())
+
         setupViewModel()
         setupRecyclerView()
         setupObservers()
@@ -48,7 +54,16 @@ class GuideDetailFragment : Fragment() {
         val guideId = arguments?.getString("guide_id") ?: ""
         if (guideId.isNotEmpty()) {
             viewModel.loadGuide(guideId)
+
+            // Track that user opened this guide for learning progress
+            trackGuideOpened(guideId)
         }
+    }
+
+    private fun trackGuideOpened(guideId: String) {
+        // Convert guide ID to a numeric ID for tracking
+        val numericId = guideId.hashCode().let { if (it < 0) -it else it } % 100
+        prefsManager.markGuideAsOpened(numericId)
     }
 
     private fun setupViewModel() {
@@ -57,19 +72,15 @@ class GuideDetailFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        // Initialize adapter without guide name first, will be updated when guide loads
         stepsAdapter = GuideStepsAdapter(
             onStepCompleted = { step ->
-                // Handle step completion
                 viewModel.markStepCompleted(step)
             },
             onVideoPlay = { videoUrl ->
-                // Handle video playback
                 playVideo(videoUrl)
             },
             onStepExpanded = { step ->
                 // Handle step expansion analytics
-                // Could track which steps users expand for analytics
             }
         )
 
@@ -89,12 +100,8 @@ class GuideDetailFragment : Fragment() {
 
                 // Prepare detailed instructions content but keep hidden by default
                 binding.tvDetailedDescription.text = createDetailedInstructions(it)
-                // Keep detailed instructions hidden initially for emergency situations
                 binding.cvDetailedInstructions.visibility = View.GONE
                 isDetailedInstructionsVisible = false
-
-                binding.tvWarnings.text = it.warnings.joinToString("\n• ", "• ")
-                binding.tvWhenToCall.text = it.whenToCallEmergency
 
                 // Create new adapter with guide name for better image context
                 stepsAdapter = GuideStepsAdapter(
@@ -107,7 +114,7 @@ class GuideDetailFragment : Fragment() {
                     onStepExpanded = { step ->
                         // Analytics tracking for step expansion
                     },
-                    guideName = it.title // Pass guide name for context-aware image mapping
+                    guideName = it.title
                 )
 
                 binding.rvSteps.adapter = stepsAdapter
@@ -115,25 +122,42 @@ class GuideDetailFragment : Fragment() {
 
                 // Load demonstration photo for this guide
                 loadGuidePhoto(it.title)
+
+                // Setup video tutorial button
+                setupVideoButton(it)
             }
+        }
+    }
+
+    private fun setupVideoButton(guide: FirstAidGuide) {
+        // Get video link from helper or from guide data
+        val videoUrl = guide.youtubeLink ?: YouTubeVideoHelper.getVideoLinkForGuide(guide.id)
+
+        if (videoUrl != null) {
+            // Video is available - show button
+            binding.btnWatchVideo?.visibility = View.VISIBLE
+            binding.btnWatchVideo?.text = "📺 ${YouTubeVideoHelper.getVideoTitle(guide.id)}"
+            binding.btnWatchVideo?.setOnClickListener {
+                YouTubeVideoHelper.openVideo(requireContext(), videoUrl)
+            }
+        } else {
+            // No video available - hide button
+            binding.btnWatchVideo?.visibility = View.GONE
         }
     }
 
     private fun createDetailedInstructions(guide: FirstAidGuide): String {
         val sb = StringBuilder()
 
-        // Add guide description
         sb.append(guide.description)
         sb.append("\n\n")
 
-        // Add preparation information
         sb.append("📋 Preparation:\n")
         sb.append("• Ensure the scene is safe before approaching\n")
         sb.append("• Check for responsiveness and breathing\n")
         sb.append("• Call for help if needed\n")
         sb.append("• Gather any required materials\n\n")
 
-        // Add general guidelines based on guide title
         when {
             guide.title.contains("CPR", ignoreCase = true) -> {
                 sb.append("🫀 CPR Guidelines:\n")
@@ -157,15 +181,12 @@ class GuideDetailFragment : Fragment() {
             }
         }
 
-        // Add timing information
         if (guide.estimatedTimeMinutes > 0) {
             sb.append("⏱️ Estimated Time: ${guide.estimatedTimeMinutes} minutes\n")
         }
 
-        // Add difficulty level
         sb.append("📊 Difficulty Level: ${guide.difficulty}\n\n")
 
-        // Add when to seek professional help
         sb.append("🚨 Seek Professional Help When:\n")
         guide.warnings.forEach { warning ->
             sb.append("• $warning\n")
@@ -179,7 +200,6 @@ class GuideDetailFragment : Fragment() {
 
         if (photoPath != null) {
             try {
-                // Try to load the photo from assets
                 val inputStream = requireContext().assets.open(photoPath)
                 val drawable = android.graphics.drawable.Drawable.createFromStream(inputStream, null)
 
@@ -187,39 +207,32 @@ class GuideDetailFragment : Fragment() {
                     binding.ivGuidePhoto.setImageDrawable(drawable)
                     binding.cvPhotoDemo.visibility = View.VISIBLE
                 } else {
-                    // If photo loading fails, hide the photo section
                     binding.cvPhotoDemo.visibility = View.GONE
                 }
 
                 inputStream.close()
 
             } catch (_: IOException) {
-                // Photo file doesn't exist, hide the photo section
                 binding.cvPhotoDemo.visibility = View.GONE
             }
         } else {
-            // No photo mapping found, hide the photo section
             binding.cvPhotoDemo.visibility = View.GONE
         }
     }
 
     private fun setupClickListeners() {
-        // Emergency call button
         binding.btnCallEmergency.setOnClickListener {
             makeEmergencyCall()
         }
 
-        // Full photo view click listener
         binding.tvViewFullPhoto.setOnClickListener {
             showFullSizePhoto()
         }
 
-        // Handle photo tap for full-size viewing
         binding.ivGuidePhoto.setOnClickListener {
             showFullSizePhoto()
         }
 
-        // Toggle detailed instructions visibility
         binding.btnToggleDetails.setOnClickListener {
             toggleDetailedInstructions()
         }
@@ -240,17 +253,14 @@ class GuideDetailFragment : Fragment() {
     }
 
     private fun showFullSizePhoto() {
-        // Create and show a full-screen image dialog
         val dialog = Dialog(requireContext(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)
         val imageView = ImageView(requireContext())
         imageView.scaleType = ImageView.ScaleType.CENTER_INSIDE
 
-        // Set the same image as the guide photo
         binding.ivGuidePhoto.drawable?.let { drawable ->
             imageView.setImageDrawable(drawable)
         }
 
-        // Close dialog on tap
         imageView.setOnClickListener {
             dialog.dismiss()
         }
@@ -266,7 +276,6 @@ class GuideDetailFragment : Fragment() {
             }
             startActivity(intent)
         } catch (_: Exception) {
-            // If calling fails, open dialer instead
             val intent = Intent(Intent.ACTION_DIAL).apply {
                 data = "tel:${Constants.EMERGENCY_NUMBER_IN}".toUri()
             }
@@ -276,21 +285,17 @@ class GuideDetailFragment : Fragment() {
 
     private fun playVideo(videoUrl: String) {
         try {
-            // Create intent to play video
             val intent = Intent(Intent.ACTION_VIEW).apply {
                 setDataAndType(videoUrl.toUri(), "video/*")
             }
 
-            // Check if there's an app that can handle video playback
             if (intent.resolveActivity(requireContext().packageManager) != null) {
                 startActivity(intent)
             } else {
-                // If no video player available, open in browser
                 val browserIntent = Intent(Intent.ACTION_VIEW, videoUrl.toUri())
                 startActivity(browserIntent)
             }
         } catch (e: Exception) {
-            // Handle error - could show a toast or log the error
             android.util.Log.e("GuideDetailFragment", "Error playing video: ${e.message}")
         }
     }
@@ -300,3 +305,4 @@ class GuideDetailFragment : Fragment() {
         _binding = null
     }
 }
+

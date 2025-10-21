@@ -38,6 +38,14 @@ class UserPreferencesManager(context: Context) {
         // Onboarding
         private const val KEY_FIRST_TIME_USER = "first_time_user"
         private const val KEY_TUTORIAL_COMPLETED = "tutorial_completed"
+
+        // State selection for contacts
+        private const val KEY_SELECTED_STATE = "selected_state"
+        private const val KEY_STATE_SELECTION_DONE = "state_selection_done"
+
+        // Contacts permission tracking
+        private const val KEY_CONTACTS_PERMISSION_ASKED = "contacts_permission_asked"
+        private const val KEY_CONTACTS_PERMISSION_GRANTED = "contacts_permission_granted"
     }
 
     // Theme Settings
@@ -110,6 +118,24 @@ class UserPreferencesManager(context: Context) {
     var isTutorialCompleted: Boolean
         get() = prefs.getBoolean(KEY_TUTORIAL_COMPLETED, false)
         set(value) = prefs.edit().putBoolean(KEY_TUTORIAL_COMPLETED, value).apply()
+
+    // State Selection for Contacts
+    var selectedState: String
+        get() = prefs.getString(KEY_SELECTED_STATE, "National") ?: "National"
+        set(value) = prefs.edit().putString(KEY_SELECTED_STATE, value).apply()
+
+    var isStateSelectionDone: Boolean
+        get() = prefs.getBoolean(KEY_STATE_SELECTION_DONE, false)
+        set(value) = prefs.edit().putBoolean(KEY_STATE_SELECTION_DONE, value).apply()
+
+    // Contacts Permission Tracking
+    var hasAskedContactsPermission: Boolean
+        get() = prefs.getBoolean(KEY_CONTACTS_PERMISSION_ASKED, false)
+        set(value) = prefs.edit().putBoolean(KEY_CONTACTS_PERMISSION_ASKED, value).apply()
+
+    var contactsPermissionGranted: Boolean
+        get() = prefs.getBoolean(KEY_CONTACTS_PERMISSION_GRANTED, false)
+        set(value) = prefs.edit().putBoolean(KEY_CONTACTS_PERMISSION_GRANTED, value).apply()
 
     // Utility methods
     fun resetToDefaults() {

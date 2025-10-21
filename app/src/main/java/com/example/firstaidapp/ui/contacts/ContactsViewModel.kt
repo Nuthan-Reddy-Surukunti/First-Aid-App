@@ -11,6 +11,7 @@ import com.example.firstaidapp.data.database.AppDatabase
 import com.example.firstaidapp.data.models.ContactType
 import com.example.firstaidapp.data.models.EmergencyContact
 import com.example.firstaidapp.data.repository.EmergencyContactsData
+import com.example.firstaidapp.utils.UserPreferencesManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
@@ -19,9 +20,10 @@ class ContactsViewModel(application: Application) : AndroidViewModel(application
 
     private val database = AppDatabase.getDatabase(application)
     private val contactDao = database.contactDao()
+    private val prefsManager = UserPreferencesManager(application)
 
-    // Current selected state for filtering
-    private val _selectedState = MutableLiveData("National")
+    // Current selected state for filtering - load from SharedPreferences
+    private val _selectedState = MutableLiveData(prefsManager.selectedState)
     val selectedState: LiveData<String> = _selectedState
 
     // Search query for filtering contacts
@@ -66,15 +68,21 @@ class ContactsViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun isStateSelected(): Boolean {
-        return _selectedState.value != "National"
+        return prefsManager.isStateSelectionDone
     }
 
     fun setSelectedState(state: String) {
         _selectedState.value = state
+        // Persist to SharedPreferences
+        prefsManager.selectedState = state
+        prefsManager.isStateSelectionDone = true
     }
     
     fun clearSelectedState() {
         _selectedState.value = "National"
+        // Persist to SharedPreferences
+        prefsManager.selectedState = "National"
+        prefsManager.isStateSelectionDone = false
     }
 
     fun searchContacts(query: String) {
@@ -170,6 +178,24 @@ class ContactsViewModel(application: Application) : AndroidViewModel(application
 
     fun clearError() {
         _errorMessage.value = null
+    }
+
+    // Contacts Permission Management
+    fun hasAskedContactsPermission(): Boolean {
+        return prefsManager.hasAskedContactsPermission
+    }
+
+    fun setContactsPermissionAsked(asked: Boolean) {
+        prefsManager.hasAskedContactsPermission = asked
+    }
+
+    fun isContactsPermissionGranted(): Boolean {
+        return prefsManager.contactsPermissionGranted
+    }
+
+    fun setContactsPermissionGranted(granted: Boolean) {
+        prefsManager.contactsPermissionGranted = granted
+        prefsManager.hasAskedContactsPermission = true
     }
 
     override fun onCleared() {

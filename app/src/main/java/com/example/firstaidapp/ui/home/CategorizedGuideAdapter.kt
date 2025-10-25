@@ -93,8 +93,8 @@ class CategorizedGuideAdapter(
             binding.tvCategory.text = guide.category
             binding.tvSeverity.text = guide.severity
 
-            // Set guide icon based on category
-            val iconResource = GuideIconMapper.getIconForGuide(guide.title)
+            // Set guide icon based on category - using fallback icon
+            val iconResource = R.drawable.ic_medical_default
             binding.ivGuideImage.setImageResource(iconResource)
 
             // Set severity color

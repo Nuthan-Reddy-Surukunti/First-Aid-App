@@ -98,8 +98,7 @@ class ContactsFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        val factory = ContactsViewModelFactory(requireActivity().application)
-        viewModel = ViewModelProvider(this, factory)[ContactsViewModel::class.java]
+        viewModel = ViewModelProvider(this)[ContactsViewModel::class.java]
     }
 
     private fun setupRecyclerView() {

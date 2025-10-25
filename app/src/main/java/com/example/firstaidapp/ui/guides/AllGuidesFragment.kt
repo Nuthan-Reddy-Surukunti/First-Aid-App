@@ -49,8 +49,7 @@ class AllGuidesFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        val factory = AllGuidesViewModelFactory(requireActivity().application)
-        viewModel = ViewModelProvider(this, factory)[AllGuidesViewModel::class.java]
+        viewModel = ViewModelProvider(this)[AllGuidesViewModel::class.java]
     }
 
     private fun setupRecyclerView() {

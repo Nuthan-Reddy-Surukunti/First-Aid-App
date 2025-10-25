@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstaidapp.R
 import com.example.firstaidapp.databinding.FragmentGuideDetailBinding
 import com.example.firstaidapp.data.models.FirstAidGuide
-import com.example.firstaidapp.ui.home.PhotoMapper
+
 import com.example.firstaidapp.utils.Constants
 import com.example.firstaidapp.utils.UserPreferencesManager
 import com.example.firstaidapp.utils.YouTubeVideoHelper
@@ -67,8 +69,7 @@ class GuideDetailFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        val factory = GuideDetailViewModelFactory(requireActivity().application)
-        viewModel = ViewModelProvider(this, factory)[GuideDetailViewModel::class.java]
+        viewModel = ViewModelProvider(this)[GuideDetailViewModel::class.java]
     }
 
     private fun setupRecyclerView() {
@@ -196,28 +197,8 @@ class GuideDetailFragment : Fragment() {
     }
 
     private fun loadGuidePhoto(guideTitle: String) {
-        val photoPath = PhotoMapper.getPhotoForGuide(guideTitle)
-
-        if (photoPath != null) {
-            try {
-                val inputStream = requireContext().assets.open(photoPath)
-                val drawable = android.graphics.drawable.Drawable.createFromStream(inputStream, null)
-
-                if (drawable != null) {
-                    binding.ivGuidePhoto.setImageDrawable(drawable)
-                    binding.cvPhotoDemo.visibility = View.VISIBLE
-                } else {
-                    binding.cvPhotoDemo.visibility = View.GONE
-                }
-
-                inputStream.close()
-
-            } catch (_: IOException) {
-                binding.cvPhotoDemo.visibility = View.GONE
-            }
-        } else {
-            binding.cvPhotoDemo.visibility = View.GONE
-        }
+        // Simplified photo loading - hiding photo demo for now
+        binding.cvPhotoDemo.visibility = View.GONE
     }
 
     private fun setupClickListeners() {
